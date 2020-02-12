@@ -1,6 +1,8 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 
+#include "Event.h"
+
 class Calendar
 {
 	public:
