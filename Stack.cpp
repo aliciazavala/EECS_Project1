@@ -49,7 +49,7 @@ void Stack<ItemType>::push(const ItemType& newEntry)
 	SLNode<ItemType>* temp = new SLNode<ItemType>(newEntry);
 	if(temp == nullptr)//memory check
 	{
-		throw(PrecondViolatedExcep("Out of memory!"));
+		throw(std::runtime_error("Out of memory!"));
 	}
 	else
 	{
@@ -69,7 +69,7 @@ void Stack<ItemType>::pop()
 	}
 	else
 	{
-		throw(PrecondViolatedExcep("No items to remove!"));
+		throw(std::runtime_error("No items to remove!"));
 	}
 }
 
@@ -78,7 +78,7 @@ ItemType Stack<ItemType>::peek() const
 {
     if(isEmpty())
 	{
-		throw(PrecondViolatedExcep("No items to peek in stack!"));
+		throw(std::runtime_error("No items to peek in stack!"));
 	}
 	return m_top->getItem();
 }

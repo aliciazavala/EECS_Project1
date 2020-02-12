@@ -1,6 +1,7 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include <stdexcept>
 #include "StackInterface.h"
 #include "SLNode.h"
 
