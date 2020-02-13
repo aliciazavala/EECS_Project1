@@ -1,6 +1,7 @@
 #ifndef CALENDAR_H
 #define CALENDAR_H
 using namespace std;
+#include<string>
 #include "Event.h"
 
 class Calendar
