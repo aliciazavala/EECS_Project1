@@ -3,21 +3,14 @@
 
 #include <math.h>
 #include <string>
+#include <iostream>
 #include <stdexcept>
 #include <random>
 
 /******************************************************************************
- *   DEFINITIONS
+ *   CONSTANT DEFINITIONS
  *******************************************************************************/
 
-//These constants will make the Display class more readable
-const int SETTINGS_MENU = 0;
-const int MAIN_MENU = 1;
-const int MONTH_MENU = 2;
-const int EVENT_MENU = 3;
-const int LOGIN_MENU = 4;
-const int CREATE_MENU = 5;
-const int DATESELECT_MENU = 6;
 
 /******************************************************************************
  *   CALENDAR FUNCTIONS
@@ -34,7 +27,7 @@ int daysInMonth(int m, int y);
 	@pre none
 	@post returns the month number m as a string
 	@throw throw if m is not a valid month number*/
-std::string getMonth(int m);
+std::string getMonthName(int m);
 
 /**
 	@pre none

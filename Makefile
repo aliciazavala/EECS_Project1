@@ -1,23 +1,29 @@
-CalendarApp: main.o Executive.o Calendar.o Display.o Event.o People.o
-	g++ -std=c++11 -g -Wall main.o Executive.o Calendar.o Display.o Event.o People.o -o CalendarApp
+CalendarApp: main.o Executive.o Calendar.o MainMenu.o MonthMenu.o Event.o project1_lib.o
+	g++ -std=c++11 -g -Wall main.o Executive.o Calendar.o MainMenu.o MonthMenu.o Event.o project1_lib.o -o CalendarApp
 
 main.o: main.cpp Executive.h
 	g++ -std=c++11 -g -Wall -c main.cpp
 
-Executive.o: Executive.h Executive.cpp Display.h Calendar.h
+Executive.o: Executive.h Executive.cpp Calendar.h
 	g++ -std=c++11 -g -Wall -c Executive.cpp
 
 Calendar.o: Calendar.h Calendar.cpp
 	g++ -std=c++11 -g -Wall -c Calendar.cpp
 
-Display.o: Display.h Display.cpp Stack.h Stack.cpp project1_lib.h
-	g++ -std=c++11 -g -Wall -c Display.cpp
+MainMenu.o: Menu.h MainMenu.h MainMenu.cpp project1_lib.h
+	g++ -std=c++11 -g -Wall -c MainMenu.cpp
+
+MonthMenu.o: Menu.h MonthMenu.h MonthMenu.cpp project1_lib.h
+	g++ -std=c++11 -g -Wall -c MonthMenu.cpp
 
 Event.o: Event.h Event.cpp People.h
 	g++ -std=c++11 -g -Wall -c Event.cpp
 
 People.o: People.h People.cpp
 	g++ -std=c++11 -g -Wall -c People.cpp
+
+project1_lib.o: project1_lib.h project1_lib.cpp
+	g++ -std=c++11 -g -Wall -c project1_lib.cpp
 
 clean:
 	rm *.o CalendarApp
