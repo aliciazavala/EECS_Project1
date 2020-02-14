@@ -35,6 +35,39 @@ int daysInMonth(int m, int y)
 	}
 }
 
+std::string getMonthName(int m)
+{
+	switch(m)
+	{
+		case 1: return ("January");
+			break;
+		case 2: return ("February");
+			break;
+		case 3: return ("March");
+			break;
+		case 4: return ("April");
+			break;
+		case 5: return ("May");
+			break;
+		case 6: return ("June");
+			break;
+		case 7: return ("July");
+			break;
+		case 8: return ("August");
+			break;
+		case 9: return ("September");
+			break;
+		case 10: return ("Octcober");
+			break;
+		case 11: return ("November");
+			break;
+		case 12: return ("December");
+			break;
+		default: throw(std::runtime_error("Not a month"));
+			break;
+	}
+}
+
 std::string dayOfWeek(int m, int d, int y)
 {
 	if(m == 1 || m == 2)
@@ -102,7 +135,7 @@ std::string generateID()
 	return (ID);
 }
 
-int Executive::validIntFromUser(std::string errorMessage = "Invalid input!\n")
+int validIntFromUser(std::string errorMessage = "Invalid input!\n")
 {
 	int input;
 	while(1)
