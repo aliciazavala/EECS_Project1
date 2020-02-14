@@ -21,5 +21,3 @@ People.o: People.h People.cpp
 
 clean:
 	rm *.o CalendarApp
-
-
