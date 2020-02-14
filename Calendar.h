@@ -14,7 +14,7 @@ class Calendar
 		int getSize();
 		void insertEvent(Event x);
 		//methods for getting events in a month
-		Event getEvents(string month);
+		Event* getEvents(string month);
 		//method to search for an event (later feature)
 			//search from events
 		//array to return events from the same month

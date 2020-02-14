@@ -21,7 +21,7 @@ void Calendar::insertEvent(Event x)
   m_eventList = new Event[m_numevents];
   m_eventList[m_numevents] = x;
 }
-Event Calendar::getEvents(std::string month)
+Event* Calendar::getEvents(std::string month)
 {
   int numEventsInMonth = 0;
   int y = 0;
