@@ -24,7 +24,7 @@ class Executive
 
 	std::string m_fileName;
 	Calendar* m_calendar;
-	Stack<Menu>* m_menuStack;
+	Stack<Menu*>* m_menuStack;
 };
 
 #endif

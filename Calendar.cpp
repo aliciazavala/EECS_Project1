@@ -1,6 +1,7 @@
 
 #include "Calendar.h"
-using namepsace std;
+
+
 Calendar::Calendar(int size)
 {
   m_eventList = new Event[size];
@@ -19,9 +20,9 @@ void Calendar::insertEvent(Event x)
   delete m_eventList;
   m_numevents++;
   m_eventList = new Event[m_numevents];
-  m_evenList[m_numevents] = x;
+  m_eventList[m_numevents] = x;
 }
-Event Calendar::getEvents(string month)
+Event* Calendar::getEvents(string month)
 {
   int x = 0;
   int y = 0;
@@ -37,9 +38,10 @@ Event Calendar::getEvents(string month)
   {
     if(m_eventList[j].getMonth() == month)
     {
-      m_Month[y] = m_evenList[j];
+      m_Month[y] = m_eventList[j];
       y++;
     }
   }
   return m_Month;
 }
+

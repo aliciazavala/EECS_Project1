@@ -4,11 +4,14 @@ CalendarApp: main.o Executive.o Calendar.o MainMenu.o MonthMenu.o Event.o projec
 main.o: main.cpp Executive.h
 	g++ -std=c++11 -g -Wall -c main.cpp
 
-Executive.o: Executive.h Executive.cpp Calendar.h
+Executive.o: Executive.h Executive.cpp Calendar.h StackInterface.h Stack.h Stack.cpp SLNode.h Menu.h
 	g++ -std=c++11 -g -Wall -c Executive.cpp
 
-Calendar.o: Calendar.h Calendar.cpp
+Calendar.o: Calendar.h Calendar.cpp project1_lib.h
 	g++ -std=c++11 -g -Wall -c Calendar.cpp
+
+Menu.o: Menu.h Menu.cpp project1_lib.h
+	g++ -std=c++11 -g -Wall -c Menu.cpp
 
 MainMenu.o: Menu.h MainMenu.h MainMenu.cpp project1_lib.h
 	g++ -std=c++11 -g -Wall -c MainMenu.cpp

@@ -11,7 +11,7 @@ class Menu
 {
 	public:
 	virtual ~Menu() {}
-
+	
 	virtual void print() const = 0;
 	
 

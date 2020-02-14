@@ -27,7 +27,7 @@ int daysInMonth(int m, int y);
 	@pre none
 	@post returns the month number m as a string
 	@throw throw if m is not a valid month number*/
-std::string getMonthName(int m);
+std::string nameOfMonth(int m);
 
 /**
 	@pre none

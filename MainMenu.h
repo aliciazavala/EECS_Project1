@@ -10,7 +10,7 @@ class MainMenu : public Menu
 	MainMenu();
 	~MainMenu();
 
-	void print() const;
+	virtual void print() const;
 	//implement a settings menu
 	
 	private:

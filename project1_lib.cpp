@@ -35,7 +35,7 @@ int daysInMonth(int m, int y)
 	}
 }
 
-std::string getMonthName(int m)
+std::string nameOfMonth(int m)
 {
 	switch(m)
 	{

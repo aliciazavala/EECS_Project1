@@ -25,7 +25,7 @@ void Executive::run()
 {
 	if(load())//executes load
 	{
-		m_menuStack = new Stack<Menu>;
+		m_menuStack = new Stack<Menu*>;
 		pushMenu("MainMenu");
 		
 	}
