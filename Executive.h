@@ -1,6 +1,7 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
+#include "Event.h"
 #include "Calendar.h"
 #include "Display.h"
 #include "Menu.h"
@@ -25,6 +26,7 @@ class Executive
 	std::string m_fileName;
 	Calendar* m_calendar;
 	Stack<Menu*>* m_menuStack;
+
 };
 
 #endif

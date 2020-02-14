@@ -6,11 +6,11 @@
 #include "project1_lib.h"
 #include "Event.h"
 
-using namespace std;
 
 class Calendar
 {
 	public:
+
 	//construct array
 	Calendar(int size);
 	//getters/setters
@@ -18,11 +18,12 @@ class Calendar
 	int getSize();
 	void insertEvent(Event x);
 	//methods for getting events in a month
-	Event* getEvents(string month);
+	Event* getEvents(std::string month);
 	//method to search for an event (later feature)
 		//search from events
 	//array to return events from the same month
 	Event* m_Month;
+
 	private:
 	Event* m_eventList;
 	int m_numevents;

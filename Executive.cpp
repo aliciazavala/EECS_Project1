@@ -1,5 +1,4 @@
 #include "Executive.h"
-
 Executive::Executive()
 {
 	//both should be empty at startup

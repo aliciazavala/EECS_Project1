@@ -5,8 +5,12 @@ Event::Event()
 	m_month = "January";//placeholder
 }
 
-std::string Event::getMonth()
+void Event::setMonth(std::string month)
 {
-	//Events should always be created with a month name
-	return "January";//placeholder
+    m_month = month;
+}
+
+std::string Event::getMonth() const
+{
+    return m_month;
 }

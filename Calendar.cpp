@@ -1,4 +1,3 @@
-
 #include "Calendar.h"
 
 
@@ -22,18 +21,19 @@ void Calendar::insertEvent(Event x)
   m_eventList = new Event[m_numevents];
   m_eventList[m_numevents] = x;
 }
-Event* Calendar::getEvents(string month)
+
+Event* Calendar::getEvents(std::string month)
 {
-  int x = 0;
+  int numEventsInMonth = 0;
   int y = 0;
   for(int i = 0; i<m_numevents; i++)
   {
     if(m_eventList[i].getMonth() == month)
     {
-      x++;
+      numEventsInMonth++;
     }
   }
-  m_Month = new Event[x];
+  m_Month = new Event[numEventsInMonth];
   for(int j = 0; j<m_numevents; j++)
   {
     if(m_eventList[j].getMonth() == month)

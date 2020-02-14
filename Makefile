@@ -30,5 +30,3 @@ project1_lib.o: project1_lib.h project1_lib.cpp
 
 clean:
 	rm *.o CalendarApp
-
-
