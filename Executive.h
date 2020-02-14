@@ -11,10 +11,10 @@
 class Executive
 {
 	public:
-
+		
 	private:
-	Calendar* eventList;
-	Stack<Menu>* menuStack;
+		Calendar* eventList;
+		Stack<Menu>* menuStack;
 };
 
 #endif
