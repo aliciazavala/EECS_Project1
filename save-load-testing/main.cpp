@@ -2,53 +2,48 @@
 #include <fstream>
 #include <string>
 
-#include "User.h"
-#include "Events.h"
-
 using namespace std;
 
 int main()
 {
   char option;
-  ofstream users;
+  string name,eName,time;
   ofstream events;
-  users.open("users.txt");
-  events.open("events.txt");
-  User Alicia("Alicia","eecs448");
-  users << "Alicia\teecs448";
-  Events BirthdayAli("Alicia's Birthday",Alicia,"12/20 4pm - 7pm");
-  events<<BirthdayAli.getEName()<<'\t'<<Alicia.getName()<<'\t'<<BirthdayAli.getTime()<<'\n';
-  string name, passw, eName, time;
+  ifstream output;
+
+
   while(option != 'q')
   {
-    cout<<"Select an option:\na) Create Event\nb) See Events\nq) Quit\n";
+    cout<<"Select an option:\na) Create Event in January\nb) See Events\nq) Quit\n";
     cin>>option ;
     if(option == 'a')
       {
+        events.open("January.txt", fstream::app);
         cout<<"\nEnter event admin name: ";
         cin>>name;
-        cout<<"\nEnter event admin password: ";
-        cin>>passw ;
         cout<<"\nEnter event name: ";
         cin>>eName;
         cout<<"\nEnter event date and time: ";
         cin>>time;
-        User newAdmin(name,passw);
-        users<<name<<'\t'<<passw<<'\n';
+        cout<<"\nEvent saved\n";
         events<<eName<<'\t'<<name<<'\t'<<time<<'\n';
-        Events(eName, newAdmin,time);
+
       }
     if(option == 'b')
       {
-        //event.open("events.txt");
-        /*while(event)
+        output.open("January.txt");
+        int i = 1;
+        while(output >> eName)
         {
-          event>>eName;
-          event>>name;
-          event>>time;
-          cout<<"Event name: "<<eName<<"\nEvent date and time: "<<time<<"Event creator: "<<name;
-        }*/
+          output>>name;
+          output>>time;
+          cout<<"===========\nEVENT "<<i<<"\n===========\n";
+          cout<<"Name of the Event:" << eName<<"\nEvent admin: "<<name<<"\nEvent time and date: "<<time<<"\n\n";
+          i++;
+        }
+        output.close();
       }
+      events.close();
   }
   return(0);
 }
