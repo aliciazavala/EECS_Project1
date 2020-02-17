@@ -8,9 +8,10 @@ int main()
 {
   char option;
   string name,eName,time;
+  //writes events
   ofstream events;
+  //reads events
   ifstream output;
-
 
   while(option != 'q')
   {
@@ -18,7 +19,9 @@ int main()
     cin>>option ;
     if(option == 'a')
       {
-        events.open("January.txt", fstream::app);
+        //saving format:
+        // EVENT NAME     ADMIN NAME      EVENT TIME
+        events.open("January.txt", fstream::app); //::app to keep writing on files
         cout<<"\nEnter event admin name: ";
         cin>>name;
         cout<<"\nEnter event name: ";
@@ -27,10 +30,12 @@ int main()
         cin>>time;
         cout<<"\nEvent saved\n";
         events<<eName<<'\t'<<name<<'\t'<<time<<'\n';
-
+        events.close();
       }
     if(option == 'b')
       {
+        //reading format:
+        // EVENT NAME     ADMIN NAME      EVENT TIME
         output.open("January.txt");
         int i = 1;
         while(output >> eName)
@@ -43,7 +48,7 @@ int main()
         }
         output.close();
       }
-      events.close();
+
   }
   return(0);
 }
