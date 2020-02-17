@@ -25,7 +25,9 @@ void Executive::run()
 	if(load())//executes load
 	{
 		m_menuStack = new Stack<Menu*>;
-		pushMenu("MainMenu");
+		
+		Menu* newMenu = new MainMenu;
+		m_menuStack->push(newMenu);
 		
 	}
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
@@ -74,23 +76,6 @@ void Executive::save()
 	std::cout << "save complete\n";//placeholder return
 }
 
-void Executive::pushMenu(std::string menuName)
-{
-	if(menuName == "MainMenu")
-	{
-		Menu* newMenu = new MainMenu;
-		m_menuStack->push(newMenu);
-	}
-	else if(menuName == "MonthMenu")
-	{
-		
-	}
-	else if(menuName == "NewEventMenu")
-	{
-		
-	}
-}
-
 void Executive::handleMainMenu()
 {
 	(m_menuStack->peek())->print();//print
@@ -99,6 +84,7 @@ void Executive::handleMainMenu()
 	{
 		Menu* newMenu = new MonthMenu(input);
 		m_menuStack->push(newMenu);
+
 	}
 	else if(input == 0){handleBack();}
 }

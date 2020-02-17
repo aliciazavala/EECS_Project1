@@ -22,14 +22,13 @@ class Executive
 	bool load();
 	void save();
 
-	void pushMenu(std::string menuName);
-
 	void handleMainMenu();
 	void handleMonthMenu();
 	void handleNewEventMenu();
 	void handleBack();
 	void handleSettingsMenu();
 
+	int loadedYear;
 	std::string m_fileName;
 	Calendar* m_calendar;
 	Stack<Menu*>* m_menuStack;

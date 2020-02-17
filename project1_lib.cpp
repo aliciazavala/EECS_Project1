@@ -121,6 +121,13 @@ bool isValidDate(int m, int d, int y)
 	return true;
 }
 
+int getCurrentYear()
+{
+	time_t now = time(0);
+	tm* ltm = localtime(&now);
+	return(1900 + ltm->tm_year);
+}
+
 std::string generateID()
 {
 	std::string ID = "123456";
@@ -176,3 +183,5 @@ int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage
 		}
 	}
 }
+
+

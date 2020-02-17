@@ -18,7 +18,7 @@ std::string MainMenu::getName() const
 void MainMenu::print() const
 {
 	clearScreen();
-	std::cout << "\t=====CALENDAR APP=====\n";
+	std::cout << "\t===== "<< getCurrentYear() << " CALENDAR =====\n";
 	std::cout << "Chose a month:\n";
 	for (int i = 1; i <= 12; i++)
 	{
@@ -31,12 +31,3 @@ void MainMenu::print() const
 	}
 }
 
-/**
-void MainMenu::clearScreen() const
-{
-	for(int i = 0; i < 50; i++)
-	{
-		std::cout << std::endl;
-	}
-}
-*/

@@ -10,6 +10,7 @@ private:
 public:
 	SLNode(T anItem) : item(anItem), next(nullptr) {}
 	SLNode(T anItem, SLNode* nextSLNode) : item(anItem), next(nextSLNode) {}
+	~SLNode(){if(item != nullptr){delete item;}}
 	T getItem() const { return item; }
 	SLNode* getNext() const { return next; }
 	void setItem(T newItem) { item = newItem; }

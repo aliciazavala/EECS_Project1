@@ -6,6 +6,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <random>
+#include <ctime>
 
 
 /******************************************************************************
@@ -43,6 +44,8 @@ std::string dayOfWeek(int m, int d, int y);
 	@param d=day, m=month, y=year*/
 bool isValidDate(int m, int d, int y);
 
+int getCurrentYear();
+
 /******************************************************************************
  *   OTHER FUNCTIONS
  *******************************************************************************/
@@ -54,6 +57,8 @@ int getValidIntFromUser(std::string errorMessage = "Invalid input!");
 
 
 int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage = "Invalid input!");
+
+int getIntOrCharFromUser();
 
 	/**
 	@pre none
