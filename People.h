@@ -8,7 +8,7 @@ class People
 		People(){};
 		People(std::string fname);
 		void setFirstName(std::string fname);
-		int getFirstName();
+		std::string getFirstName() const;
 
 	private:
 

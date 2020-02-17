@@ -1,18 +1,10 @@
 #include "Menu.h"
-/**
-Menu::Menu()
+
+
+void Menu::clearScreen(int lines) const
 {
-
+	for(int i = 0; i < lines; i++)
+	{
+		std::cout << std::endl;
+	}
 }
-
-Menu::~Menu()
-{
-	
-}
-
-virtual void Menu::print() const
-{
-	std::cout << "Empty\n";
-}
-
-*/

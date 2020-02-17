@@ -6,6 +6,12 @@ Calendar::Calendar(int size)
   m_eventList = new Event[size];
   m_numevents = 0;
 }
+
+Calendar::~Calendar()
+{
+  delete[] m_eventList;
+}
+
 void Calendar::setSize(int s)
 {
   m_numevents = s;

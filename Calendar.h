@@ -13,6 +13,8 @@ class Calendar
 
 	//construct array
 	Calendar(int size);
+
+	~Calendar();
 	//getters/setters
 	void setSize(int s);
 	int getSize();

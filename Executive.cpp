@@ -30,7 +30,24 @@ void Executive::run()
 	}
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
 	{
-		
+		std::string currentMenu = (m_menuStack->peek())->getName();
+
+		if(currentMenu == "MainMenu")
+		{
+			handleMainMenu();
+		}
+		else if(currentMenu == "MonthMenu")
+		{
+			handleMonthMenu();
+		}
+		else if(currentMenu == "NewEventMenu")
+		{
+			handleNewEventMenu();
+		}
+		else if(currentMenu == "SettingsMenu")
+		{
+			handleSettingsMenu();
+		}
 	}
 	save();
 }
@@ -58,6 +75,60 @@ void Executive::save()
 }
 
 void Executive::pushMenu(std::string menuName)
+{
+	if(menuName == "MainMenu")
+	{
+		Menu* newMenu = new MainMenu;
+		m_menuStack->push(newMenu);
+	}
+	else if(menuName == "MonthMenu")
+	{
+		
+	}
+	else if(menuName == "NewEventMenu")
+	{
+		
+	}
+}
+
+void Executive::handleMainMenu()
+{
+	(m_menuStack->peek())->print();//print
+	int input = getIntRangeFromUser(0,12);//ask user for input
+	if(input > 0 && input <= 12)
+	{
+		Menu* newMenu = new MonthMenu(input);
+		m_menuStack->push(newMenu);
+	}
+	else if(input == 0){handleBack();}
+}
+
+void Executive::handleMonthMenu()
+{
+	(m_menuStack->peek())->print();
+	//read number of events in a month from that file
+	int input = getIntRangeFromUser(0,0);
+	if(input == 0)
+	{
+		handleBack();
+	}
+	//ask user to chose event or make event
+	//if make event, then create event menu and push
+}
+
+void Executive::handleNewEventMenu()
+{
+	//ask user for each event parameter
+
+	//output to file
+}
+
+void Executive::handleBack()
+{
+	m_menuStack->pop();
+}
+
+void Executive::handleSettingsMenu()
 {
 	
 }

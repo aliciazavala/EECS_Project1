@@ -11,7 +11,7 @@ void People::setFirstName(std::string fname)
     
 }
 
-void People::getFirstName()
+std::string People::getFirstName() const
 {
     return m_firstName;
 }

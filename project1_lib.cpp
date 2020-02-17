@@ -135,13 +135,36 @@ std::string generateID()
 	return (ID);
 }
 
-int validIntFromUser(std::string errorMessage = "Invalid input!\n")
+int getValidIntFromUser(std::string errorMessage)
 {
 	int input;
 	while(1)
 	{
 		std::cin >> input;
 		if(std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << errorMessage;
+		}
+		else
+		{
+			return input;
+		}
+	}
+}
+
+int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage)
+{
+	int input;
+	if(lowerBound > upperBound)
+	{
+		throw(std::runtime_error("Invalid bounds!"));
+	}
+	while(1)
+	{
+		std::cin >> input;
+		if(std::cin.fail() || input < lowerBound || input > upperBound)
 		{
 			std::cin.clear();
 			std::cin.ignore();

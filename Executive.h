@@ -3,11 +3,11 @@
 
 #include "Event.h"
 #include "Calendar.h"
-#include "Display.h"
 #include "Menu.h"
 #include "MainMenu.h"
 #include "MonthMenu.h"
 #include "StackInterface.h"
+#include "Stack.h"
 
 
 class Executive
@@ -21,7 +21,14 @@ class Executive
 	private:
 	bool load();
 	void save();
+
 	void pushMenu(std::string menuName);
+
+	void handleMainMenu();
+	void handleMonthMenu();
+	void handleNewEventMenu();
+	void handleBack();
+	void handleSettingsMenu();
 
 	std::string m_fileName;
 	Calendar* m_calendar;
