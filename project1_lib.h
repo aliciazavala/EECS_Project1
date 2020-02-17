@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <random>
 
+
 /******************************************************************************
  *   CONSTANT DEFINITIONS
  *******************************************************************************/
@@ -50,6 +51,9 @@ bool isValidDate(int m, int d, int y);
 	@post returns an integer only after the user enters a valid integer
 	@param optional parameter for an error message displayed for non-integer inputs*/
 int getValidIntFromUser(std::string errorMessage = "Invalid input!"); 
+
+
+int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage = "Invalid input!");
 
 	/**
 	@pre none
