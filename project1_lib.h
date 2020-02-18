@@ -44,25 +44,45 @@ std::string dayOfWeek(int m, int d, int y);
 	@param d=day, m=month, y=year*/
 bool isValidDate(int m, int d, int y);
 
+/**
+	@pre none
+	@post returns the current year as an integer*/
 int getCurrentYear();
 
 /******************************************************************************
  *   OTHER FUNCTIONS
  *******************************************************************************/
+
 	/**
 	@pre none
 	@post returns an integer only after the user enters a valid integer
 	@param optional parameter for an error message displayed for non-integer inputs*/
 int getValidIntFromUser(std::string errorMessage = "Invalid input!"); 
 
-
+	/**
+	@pre none
+	@post returns a valid int from the user within the range [lowerbound, upperBound]
+	@param lowerbound and upperBound are inclusive and errorMessage is an optional parameter*/
 int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage = "Invalid input!");
 
+	/**
+	@pre none
+	@post returns a valid string that belongs to the set arr
+	@param arr is a string array of size 'size' and errorMessage is an optional paramter
+	*/
 std::string getStrFromSet(int size, std::string arr[], std::string errorMessage = "Invalid input!");
-
+	
+	/**
+	@pre none
+	@post returns true if str is in the string array arr
+	@param */
 bool containsStr(std::string str, int size, std::string arr[]);
 
-int getCharFromUser(int size, char arr[], std::string errorMessage = "Invalid input!");
+	/**
+	@pre none
+	@post returns a char that is in the set arr
+	@param arr is a char array of size 'size' and errorMessage is an optional parameter*/
+int getCharFromSet(int size, char arr[], std::string errorMessage = "Invalid input!");
 
 	/**
 	@pre none

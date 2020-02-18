@@ -128,28 +128,6 @@ int getCurrentYear()
 	return(1900 + ltm->tm_year);
 }
 
-int getCharFromUser(int size, char arr[], std::string errorMessage)
-{
-	int input;
-	while(1)
-	{
-		std::cin >> input;
-		for(int i = 0; i < size; i++)
-		{
-			if(std::cin.fail())
-			{
-				std::cin.clear();
-				std::cin.ignore();
-			}
-			else if(arr[i] == input)
-			{
-				return input;
-			}
-		}
-		std::cout << errorMessage << std::endl;
-	}
-}
-
 int getValidIntFromUser(std::string errorMessage)
 {
 	int input;
@@ -221,6 +199,29 @@ bool containsStr(std::string str, int size, std::string arr[])
 		}
 	}
 	return false;
+}
+
+
+int getCharFromSet(int size, char arr[], std::string errorMessage)
+{
+	int input;
+	while(1)
+	{
+		std::cin >> input;
+		for(int i = 0; i < size; i++)
+		{
+			if(std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore();
+			}
+			else if(arr[i] == input)
+			{
+				return input;
+			}
+		}
+		std::cout << errorMessage << std::endl;
+	}
 }
 
 std::string generateID()
