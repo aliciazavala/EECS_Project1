@@ -97,8 +97,8 @@ void Executive::handleMainMenu()
 
 	if(containsStr(input, 12, monthArr))
 	{
-		Menu* newMenu = new MonthMenu(stoi(input));
 		m_loadedMonth = stoi(input);
+		Menu* newMenu = new MonthMenu();
 		m_menuStack->push(newMenu);
 
 	}
@@ -128,7 +128,8 @@ void Executive::handleMainMenu()
 void Executive::handleMonthMenu()
 {
 	//create temp
-	(m_menuStack->peek())->print();
+	MonthMenu temp;
+	temp.print(m_loadedMonth, m_loadedYear);
 	//read number of events in a month from that file
 	int input = getIntRangeFromUser(0,2);
 	if(input == 0)
@@ -151,7 +152,7 @@ void Executive::handleNewEventMenu()
 	std::string EventName;
 	std::ofstream events;
 	NewEventMenu temp = NewEventMenu(m_loadedMonth);
-	std::string FileName =	temp.getMonth();
+	std::string FileName =	nameOfMonth(m_loadedMonth);
 	events.open(FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
 	std::cin>>creatorName;

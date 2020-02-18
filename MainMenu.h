@@ -18,7 +18,7 @@ class MainMenu : public Menu
 	void print(int year) const;
 	
 	private:
-	//void clearScreen() const;
+	
 	
 };
 

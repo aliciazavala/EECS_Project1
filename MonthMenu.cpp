@@ -1,9 +1,8 @@
 #include "MonthMenu.h"
 
-MonthMenu::MonthMenu(int month)
+MonthMenu::MonthMenu()
 {
 	m_menuName = "MonthMenu";
-	m_month = nameOfMonth(month);
 	totalEvents = 0; //placeholder
 }
 
@@ -14,8 +13,13 @@ MonthMenu::~MonthMenu()
 
 void MonthMenu::print() const
 {
+	
+}
+
+void MonthMenu::print(int month, int year) const
+{
 	clearScreen();
-	std::cout << "\t =====Events for " << m_month << "=====" << std::endl;
+	std::cout << "\t ===== Events for " << nameOfMonth(month) << " " << year << " =====" << std::endl;
 	for(int i = 1; i <= totalEvents; i++)
 	{
 		//print every event name
@@ -36,8 +40,4 @@ std::string MonthMenu::getName() const
 	return m_menuName;
 }
 
-std::string MonthMenu::getMonth() const
-{
-	return m_month;
-} 
 //m_month + ".txt" for file name

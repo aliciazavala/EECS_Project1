@@ -7,16 +7,15 @@
 class MonthMenu : public Menu
 {
 	public:
-	MonthMenu(int month);
+	MonthMenu();
 	~MonthMenu();
 
 	void print() const;
+	void print(int month, int year) const;
 	std::string getName() const;
-	std::string getMonth() const;
 
 	private:
 	std::string m_menuName;
-	std::string m_month;
 	int totalEvents;
 	//point to event list
 };
