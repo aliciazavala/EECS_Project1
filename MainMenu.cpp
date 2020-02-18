@@ -19,15 +19,13 @@ void MainMenu::print() const
 {
 	clearScreen();
 	std::cout << "\t===== "<< getCurrentYear() << " CALENDAR =====\n";
-	std::cout << "Chose a month:\n";
+	std::cout << "[b] Previous Year\tNext Year[n]\n";
+	std::cout << "\tChose a month:\n";
 	for (int i = 1; i <= 12; i++)
 	{
 		std::cout << "[" << i << "] " << nameOfMonth(i) << std::endl;
-		
-		if(i == 12)
-		{
-			std::cout <<  "[0] Quit" << std::endl;
-		}
 	}
+		std::cout << "[s] Settings" << std::endl;
+		std::cout << "[q] Quit" << std::endl;
 }
 

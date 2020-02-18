@@ -79,14 +79,34 @@ void Executive::save()
 void Executive::handleMainMenu()
 {
 	(m_menuStack->peek())->print();//print
-	int input = getIntRangeFromUser(0,12);//ask user for input
-	if(input > 0 && input <= 12)
+
+	std::string validInputs[16] = {"q","1","2","3","4","5","6","7","8","9","10","11","12","b","n","s"};
+	std::string monthArr[12] = {"1","2","3","4","5","6","7","8","9","10","11","12"};
+	std::string input = getStrFromSet(16, validInputs);//ask user for input
+
+	if(containsStr(input, 12, monthArr))
 	{
-		Menu* newMenu = new MonthMenu(input);
+		Menu* newMenu = new MonthMenu(stoi(input));
 		m_menuStack->push(newMenu);
 
 	}
-	else if(input == 0){handleBack();}
+	else if(input == "q")
+	{
+		handleBack();
+	}
+	else if(input == "b")
+	{
+		// move year bakc
+	}
+	else if(input == "n")
+	{
+		//move year forward
+	}
+	else if(input == "s")
+	{
+		//push settings menu
+	}
+	
 }
 
 void Executive::handleMonthMenu()

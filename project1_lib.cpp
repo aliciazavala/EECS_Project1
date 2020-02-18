@@ -128,18 +128,26 @@ int getCurrentYear()
 	return(1900 + ltm->tm_year);
 }
 
-std::string generateID()
+int getCharFromUser(int size, char arr[], std::string errorMessage)
 {
-	std::string ID = "123456";
-	std::random_device device;
-	int seed = device();
-	std::mt19937 generator(seed);
-	std::uniform_int_distribution<int> distribution(0,9);
-	for(int i = 0; i < 6; i++)
+	int input;
+	while(1)
 	{
-		ID[i] = '0' + distribution(generator);
+		std::cin >> input;
+		for(int i = 0; i < size; i++)
+		{
+			if(std::cin.fail())
+			{
+				std::cin.clear();
+				std::cin.ignore();
+			}
+			else if(arr[i] == input)
+			{
+				return input;
+			}
+		}
+		std::cout << errorMessage << std::endl;
 	}
-	return (ID);
 }
 
 int getValidIntFromUser(std::string errorMessage)
@@ -152,7 +160,7 @@ int getValidIntFromUser(std::string errorMessage)
 		{
 			std::cin.clear();
 			std::cin.ignore();
-			std::cout << errorMessage;
+			std::cout << errorMessage << std::endl;
 		}
 		else
 		{
@@ -184,4 +192,47 @@ int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage
 	}
 }
 
+std::string getStrFromSet(int size, std::string arr[], std::string errorMessage)
+{
+	std::string input;
+	while(1)
+	{
+		std::cin >> input;
+		if(std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore();
+		}
+		else if(containsStr(input, size, arr))
+		{
+			return input;
+		}
+		std::cout << errorMessage << std::endl;
+	}
+}
 
+bool containsStr(std::string str, int size, std::string arr[])
+{
+	for(int i = 0; i < size; i++)
+	{
+		if(arr[i] == str)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+std::string generateID()
+{
+	std::string ID = "123456";
+	std::random_device device;
+	int seed = device();
+	std::mt19937 generator(seed);
+	std::uniform_int_distribution<int> distribution(0,9);
+	for(int i = 0; i < 6; i++)
+	{
+		ID[i] = '0' + distribution(generator);
+	}
+	return (ID);
+}

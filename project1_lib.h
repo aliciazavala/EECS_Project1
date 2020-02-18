@@ -58,7 +58,11 @@ int getValidIntFromUser(std::string errorMessage = "Invalid input!");
 
 int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage = "Invalid input!");
 
-int getIntOrCharFromUser();
+std::string getStrFromSet(int size, std::string arr[], std::string errorMessage = "Invalid input!");
+
+bool containsStr(std::string str, int size, std::string arr[]);
+
+int getCharFromUser(int size, char arr[], std::string errorMessage = "Invalid input!");
 
 	/**
 	@pre none
