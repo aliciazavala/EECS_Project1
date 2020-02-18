@@ -10,6 +10,7 @@
 #include "Stack.h"
 #include "NewEventMenu.h"
 #include "SettingsMenu.h"
+#include "TimeMenu.h"
 
 #include <fstream>
 
@@ -41,6 +42,7 @@ class Executive
 	void handleNewEventMenu();
 	void handleViewEventMenu();
 	void handleSettingsMenu();
+	void handleTimeMenu();
 	void handleBack();
 
 

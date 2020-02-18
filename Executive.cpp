@@ -5,6 +5,8 @@ Executive::Executive()
 	m_calendar = nullptr;
 	m_menuStack = nullptr;
 
+	m_loadedYear = getCurrentYear();
+	
 	m_militaryTime = true;
 }
 
@@ -50,6 +52,10 @@ void Executive::run()
 		{
 			handleViewEventMenu();
 		}
+		else if(currentMenu == "TimeMenu")
+		{
+			handleTimeMenu();
+		}
 		else if(currentMenu == "SettingsMenu")
 		{
 			handleSettingsMenu();
@@ -82,7 +88,8 @@ void Executive::save()
 
 void Executive::handleMainMenu()
 {
-	(m_menuStack->peek())->print();//print
+	MainMenu temp;
+	temp.print(m_loadedYear);//print
 
 	std::string validInputs[16] = {"q","1","2","3","4","5","6","7","8","9","10","11","12","b","n","s"};
 	std::string monthArr[12] = {"1","2","3","4","5","6","7","8","9","10","11","12"};
@@ -99,13 +106,16 @@ void Executive::handleMainMenu()
 	{
 		handleBack();
 	}
-	else if(input == "b")
+	else if(input == "b")// move back 1 year
 	{
-		// move year bakc
+		if(m_loadedYear > 1990)
+		{
+			m_loadedYear = m_loadedYear - 1;
+		}
 	}
-	else if(input == "n")
+	else if(input == "n")// move forward 1 year
 	{
-		//move year forward
+		m_loadedYear = m_loadedYear + 1;//currently no upper limit for year
 	}
 	else if(input == "s")
 	{
@@ -180,6 +190,11 @@ void Executive::handleSettingsMenu()
 
 
 void Executive::handleViewEventMenu()
+{
+	
+}
+
+void Executive::handleTimeMenu()
 {
 	
 }

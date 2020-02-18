@@ -15,10 +15,16 @@ std::string MainMenu::getName() const
 	return ("MainMenu");
 }
 
-void MainMenu::print() const
+void MainMenu::print()const
+{
+	
+}
+
+
+void MainMenu::print(int year) const
 {
 	clearScreen();
-	std::cout << "\t===== "<< getCurrentYear() << " CALENDAR =====\n";
+	std::cout << "\t===== "<< year << " CALENDAR =====\n";
 	std::cout << "[b] Previous Year\tNext Year[n]\n";
 	std::cout << "\tChose a month:\n";
 	for (int i = 1; i <= 12; i++)

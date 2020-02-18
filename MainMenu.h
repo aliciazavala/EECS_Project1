@@ -14,9 +14,8 @@ class MainMenu : public Menu
 
 	std::string getName() const;
 
-
 	void print() const;
-	//implement a settings menu
+	void print(int year) const;
 	
 	private:
 	//void clearScreen() const;
