@@ -118,7 +118,28 @@ bool isValidDate(int m, int d, int y)
 	{
 		return false;
 	}
+	if(isHoliday(m, d))
+	{
+		return false;
+	}
 	return true;
+}
+
+bool isHoliday(int m, int d)
+{
+	if(m == 1 && d == 1)
+	{
+		return true;
+	}
+	else if(m == 7 && d == 4)
+	{
+		return true;
+	}
+	else if(m == 12 && d == 25)
+	{
+		return true;
+	}
+	return false;
 }
 
 int getCurrentYear()
