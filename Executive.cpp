@@ -176,8 +176,10 @@ void Executive::handleNewEventMenu()
 			std::cin>>day;
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
-	events<<creatorName<<'\t'<<EventName<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
+	events<<"Event: "<<EventName<<'\t'<<creatorName<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
 	events.close();
+		int num = EventsInMonth(m_loadedMonth);
+		//std::cout<<num<<std::endl;
 		std::cout << "[0] Back" << std::endl;
 		int input = getIntRangeFromUser(0,0);
 		if(input == 0)
@@ -187,7 +189,24 @@ void Executive::handleNewEventMenu()
 	//ask user for each event parameter
 	//output to file
 }
-
+int Executive::EventsInMonth(int month)
+{
+	std::ifstream fin;
+	std::string line;
+ 	fin.open(nameOfMonth(month)+".txt");
+	int count = 0;
+	while(!fin.eof())
+	{
+		std::getline(fin,line);
+		if(line.substr(0,5)=="Event")
+		{
+			//std::cout<<line.substr(0,5);
+			count++;
+		}
+	}
+	return count;
+	fin.close();
+}
 void Executive::handleSettingsMenu()
 {
 	int input;
@@ -205,8 +224,6 @@ void Executive::handleSettingsMenu()
 	//go back one menu
 	handleBack();
 }
-
-
 void Executive::handleViewEventMenu()
 {
 

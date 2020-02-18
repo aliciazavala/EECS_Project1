@@ -1,6 +1,9 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
+#include<iostream>
+#include<fstream>
+#include<string.h>
 #include "Event.h"
 #include "Calendar.h"
 #include "Menu.h"
@@ -12,7 +15,6 @@
 #include "SettingsMenu.h"
 #include "TimeMenu.h"
 
-#include <fstream>
 
 
 class Executive
@@ -28,7 +30,7 @@ class Executive
 	int m_loadedYear;
 	int m_loadedMonth;
 	bool m_militaryTime;
-	
+
 	//std::string m_fileName;
 	Calendar* m_calendar;
 	Stack<Menu*>* m_menuStack;
@@ -44,6 +46,7 @@ class Executive
 	void handleSettingsMenu();
 	void handleTimeMenu();
 	void handleBack();
+	int EventsInMonth(int month);
 
 
 };
