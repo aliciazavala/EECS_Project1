@@ -23,9 +23,18 @@ void MainMenu::print() const
 	std::cout << "\tChose a month:\n";
 	for (int i = 1; i <= 12; i++)
 	{
-		std::cout << "[" << i << "] " << nameOfMonth(i) << std::endl;
+		std::cout << "[" << i << "] " << nameOfMonth(i);
+		if(i == 1)
+		{
+			std::cout << "\t\t[s] Settings";
+		}
+		else if(i == 2)
+		{
+			std::cout << "\t\t[q] Quit";
+		}
+		std::cout << std::endl;
 	}
-		std::cout << "[s] Settings" << std::endl;
-		std::cout << "[q] Quit" << std::endl;
+		
+		
 }
 

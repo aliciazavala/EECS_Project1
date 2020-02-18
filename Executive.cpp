@@ -5,7 +5,7 @@ Executive::Executive()
 	m_calendar = nullptr;
 	m_menuStack = nullptr;
 
-	m_fileName = "data.txt"; //file name should be constant
+	m_militaryTime = true;
 }
 
 Executive::~Executive()
@@ -46,6 +46,10 @@ void Executive::run()
 		{
 			handleNewEventMenu();
 		}
+		else if(currentMenu == "ViewEventMenu")
+		{
+			handleViewEventMenu();
+		}
 		else if(currentMenu == "SettingsMenu")
 		{
 			handleSettingsMenu();
@@ -58,8 +62,8 @@ bool Executive::load()
 {
 	//read from file then return true or return false if file cannot be openned
 
-	int eventsLoaded = 1;//should be read from file
-	m_calendar = new Calendar(eventsLoaded);
+	//int m_eventsLoaded = 1;//should be read from file
+	//m_calendar = new Calendar(m_eventsLoaded);
 
 	return true;//placeholder return
 }
@@ -87,7 +91,7 @@ void Executive::handleMainMenu()
 	if(containsStr(input, 12, monthArr))
 	{
 		Menu* newMenu = new MonthMenu(stoi(input));
-		LoadedMonth = input;
+		m_loadedMonth = stoi(input);
 		m_menuStack->push(newMenu);
 
 	}
@@ -105,13 +109,15 @@ void Executive::handleMainMenu()
 	}
 	else if(input == "s")
 	{
-		//push settings menu
+		Menu* newMenu = new SettingsMenu();
+		m_menuStack->push(newMenu);
 	}
 	
 }
 
 void Executive::handleMonthMenu()
 {
+	//create temp
 	(m_menuStack->peek())->print();
 	//read number of events in a month from that file
 	int input = getIntRangeFromUser(0,2);
@@ -134,15 +140,15 @@ void Executive::handleNewEventMenu()
 	std::string creatorName;
 	std::string EventName;
 	std::ofstream events;
-		NewEventMenu temp = NewEventMenu(LoadedMonth);
-		std::string FileName =	temp.getMonth();
-		events.open(FileName + ".txt", std::fstream::app);
-		std::cout<<"Enter name of event creator: ";
-		std::cin>>creatorName;
-		std::cout<<"Enter name of the event: ";
-		std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
-		std::getline (std::cin,EventName);
-		events<<creatorName<<'\t'<<EventName<<std::endl;
+	NewEventMenu temp = NewEventMenu(m_loadedMonth);
+	std::string FileName =	temp.getMonth();
+	events.open(FileName + ".txt", std::fstream::app);
+	std::cout<<"Enter name of event creator: ";
+	std::cin>>creatorName;
+	std::cout<<"Enter name of the event: ";
+	std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
+	std::getline (std::cin,EventName);
+	events<<creatorName<<'\t'<<EventName<<std::endl;
 	events.close();
 	std::cout << "[0] Back" << std::endl;
 	int input = getIntRangeFromUser(0,0);
@@ -154,12 +160,32 @@ void Executive::handleNewEventMenu()
 	//output to file
 }
 
+void Executive::handleSettingsMenu()
+{
+	int input;
+	SettingsMenu temp = SettingsMenu();
+	//allow the user to repeatedly change the time setting:
+	do
+	{
+		temp.print(m_militaryTime);
+		input  = getIntRangeFromUser(0,1);
+		if(input == 1)
+		{
+			m_militaryTime = !m_militaryTime;
+		}
+	}while(input != 0);
+	//go back one menu
+	handleBack();
+}
+
+
+void Executive::handleViewEventMenu()
+{
+	
+}
+
 void Executive::handleBack()
 {
 	m_menuStack->pop();
 }
 
-void Executive::handleSettingsMenu()
-{
-
-}

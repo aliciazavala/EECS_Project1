@@ -9,6 +9,8 @@
 #include "StackInterface.h"
 #include "Stack.h"
 #include "NewEventMenu.h"
+#include "SettingsMenu.h"
+
 #include <fstream>
 
 
@@ -21,20 +23,26 @@ class Executive
 	void run();
 
 	private:
+	//Current state
+	int m_loadedYear;
+	int m_loadedMonth;
+	bool m_militaryTime;
+	
+	//std::string m_fileName;
+	Calendar* m_calendar;
+	Stack<Menu*>* m_menuStack;
+
+
 	bool load();
 	void save();
-	int LoadedMonth;
 
 	void handleMainMenu();
 	void handleMonthMenu();
 	void handleNewEventMenu();
-	void handleBack();
+	void handleViewEventMenu();
 	void handleSettingsMenu();
+	void handleBack();
 
-	int loadedYear;
-	std::string m_fileName;
-	Calendar* m_calendar;
-	Stack<Menu*>* m_menuStack;
 
 };
 
