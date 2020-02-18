@@ -6,7 +6,7 @@ Executive::Executive()
 	m_menuStack = nullptr;
 
 	m_loadedYear = getCurrentYear();
-	
+
 	m_militaryTime = true;
 }
 
@@ -122,7 +122,7 @@ void Executive::handleMainMenu()
 		Menu* newMenu = new SettingsMenu();
 		m_menuStack->push(newMenu);
 	}
-	
+
 }
 
 void Executive::handleMonthMenu()
@@ -147,11 +147,14 @@ void Executive::handleMonthMenu()
 
 void Executive::handleNewEventMenu()
 {
-	(m_menuStack->peek())->print();
+	NewEventMenu temp = NewEventMenu(m_loadedMonth);
+	temp.print(m_loadedMonth,m_loadedYear);
+	int x = 0;
+	//(m_menuStack->peek())->print(m_loadedMonth,m_loadedYear);
 	std::string creatorName;
 	std::string EventName;
+	int day;
 	std::ofstream events;
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
 	std::string FileName =	nameOfMonth(m_loadedMonth);
 	events.open(FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
@@ -159,14 +162,28 @@ void Executive::handleNewEventMenu()
 	std::cout<<"Enter name of the event: ";
 	std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
 	std::getline (std::cin,EventName);
-	events<<creatorName<<'\t'<<EventName<<std::endl;
+	do{
+	x++;
+	day = 0;
+	if(x==1)
+		{
+			std::cout<<"Enter day of event: ";
+			std::cin>>day;
+		}
+		else if(x > 1)
+		{
+			std::cout<<"Enter a VALID day for the event: ";
+			std::cin>>day;
+		}
+	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
+	events<<creatorName<<'\t'<<EventName<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
 	events.close();
-	std::cout << "[0] Back" << std::endl;
-	int input = getIntRangeFromUser(0,0);
-	if(input == 0)
-	{
-		handleBack();
-	}
+		std::cout << "[0] Back" << std::endl;
+		int input = getIntRangeFromUser(0,0);
+		if(input == 0)
+		{
+			handleBack();
+		}
 	//ask user for each event parameter
 	//output to file
 }
@@ -192,16 +209,15 @@ void Executive::handleSettingsMenu()
 
 void Executive::handleViewEventMenu()
 {
-	
+
 }
 
 void Executive::handleTimeMenu()
 {
-	
+
 }
 
 void Executive::handleBack()
 {
 	m_menuStack->pop();
 }
-

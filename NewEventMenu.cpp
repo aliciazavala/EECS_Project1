@@ -13,10 +13,14 @@ NewEventMenu::NewEventMenu(const NewEventMenu& original)
   m_menuName = original.m_menuName;
   m_month = original.m_month;
 }
-void NewEventMenu::print()const
+void NewEventMenu::print(int& m_month, int& m_year)const
 {
   clearScreen();
-  std::cout << "\t =====New Event for: " << m_month << "=====" << std::endl;
+  std::cout << "\t =====New Event for: " << nameOfMonth(m_month) <<" "<<m_year<< "=====" << std::endl;
+}
+void NewEventMenu::print()const
+{
+
 }
 std::string NewEventMenu::getName() const
 {

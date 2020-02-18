@@ -48,7 +48,7 @@ bool isValidDate(int m, int d, int y);
 	@pre none
 	@post returns true if it's not New Years, 4th of July, or Christmas, false otherwise
 	@param m = month, d = day*/
-bool isHoliday(int m, int d)
+bool isHoliday(int m, int d);
 
 /**
 	@pre none
