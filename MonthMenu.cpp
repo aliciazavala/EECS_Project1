@@ -8,24 +8,42 @@ MonthMenu::MonthMenu()
 
 MonthMenu::~MonthMenu()
 {
-	
+
 }
 
 void MonthMenu::print() const
 {
-	
-}
 
+}
+void MonthMenu::setTotalEvents(int numEvents)
+{
+	totalEvents = numEvents;
+}
 void MonthMenu::print(int month, int year) const
 {
 	clearScreen();
+	int eventid = 0;
+	std::ifstream fin;
+	std::string eventname;
+	fin.open(nameOfMonth(month)+".txt");
 	std::cout << "\t ===== Events for " << nameOfMonth(month) << " " << year << " =====" << std::endl;
 	for(int i = 1; i <= totalEvents; i++)
 	{
 		//print every event name
-		if(i == totalEvents)
+		std::cout << "[" << i << "]";
+		do
 		{
-			std::cout << "[" << i + 1 << "] New Event" << std::endl;
+			fin>>eventname;
+		}while(eventname != "Event:");
+		fin>>eventid;
+		std::getline(fin,eventname);
+		std::cout<<eventname<<" ";
+		if(totalEvents > 0)
+		{
+			if (i == totalEvents)
+			{
+				std::cout << "["<< i+1<< "] New Event" << std::endl;
+			}
 		}
 	}
 	if(totalEvents == 0)

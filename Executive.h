@@ -47,6 +47,7 @@ class Executive
 	void handleTimeMenu();
 	void handleBack();
 	int EventsInMonth(int month);
+	void PrintEventsInMonth();
 
 
 };

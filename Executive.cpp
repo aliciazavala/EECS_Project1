@@ -129,20 +129,30 @@ void Executive::handleMonthMenu()
 {
 	//create temp
 	MonthMenu temp;
-	temp.print(m_loadedMonth, m_loadedYear);
 	//read number of events in a month from that file
-	int input = getIntRangeFromUser(0,2);
+	int range = EventsInMonth(m_loadedMonth);
+	temp.setTotalEvents(range);
+	temp.print(m_loadedMonth, m_loadedYear);
+	int input = getIntRangeFromUser(0,range+1);
 	if(input == 0)
 	{
 		handleBack();
 	}
-	else if(input == 1)
+	else if(input == range+1)
 	{
-		Menu* temp = new NewEventMenu(1);
+		Menu* temp = new NewEventMenu(m_loadedMonth);
 		m_menuStack->push(temp);
+	}
+	else
+	{
+
 	}
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
+}
+void Executive::PrintEventsInMonth()
+{
+
 }
 
 void Executive::handleNewEventMenu()
@@ -150,7 +160,6 @@ void Executive::handleNewEventMenu()
 	NewEventMenu temp = NewEventMenu(m_loadedMonth);
 	temp.print(m_loadedMonth,m_loadedYear);
 	int x = 0;
-	//(m_menuStack->peek())->print(m_loadedMonth,m_loadedYear);
 	std::string creatorName;
 	std::string EventName;
 	int day;
@@ -176,10 +185,10 @@ void Executive::handleNewEventMenu()
 			std::cin>>day;
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
-	events<<"Event: "<<EventName<<'\t'<<creatorName<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
+	std::string id = generateID();
+	events<<"Event: "<<id<<" "<<EventName<<std::endl<<'\t'<<creatorName<<std::endl<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
 	events.close();
 		int num = EventsInMonth(m_loadedMonth);
-		//std::cout<<num<<std::endl;
 		std::cout << "[0] Back" << std::endl;
 		int input = getIntRangeFromUser(0,0);
 		if(input == 0)
@@ -200,7 +209,6 @@ int Executive::EventsInMonth(int month)
 		std::getline(fin,line);
 		if(line.substr(0,5)=="Event")
 		{
-			//std::cout<<line.substr(0,5);
 			count++;
 		}
 	}
