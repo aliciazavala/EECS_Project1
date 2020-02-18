@@ -8,6 +8,8 @@
 #include "MonthMenu.h"
 #include "StackInterface.h"
 #include "Stack.h"
+#include "NewEventMenu.h"
+#include <fstream>
 
 
 class Executive
@@ -21,6 +23,7 @@ class Executive
 	private:
 	bool load();
 	void save();
+	int LoadedMonth;
 
 	void handleMainMenu();
 	void handleMonthMenu();

@@ -1,5 +1,5 @@
-CalendarApp: main.o Executive.o Calendar.o Menu.o MainMenu.o MonthMenu.o Event.o People.o project1_lib.o
-	g++ -std=c++11 -g -Wall main.o Executive.o Calendar.o Menu.o  MainMenu.o MonthMenu.o Event.o People.o project1_lib.o -o CalendarApp
+CalendarApp: main.o Executive.o Calendar.o Menu.o MainMenu.o MonthMenu.o Event.o People.o project1_lib.o NewEventMenu.o
+	g++ -std=c++11 -g -Wall main.o Executive.o Calendar.o Menu.o  MainMenu.o MonthMenu.o Event.o People.o project1_lib.o NewEventMenu.o -o CalendarApp
 
 main.o: main.cpp Executive.h
 	g++ -std=c++11 -g -Wall -c main.cpp
@@ -18,6 +18,9 @@ MainMenu.o: Menu.h MainMenu.h MainMenu.cpp project1_lib.h
 
 MonthMenu.o: Menu.h MonthMenu.h MonthMenu.cpp project1_lib.h
 	g++ -std=c++11 -g -Wall -c MonthMenu.cpp
+
+NewEventMenu.o: Menu.h MonthMenu.h project1_lib.h NewEventMenu.h NewEventMenu.cpp
+	g++ -std=c++11 -g -Wall -c NewEventMenu.cpp 
 
 Event.o: Event.h Event.cpp People.h
 	g++ -std=c++11 -g -Wall -c Event.cpp

@@ -4,7 +4,7 @@ Executive::Executive()
 	//both should be empty at startup
 	m_calendar = nullptr;
 	m_menuStack = nullptr;
-	
+
 	m_fileName = "data.txt"; //file name should be constant
 }
 
@@ -25,10 +25,10 @@ void Executive::run()
 	if(load())//executes load
 	{
 		m_menuStack = new Stack<Menu*>;
-		
+
 		Menu* newMenu = new MainMenu;
 		m_menuStack->push(newMenu);
-		
+
 	}
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
 	{
@@ -87,6 +87,7 @@ void Executive::handleMainMenu()
 	if(containsStr(input, 12, monthArr))
 	{
 		Menu* newMenu = new MonthMenu(stoi(input));
+		LoadedMonth = input;
 		m_menuStack->push(newMenu);
 
 	}
@@ -113,10 +114,15 @@ void Executive::handleMonthMenu()
 {
 	(m_menuStack->peek())->print();
 	//read number of events in a month from that file
-	int input = getIntRangeFromUser(0,0);
+	int input = getIntRangeFromUser(0,2);
 	if(input == 0)
 	{
 		handleBack();
+	}
+	else if(input == 1)
+	{
+		Menu* temp = new NewEventMenu(1);
+		m_menuStack->push(temp);
 	}
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
@@ -124,8 +130,27 @@ void Executive::handleMonthMenu()
 
 void Executive::handleNewEventMenu()
 {
+	(m_menuStack->peek())->print();
+	std::string creatorName;
+	std::string EventName;
+	std::ofstream events;
+		NewEventMenu temp = NewEventMenu(LoadedMonth);
+		std::string FileName =	temp.getMonth();
+		events.open(FileName + ".txt", std::fstream::app);
+		std::cout<<"Enter name of event creator: ";
+		std::cin>>creatorName;
+		std::cout<<"Enter name of the event: ";
+		std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
+		std::getline (std::cin,EventName);
+		events<<creatorName<<'\t'<<EventName<<std::endl;
+	events.close();
+	std::cout << "[0] Back" << std::endl;
+	int input = getIntRangeFromUser(0,0);
+	if(input == 0)
+	{
+		handleBack();
+	}
 	//ask user for each event parameter
-
 	//output to file
 }
 
@@ -136,5 +161,5 @@ void Executive::handleBack()
 
 void Executive::handleSettingsMenu()
 {
-	
+
 }

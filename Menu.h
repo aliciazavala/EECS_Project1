@@ -15,6 +15,7 @@ class Menu
 	
 	virtual void print() const = 0;
 	virtual std::string getName() const = 0;
+	//virtual std::string getMonth() const = 0;
 	void clearScreen(int lines = 100) const;
 
 	private:
