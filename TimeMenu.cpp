@@ -151,15 +151,10 @@ void TimeMenu::print(char** timeArr, bool militaryTime)
 		std::cout << std::endl;
 		currentHour++;
 	}
-	std::cout << std::endl;
-	std::cout << "\t        up\n";
-	std::cout << "\t       [w]\n";
-	std::cout << "\tleft[a][s][d]right\n";
-	std::cout << "\t       down\n";
-	std::cout << "\t[y] Available to attend\n";
-	std::cout << "\t[n] Not Available\n";
-	std::cout << "\t[F] Finish (blanks will be set to not available)\n";
-	std::cout << "\t[E] End without saving\n";
+	std::cout << "        up\t\t[y] Available to attend\n";
+	std::cout << "       [w]\t\t[n] Not Available\n";
+	std::cout << "left[a][s][d]right\t[F] Finish (blanks will be set to not available)\n";
+	std::cout << "       down\t\t[E] End without saving\n";
 	std::cout << "Action: ";
 }
 
@@ -169,7 +164,7 @@ void TimeMenu::moveCursor(std::string direction)
 	{
 		current_x = current_x-1;
 	}
-	else if(direction == "right" && current_y < 18)
+	else if(direction == "right" && current_y < 2)
 	{
 		current_y = current_y+1;
 	}

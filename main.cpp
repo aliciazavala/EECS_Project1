@@ -9,9 +9,10 @@ int main(int argc, char* argv[])
 		Executive exec;
 		exec.run();
 	}
-	else if(argc == 2 && argv[1] == "debug")
+	else if(argc == 2 && std::string(argv[1]) == "test")
 	{
-		//placeholder for debug mode
+		Executive exec;
+		exec.run(1);
 	}
 	std::cout << "Exiting...\n";
 	return 0;

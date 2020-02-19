@@ -29,15 +29,15 @@ Executive::~Executive()
 	}
 	if(m_timeArr != nullptr)
 	{
-		for(int i = 0; i < 3; i++)
+		for(int i = 0; i < 18; i++)
 		{
-			delete m_timeArr[i];
+			delete[] m_timeArr[i];
 		}
 		delete[] m_timeArr;
 	}
 }
 
-void Executive::run()
+void Executive::run(bool test)
 {
 	if(load())//executes load
 	{
@@ -47,6 +47,13 @@ void Executive::run()
 		m_menuStack->push(newMenu);
 
 	}
+
+	if(test)
+	{
+		Menu* testMenu = new TimeMenu;
+		m_menuStack->push(testMenu);
+	}
+	
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
 	{
 		std::string currentMenu = (m_menuStack->peek())->getName();
@@ -226,8 +233,9 @@ int Executive::EventsInMonth(int month)
 			count++;
 		}
 	}
-	return count;
 	fin.close();
+	return count;
+
 }
 void Executive::handleSettingsMenu()
 {

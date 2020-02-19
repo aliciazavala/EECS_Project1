@@ -24,7 +24,7 @@ class Executive
 	Executive();
 	~Executive();
 
-	void run();
+	void run(bool test = 0);
 
 	private:
 	//Current state
