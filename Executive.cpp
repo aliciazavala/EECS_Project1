@@ -108,10 +108,7 @@ void Executive::handleMainMenu()
 	}
 	else if(input == "b")// move back 1 year
 	{
-		if(m_loadedYear > 1990)
-		{
-			m_loadedYear = m_loadedYear - 1;
-		}
+		m_loadedYear = m_loadedYear - 1;
 	}
 	else if(input == "n")// move forward 1 year
 	{
