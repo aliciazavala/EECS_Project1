@@ -168,11 +168,11 @@ void Executive::handleNewEventMenu()
 	events.open(FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
 	//std::cin>>creatorName;
-	std::getline(std::cin, creatorName);
+	std::getline(std::cin, creatorName); //this is a "dummy getline" as Gibbons would put it. It will throw out the previous enter keypress
 	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";
-	std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
-	std::getline (std::cin,EventName);
+	//std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
+	std::getline(std::cin, EventName);
 	do{
 	x++;
 	day = 0;
