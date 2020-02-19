@@ -30,7 +30,7 @@ void MonthMenu::print(int month, int year) const
 	for(int i = 1; i <= totalEvents; i++)
 	{
 		//print every event name
-		std::cout << "[" << i << "]";
+		std::cout << "\n[" << i << "]";
 		do
 		{
 			fin>>eventname;
@@ -42,7 +42,7 @@ void MonthMenu::print(int month, int year) const
 		{
 			if (i == totalEvents)
 			{
-				std::cout << "["<< i+1<< "] New Event" << std::endl;
+				std::cout << "\n\n["<< i+1<< "] New Event" << std::endl<<std::endl;
 			}
 		}
 	}
