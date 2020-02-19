@@ -1,4 +1,2 @@
-Event: a	a	3	2	2020
-Event: 168400 St. Joseph Feast Day
-	Joseph Duong
-	3	19	2020
+
+

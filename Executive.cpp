@@ -186,8 +186,7 @@ void Executive::handleNewEventMenu()
 	std::string FileName =	nameOfMonth(m_loadedMonth);
 	events.open(FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
-	//std::cin>>creatorName;
-	std::getline(std::cin, creatorName); //this is a "dummy getline" as Gibbons would put it. It will throw out the previous enter keypress
+	std::cin.ignore();
 	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";
 	//std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
@@ -207,9 +206,8 @@ void Executive::handleNewEventMenu()
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
 	std::string id = generateID();
-	events<<"Event: "<<id<<" "<<EventName<<std::endl<<'\t'<<creatorName<<std::endl<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
+	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<creatorName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
 	events.close();
-		int num = EventsInMonth(m_loadedMonth);
 		std::cout << "[0] Back" << std::endl;
 		int input = getIntRangeFromUser(0,0);
 		if(input == 0)
