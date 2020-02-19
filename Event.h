@@ -22,6 +22,7 @@ class Event
 	private:
 	std::string m_month;
 	int m_ID;
+	std::string eventName;
 };
 
 #endif
