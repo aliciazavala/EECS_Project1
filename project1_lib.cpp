@@ -149,6 +149,65 @@ int getCurrentYear()
 	return(1900 + ltm->tm_year);
 }
 
+void printTime(std::string time, bool militaryTime)
+{
+	if(militaryTime)
+	{
+		std::cout << time;//HH:MM
+				  //01234
+	}
+	else
+	{
+		std::string temp = time.substr(0,2);
+		int hour = stoi(temp);
+		if(hour > 12)
+		{
+			if(hour - 12 < 10)
+			{
+				std::cout << "0" + std::to_string(hour - 12) << time.substr(2,3) << " PM";
+			}
+			else
+			{
+				std::cout << hour - 12 << time.substr(2,3) << " PM";
+			}
+		}
+		else
+		{
+			std::cout << time << " AM";
+		}
+	}
+}
+
+std::string formatTime(int hour, int minute)
+{
+	std::string formattedHour;
+	std::string formattedMin;
+	if(hour < 0 || hour > 24 || minute < 0 || minute > 60)
+	{
+		throw(std::runtime_error("invalid time to format"));
+	}
+	
+	if(hour < 10)
+	{
+		formattedHour = "0" + std::to_string(hour);
+	}
+	else
+	{
+		formattedHour = std::to_string(hour);
+	}
+
+	if(minute < 10)
+	{
+		formattedMin = "0" + std::to_string(minute);
+	}
+	else
+	{
+		formattedMin = std::to_string(minute);
+	}
+
+	return (formattedHour + ":" +formattedMin);
+}
+
 int getValidIntFromUser(std::string errorMessage)
 {
 	int input;
@@ -225,20 +284,24 @@ bool containsStr(std::string str, int size, std::string arr[])
 
 int getCharFromSet(int size, char arr[], std::string errorMessage)
 {
-	int input;
+	char input;
 	while(1)
 	{
 		std::cin >> input;
-		for(int i = 0; i < size; i++)
+		if(std::cin.fail())
 		{
-			if(std::cin.fail())
+			std::cin.clear();
+			std::cin.ignore();
+		}
+		else
+		{
+			for(int i = 0; i < size; i++)
 			{
-				std::cin.clear();
-				std::cin.ignore();
-			}
-			else if(arr[i] == input)
-			{
-				return input;
+
+				if(arr[i] == input)
+				{
+					return input;
+				}
 			}
 		}
 		std::cout << errorMessage << std::endl;
