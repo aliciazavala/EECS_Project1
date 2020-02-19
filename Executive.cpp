@@ -167,7 +167,9 @@ void Executive::handleNewEventMenu()
 	std::string FileName =	nameOfMonth(m_loadedMonth);
 	events.open(FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
-	std::cin>>creatorName;
+	//std::cin>>creatorName;
+	std::getline(std::cin, creatorName);
+	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";
 	std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
 	std::getline (std::cin,EventName);
