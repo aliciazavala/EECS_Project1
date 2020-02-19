@@ -7,7 +7,14 @@ Executive::Executive()
 
 	m_loadedYear = getCurrentYear();
 	
-	m_militaryTime = true;
+	m_militaryTime = false;
+
+	m_timeArr = new char*[18];
+	for(int i = 0; i < 18; i++)
+	{
+		m_timeArr[i] = new char[3];
+	}
+	clearTimeArr();
 }
 
 Executive::~Executive()
@@ -19,6 +26,14 @@ Executive::~Executive()
 	if(m_menuStack != nullptr)
 	{
 		delete m_menuStack;
+	}
+	if(m_timeArr != nullptr)
+	{
+		for(int i = 0; i < 3; i++)
+		{
+			delete m_timeArr[i];
+		}
+		delete[] m_timeArr;
 	}
 }
 
@@ -197,6 +212,13 @@ void Executive::handleViewEventMenu()
 
 void Executive::handleTimeMenu()
 {
+	TimeMenu temp;
+
+	if(!temp.run(m_timeArr, m_militaryTime))
+	{
+		clearTimeArr();
+	}
+	handleBack();
 	
 }
 
@@ -205,3 +227,13 @@ void Executive::handleBack()
 	m_menuStack->pop();
 }
 
+void Executive::clearTimeArr()
+{
+	for(int i = 0; i < 18; i++)
+	{
+		for(int j = 0; j < 3; j++)
+		{
+			m_timeArr[i][j] = '_';
+		}
+	}
+}
