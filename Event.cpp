@@ -14,3 +14,13 @@ std::string Event::getMonth() const
 {
     return m_month;
 }
+
+int Event::getID() const
+{
+	return m_ID;
+}
+
+void Event::setID(int num)
+{
+	m_ID = num;
+}

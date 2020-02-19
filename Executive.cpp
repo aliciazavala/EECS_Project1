@@ -123,10 +123,7 @@ void Executive::handleMainMenu()
 	}
 	else if(input == "b")// move back 1 year
 	{
-		if(m_loadedYear > 1990)
-		{
-			m_loadedYear = m_loadedYear - 1;
-		}
+		m_loadedYear = m_loadedYear - 1;
 	}
 	else if(input == "n")// move forward 1 year
 	{
@@ -137,55 +134,101 @@ void Executive::handleMainMenu()
 		Menu* newMenu = new SettingsMenu();
 		m_menuStack->push(newMenu);
 	}
-	
+
 }
 
 void Executive::handleMonthMenu()
 {
 	//create temp
 	MonthMenu temp;
-	temp.print(m_loadedMonth, m_loadedYear);
 	//read number of events in a month from that file
-	int input = getIntRangeFromUser(0,2);
+	int range = EventsInMonth(m_loadedMonth);
+	temp.setTotalEvents(range);
+	temp.print(m_loadedMonth, m_loadedYear);
+	int input = getIntRangeFromUser(0,range+1);
 	if(input == 0)
 	{
 		handleBack();
 	}
-	else if(input == 1)
+	else if(input == range+1)
 	{
-		Menu* temp = new NewEventMenu(1);
+		Menu* temp = new NewEventMenu(m_loadedMonth);
 		m_menuStack->push(temp);
+	}
+	else
+	{
+
 	}
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
 }
+void Executive::PrintEventsInMonth()
+{
+
+}
 
 void Executive::handleNewEventMenu()
 {
-	(m_menuStack->peek())->print();
+	NewEventMenu temp = NewEventMenu(m_loadedMonth);
+	temp.print(m_loadedMonth,m_loadedYear);
+	int x = 0;
 	std::string creatorName;
 	std::string EventName;
+	int day;
 	std::ofstream events;
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
 	std::string FileName =	nameOfMonth(m_loadedMonth);
 	events.open(FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
-	std::cin>>creatorName;
+	//std::cin>>creatorName;
+	std::getline(std::cin, creatorName); //this is a "dummy getline" as Gibbons would put it. It will throw out the previous enter keypress
+	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";
-	std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
-	std::getline (std::cin,EventName);
-	events<<creatorName<<'\t'<<EventName<<std::endl;
+	//std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
+	std::getline(std::cin, EventName);
+	do{
+	x++;
+	day = 0;
+	if(x==1)
+		{
+			std::cout<<"Enter day of event: ";
+			std::cin>>day;
+		}
+		else if(x > 1)
+		{
+			std::cout<<"Enter a VALID day for the event: ";
+			std::cin>>day;
+		}
+	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
+	std::string id = generateID();
+	events<<"Event: "<<id<<" "<<EventName<<std::endl<<'\t'<<creatorName<<std::endl<<'\t'<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
 	events.close();
-	std::cout << "[0] Back" << std::endl;
-	int input = getIntRangeFromUser(0,0);
-	if(input == 0)
-	{
-		handleBack();
-	}
+		int num = EventsInMonth(m_loadedMonth);
+		std::cout << "[0] Back" << std::endl;
+		int input = getIntRangeFromUser(0,0);
+		if(input == 0)
+		{
+			handleBack();
+		}
 	//ask user for each event parameter
 	//output to file
 }
-
+int Executive::EventsInMonth(int month)
+{
+	std::ifstream fin;
+	std::string line;
+ 	fin.open(nameOfMonth(month)+".txt");
+	int count = 0;
+	while(!fin.eof())
+	{
+		std::getline(fin,line);
+		if(line.substr(0,5)=="Event")
+		{
+			count++;
+		}
+	}
+	return count;
+	fin.close();
+}
 void Executive::handleSettingsMenu()
 {
 	int input;
@@ -203,11 +246,9 @@ void Executive::handleSettingsMenu()
 	//go back one menu
 	handleBack();
 }
-
-
 void Executive::handleViewEventMenu()
 {
-	
+
 }
 
 void Executive::handleTimeMenu()
@@ -219,7 +260,6 @@ void Executive::handleTimeMenu()
 		clearTimeArr();
 	}
 	handleBack();
-	
 }
 
 void Executive::handleBack()

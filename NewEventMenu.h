@@ -7,6 +7,7 @@ class NewEventMenu: public Menu
 public:
   NewEventMenu(int monthEvent);
   ~NewEventMenu();
+  void print(int& m_month, int& m_year) const;
   void print() const;
   NewEventMenu(const NewEventMenu& original);
 

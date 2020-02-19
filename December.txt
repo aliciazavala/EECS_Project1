@@ -1,0 +1,13 @@
+Angel	Dinner	12	24	2020
+Event: 962718 Immaculate Conception
+	Max Genilo
+	12	8	2020
+Event: 661262 Joseph's Birthday
+	Max Genilo
+	12	17	2020
+Event: 493309 Breakfast time
+	Joseph Duong
+	12	10	2020
+Event: 826602 Movies with Elise
+	Ava Mendoza
+	12	12	2020

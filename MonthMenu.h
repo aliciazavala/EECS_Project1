@@ -3,6 +3,8 @@
 
 #include "Menu.h"
 #include "project1_lib.h"
+#include <fstream>
+#include <string.h>
 
 class MonthMenu : public Menu
 {
@@ -13,10 +15,12 @@ class MonthMenu : public Menu
 	void print() const;
 	void print(int month, int year) const;
 	std::string getName() const;
+	void setTotalEvents(int numEvents);
 
 	private:
 	std::string m_menuName;
 	int totalEvents;
+	int* EventId;
 	//point to event list
 };
 

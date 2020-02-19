@@ -1,6 +1,9 @@
 #ifndef EXECUTIVE_H
 #define EXECUTIVE_H
 
+#include<iostream>
+#include<fstream>
+#include<string.h>
 #include "Event.h"
 #include "Calendar.h"
 #include "Menu.h"
@@ -13,7 +16,6 @@
 #include "TimeMenu.h"
 #include "project1_lib.h"
 
-#include <fstream>
 
 
 class Executive
@@ -29,7 +31,6 @@ class Executive
 	int m_loadedYear;
 	int m_loadedMonth;
 	bool m_militaryTime;
-	
 	char** m_timeArr;//18x3 2D array
 	//see bottom of class for index mapping
 
@@ -50,6 +51,8 @@ class Executive
 	void handleBack();
 	void clearTimeArr();
 
+	int EventsInMonth(int month);
+	void PrintEventsInMonth();
 
 /**	m_timeArr index mapping:
 	hour:	index:
