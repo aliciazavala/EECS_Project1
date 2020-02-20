@@ -54,6 +54,7 @@ class Executive
 	void clearTimeArr();
 	void loadTimeArr(std::string timeString);
 
+	std::string ConvertArray();
 	int EventsInMonth(int month);
 	void PrintEventsInMonth();
 	void convertTimeString(std::string timeString);
