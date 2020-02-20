@@ -14,7 +14,9 @@
 #include "NewEventMenu.h"
 #include "SettingsMenu.h"
 #include "TimeMenu.h"
+#include "project1_lib.h"
 #include "ViewEventMenu.h"
+
 
 
 class Executive
@@ -30,12 +32,13 @@ class Executive
 	int m_loadedYear;
 	int m_loadedMonth;
 	bool m_militaryTime;
-	std::string m_eventId; 
-	int m_loadedDay;
+	char** m_timeArr;//18x3 2D array
+	//see bottom of class for index mapping
 
 	//std::string m_fileName;
 	Calendar* m_calendar;
 	Stack<Menu*>* m_menuStack;
+	int m_eventId; //new global variable for ids?
 
 
 	bool load();

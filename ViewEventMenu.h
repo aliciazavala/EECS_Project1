@@ -6,15 +6,17 @@
 class ViewEventMenu : public Menu
 {
     public:
-    ViewEventMenu(std::string eventName);
+    ViewEventMenu(int eventId);
     ~ViewEventMenu();
     std::string getName() const;
+    int getEventId() const;
+    void print() const;
 
 
     private:
     int totalAttendees;
     int totalTimes;
-    std::string m_eventName;
+    int m_eventId;
 
 };
 #endif

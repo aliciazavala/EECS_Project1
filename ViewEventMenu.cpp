@@ -4,18 +4,22 @@
 #include <iostream>
 
 
-ViewEventMenu::ViewEventMenu(std::string eventName)
+ViewEventMenu::ViewEventMenu(int eventId)
 {
-    m_eventName = eventName;
+    m_eventId = eventId;
 }
 
 ViewEventMenu::~ViewEventMenu()
-{
-
-}
+{}
 
 std::string ViewEventMenu::getName() const
 {
-  return m_eventName;
+  return "ViewEventMenu";
 }
 
+std::string ViewEventMenu::getEventId() const
+{
+    return m_eventId;
+}
+
+void ViewEventMenu::print()const{}
