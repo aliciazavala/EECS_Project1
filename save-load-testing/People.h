@@ -1,23 +1,23 @@
-#ifndef USER_H
-#define USER_H
-
-#include <iostream>
+#ifndef PEOPLE_H
+#define PEOPLE_H
 #include <string>
 
-using namespace std;
-
-class User
+class People
 {
-private:
-  string m_name;
-  string m_passw;
+	public:
+		People(){};
+		People(std::string fname);
+		void setFirstName(std::string fname);
+		std::string getFirstName() const;
+
+	private:
+
+		//int id; ID feature will be added later
+		std::string m_firstName;
 
 
-public:
-  User(string name, string passw);
-  User(){};
-  string getName();
-  string getPass();
+
 
 };
+
 #endif

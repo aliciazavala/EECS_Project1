@@ -1,23 +1,28 @@
-#ifndef EVENTS_H
-#define EVENTS_H
+#ifndef EVENT_H
+#define EVENT_H
 
 
-#include "User.h"
+#include "project1_lib.h"
+#include "People.h"
+
 #include <string>
 
-using namespace std;
 
-class Events
+class Event
 {
-private:
-  User m_admin;
-  string m_time;
-  string m_eName;
-public:
-  Events(string eName, User admin, string time);
-  string getTime();
-  string getAdmin();
-  string getEName();
+	public:
+	Event();//this constructor should not be used
+
+	std::string getMonth() const;
+	void setMonth(std::string month);
+
+	int getID() const;
+	void setID(int num);
+
+	private:
+	std::string m_month;
+	int m_ID;
+	std::string eventName;
 };
 
 #endif

@@ -254,6 +254,63 @@ void Executive::handleSettingsMenu()
 }
 void Executive::handleViewEventMenu()
 {
+	std::ifstream fin;
+    std::string temp;
+    std::string creatorName;
+    std::string eventName;
+    std::string eventId;
+    int month;
+    int day;
+    int year;
+    int userChoice;
+
+    
+    std::string fileName= nameOfMonth(m_loadedMonth)+".txt"; //open file month
+    while(fin>>temp)
+    {
+
+        if(temp==m_eventId)
+        	{
+				fin>>eventId;
+				std::getline(fin,eventName);
+				std::getline(fin,creatorName);
+				fin>>month;
+				fin>>day;
+				fin>>year;
+
+				std::cout << "\t ===== " << eventName << " =====" << std::endl;
+				//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
+
+				std::cout<<"Date: "<< nameOfMonth(m_loadedMonth) <<", "<< dayOfWeek(m_loadedMonth,day,m_loadedYear) << " "<< m_loadedYear << "\n" ;
+				std::cout<<"Event Creator: "<<creatorName<<"\n";
+			/* std::cout<<"Attendes: "<<"\n";
+			//READ ATTENDEES
+			    std::ifstream attendees;
+			    std::string attendeeName;
+			    std::string id;
+			    attendees.open("Attendees.txt");
+			    while(attendees>>id)
+			    {
+			      if(id == eventId)
+			      {
+				getline(attendees,attendeeName);
+				std::cout<<attendeeName<<std::endl;
+				//GET ATTENDEES TIMES AND PRINT THEM
+
+			      }
+			    }
+			    attendees.close();
+			*/
+        	}
+    	}
+
+		std::cout << "[1] Attend" << std::endl;
+		std::cout << "[0] Back" << std::endl;
+		userChoice=getIntRangeFromUser(0,1);
+		if(userChoice==0)
+		{
+			handleBack();
+		}
 
 }
 
