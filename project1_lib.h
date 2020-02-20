@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <random>
 #include <ctime>
+#include <vector>
 
 
 /******************************************************************************
@@ -57,7 +58,7 @@ int getCurrentYear();
 
 std::string formatTime(int hour, int min);
 
-void printTime(std::string time, bool militaryTime);
+void printTime(std::string formattedTime, bool militaryTime);
 
 /******************************************************************************
  *   OTHER FUNCTIONS
@@ -98,6 +99,8 @@ int getCharFromSet(int size, char arr[], std::string errorMessage = "Invalid inp
 	@pre none
 	@post returns a string representing an ID of 6 digits
 	*/
-std::string generateID();
+int generateID();
+
+void addAttendee(std::string name, std::string times, int month, std::string eventID);
 
 #endif

@@ -308,16 +308,14 @@ int getCharFromSet(int size, char arr[], std::string errorMessage)
 	}
 }
 
-std::string generateID()
+int generateID()
 {
-	std::string ID = "123456";
+	int ID;
 	std::random_device device;
 	int seed = device();
 	std::mt19937 generator(seed);
-	std::uniform_int_distribution<int> distribution(0,9);
-	for(int i = 0; i < 6; i++)
-	{
-		ID[i] = '0' + distribution(generator);
-	}
+	std::uniform_int_distribution<int> distribution(100000,999999);
 	return (ID);
 }
+
+
