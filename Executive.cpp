@@ -287,17 +287,29 @@ void Executive::handleViewEventMenu()
 			//READ ATTENDEES
 			    std::ifstream attendees;
 			    std::string attendeeName;
-			    std::string id;
+			    int id;
+			    //needs an attendee times variable
+
 			    attendees.open("Attendees.txt");
 			    while(attendees>>id)
 			    {
-			      if(id == eventId)
+			      if(id == eventID)
 			      {
-				getline(attendees,attendeeName);
+				std::getline(attendees,attendeeName);
+				//Line missing: get attendee's time variable 
+				
 				std::cout<<attendeeName<<std::endl;
-				//GET ATTENDEES TIMES AND PRINT THEM
-
+				//Line missing: print attending time
 			      }
+			      
+			      
+			      //gets attendee's name line and attendee's time line and skips them
+			      else
+			      {
+				std::getline(attendees,attendeeName);
+				//Line missing: std::getline(attendees,attendeeTime);
+			      }
+			      
 			    }
 			    attendees.close();
 			*/
