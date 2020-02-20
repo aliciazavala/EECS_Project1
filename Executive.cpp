@@ -2,11 +2,10 @@
 Executive::Executive()
 {
 	//both should be empty at startup
-	m_calendar = nullptr;
 	m_menuStack = nullptr;
 
 	m_loadedYear = getCurrentYear();
-	
+
 	m_militaryTime = false;
 
 	m_timeArr = new char*[18];
@@ -19,10 +18,6 @@ Executive::Executive()
 
 Executive::~Executive()
 {
-	if(m_calendar != nullptr)
-	{
-		delete m_calendar;
-	}
 	if(m_menuStack != nullptr)
 	{
 		delete m_menuStack;
@@ -50,10 +45,11 @@ void Executive::run(bool test)
 
 	if(test)
 	{
-		Menu* testMenu = new TimeMenu;
-		m_menuStack->push(testMenu);
+		handleAttendTimeMenu();
+		//Menu* testMenu = new TimeMenu;
+		//m_menuStack->push(testMenu);
 	}
-	
+
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
 	{
 		std::string currentMenu = (m_menuStack->peek())->getName();
@@ -265,7 +261,7 @@ void Executive::handleViewEventMenu()
     int userChoice;
     int i;
 
-    
+
     std::string fileName= nameOfMonth(m_loadedMonth)+".txt"; //open file month
     while(fin>>temp)
     {
@@ -298,28 +294,28 @@ void Executive::handleViewEventMenu()
 			      {
 			        i++;
 				std::getline(attendees,attendeeName);
-				//Line missing: get attendee's time variable 
-				
+				//Line missing: get attendee's time variable
+
 				std::cout<<attendeeName<<std::endl;
 				//Line missing: print attending time
 			      }
-			      
-			      
+
+
 			      //gets attendee's name line and attendee's time line and skips them
 			      else
 			      {
 				std::getline(attendees,attendeeName);
 				//Line missing: std::getline(attendees,attendeeTime);
 			      }
-			      
+
 			    }
-			    
+
 			    //If there are no attendees
 			    if ( i = 0 )
 			    {
 			    	std::cout<<"No attendees.\n";
 			    }
-			    
+
 			    attendees.close();
 			*/
         	}
@@ -339,6 +335,7 @@ void Executive::handleTimeMenu()
 {
 	TimeMenu temp;
 
+	clearTimeArr();
 	if(!temp.run(m_timeArr, m_militaryTime))
 	{
 		clearTimeArr();
@@ -346,13 +343,13 @@ void Executive::handleTimeMenu()
 	handleBack();
 }
 
-void Executive::handleAttendTimeMenu(std::string timeStr)
+void Executive::handleAttendTimeMenu()
 {
-	TimeMenu temp;
+	TimeMenu* temp = m_menuStack->peek();
 	loadTimeArr(timeStr);
 	if(!temp.run(m_timeArr, m_militaryTime, 0))
 	{
-		loadTimeArr(timeStr);
+		clearTimeArr(timeStr);
 	}
 	handleBack();
 }

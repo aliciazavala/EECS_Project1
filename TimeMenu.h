@@ -10,6 +10,8 @@ class TimeMenu : public Menu
 {
 	public:
 	TimeMenu();
+	TimeMenu(std::string timeStr);
+	TimeMenu(const TimeMenu& original);
 	~TimeMenu();
 
 	std::string getName() const;
@@ -20,16 +22,18 @@ class TimeMenu : public Menu
 
 	private:
 	std::string m_name;
+	std::string m_timeStr;
 	int current_x;
 	int current_y;
-	
+	bool m_attendMode;
+
 	void print(char** timeArr, bool militaryTime, bool attendMode);
-	
+
 	void fillBlank(char** timeArr);
 	void setY(char** timeArr);
 	void setN(char** timeArr);
 	void moveCursor(std::string direction);
-	int getTimeSlot(int x);	
+	int getTimeSlot(int x);
 };
 
 #endif

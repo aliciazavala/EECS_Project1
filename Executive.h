@@ -4,8 +4,6 @@
 #include<iostream>
 #include<fstream>
 #include<string.h>
-#include "Event.h"
-#include "Calendar.h"
 #include "Menu.h"
 #include "MainMenu.h"
 #include "MonthMenu.h"
@@ -33,10 +31,9 @@ class Executive
 	bool m_militaryTime;
 	char** m_timeArr;//18x3 2D array
 	//see bottom of class for index mapping
-	std::string m_eventId;
+	int m_eventId;
 
 	//std::string m_fileName;
-	Calendar* m_calendar;
 	Stack<Menu*>* m_menuStack;
 
 
@@ -49,7 +46,7 @@ class Executive
 	void handleViewEventMenu();
 	void handleSettingsMenu();
 	void handleTimeMenu();
-	void handleAttendTimeMenu(std::string timeStr);
+	void handleAttendTimeMenu();
 	void handleBack();
 	void clearTimeArr();
 	void loadTimeArr(std::string timeString);

@@ -2,7 +2,6 @@
 #define MENU_H
 
 #include "project1_lib.h"
-#include "Event.h"
 
 #include <iostream>
 #include <string>

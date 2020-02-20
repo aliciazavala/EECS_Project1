@@ -5,11 +5,31 @@ TimeMenu::TimeMenu()
 	m_name = "TimeMenu";
 	current_x = 0;
 	current_y = 0;
+	m_timeStr = " ";
+	m_attendMode = 0;
+}
+
+TimeMenu::TimeMenu(std::string timeStr)
+{
+	m_name = "TimeMenu";
+	current_x = 0;
+	current_y = 0;
+	m_timeStr = timeStr;
+	m_attendMode = 1;
+}
+
+TimeMenu::TimeMenu(const TimeMenu& original)
+{
+	m_name = original.m_name;
+	current_x = original.current_x;
+	current_y = original.current_y;
+	m_timeStr = original.m_timeStr;
+	m_attendMode = original.m_attendMode;
 }
 
 TimeMenu::~TimeMenu()
 {
-	
+
 }
 
 std::string TimeMenu::getName() const
@@ -19,16 +39,16 @@ std::string TimeMenu::getName() const
 
 void TimeMenu::print() const
 {
-	
+
 }
 
-bool TimeMenu::run(char** timeArr, bool militaryTime, bool attendMode)
+bool TimeMenu::run(char** timeArr, bool militaryTime)
 {
 	char choice;
 	char choiceSet[8] = {'w','a','s','d','y','n','F','E'};
 	while(1)
 	{
-		print(timeArr, militaryTime, attendMode);
+		print(timeArr, militaryTime);
 		choice = getCharFromSet(8,choiceSet);
 		if(choice == 'w')
 		{
@@ -64,7 +84,7 @@ bool TimeMenu::run(char** timeArr, bool militaryTime, bool attendMode)
 			return false;
 		}
 	}
-	
+
 }
 
 void TimeMenu::fillBlank(char** timeArr)
@@ -113,12 +133,12 @@ void TimeMenu::setN(char** timeArr)
 	}
 }
 
-void TimeMenu::print(char** timeArr, bool militaryTime, bool attendMode)
+void TimeMenu::print(char** timeArr, bool militaryTime)
 {
 	int currentHour = 5;
 	clearScreen();
 	std::cout << "\t ===== Select Time Slots";
-	if(attendMode)
+	if(m_attendMode)
 	{
 		std::cout << " to Attend";
 	}
