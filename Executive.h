@@ -14,7 +14,7 @@
 #include "NewEventMenu.h"
 #include "SettingsMenu.h"
 #include "TimeMenu.h"
-
+#include "ViewEventMenu.h"
 
 
 class Executive
@@ -30,6 +30,8 @@ class Executive
 	int m_loadedYear;
 	int m_loadedMonth;
 	bool m_militaryTime;
+	std::string m_eventId; 
+	int m_loadedDay;
 
 	//std::string m_fileName;
 	Calendar* m_calendar;
