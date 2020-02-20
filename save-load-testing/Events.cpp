@@ -1,24 +1,26 @@
-#include "Events.h"
+#include "Event.h"
 
-Events::Events(string eName, User admin, string time)
+Event::Event()
 {
-  m_admin = admin;
-  m_time = time;
-  m_eName = eName;
-  
+	m_month = "January";//placeholder
 }
 
-string Events::getTime()
+void Event::setMonth(std::string month)
 {
-  return(m_time);
+    m_month = month;
 }
 
-string Events::getAdmin()
+std::string Event::getMonth() const
 {
-  return(m_admin.getName());
+    return m_month;
 }
 
-string Events::getEName()
+int Event::getID() const
 {
-  return(m_eName);
+	return m_ID;
+}
+
+void Event::setID(int num)
+{
+	m_ID = num;
 }

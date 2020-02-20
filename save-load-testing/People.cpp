@@ -1,15 +1,17 @@
-#include "User.h"
+#include "People.h"
 
-string User::getName()
+People::People(std::string fname)
 {
-  return (m_name);
+    m_firstName = fname;
 }
-string User::getPass()
+
+void People::setFirstName(std::string fname)
 {
-  return (m_passw);
+    m_firstName=fname;
+
 }
-User::User(string name, string passw)
+
+std::string People::getFirstName() const
 {
-  m_name = name;
-  m_passw = passw;
+    return m_firstName;
 }
