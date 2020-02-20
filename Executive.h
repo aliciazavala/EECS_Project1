@@ -33,6 +33,7 @@ class Executive
 	bool m_militaryTime;
 	char** m_timeArr;//18x3 2D array
 	//see bottom of class for index mapping
+	std::string m_eventId;
 
 	//std::string m_fileName;
 	Calendar* m_calendar;
