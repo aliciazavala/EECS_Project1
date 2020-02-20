@@ -4,19 +4,42 @@
 
 using namespace std;
 
+//FUNCTION TO GET ATTENDEES
+void readAt(string eventID)
+{
+  ifstream attendees;
+  string attendeeName;
+  string id;
+  attendees.open("Attendees.txt");
+  while(attendees>>id)
+  {
+    if(id == eventID)
+    {
+      getline(attendees,attendeeName);
+      cout<<attendeeName<<endl;
+      //get attendees times and print them
+
+    }
+  }
+  attendees.close();
+}
+
 int main()
 {
   char option;
   string name,eName,startT, endT;
-  //writes events
+  //writes
   ofstream events;
-  //reads events
+  //reads
   ifstream output;
 
   while(option != 'q')
   {
     cout<<"Select an option:\na) Create Event in January\nb) See Events\nq) Quit\n";
     cin>>option ;
+
+
+    // OLD, DO NOT USE!!
     if(option == 'a')
       {
         //saving format:
@@ -34,24 +57,48 @@ int main()
         events<<eName<<'\t'<<name<<'\t'<<startT<<'\t'<<endT<<'\n';
         events.close();
       }
+
+
+    //
     if(option == 'b')
       {
-        //reading format:
-        // EVENT NAME     ADMIN NAME      EVENT START TIME      EVENT END TIME
-        output.open("January.txt");
-        int i = 1;
-        while(output >> eName)
-        {
-          output>>name;
-          output>>startT;
-          output>>endT;
-          cout<<"===========\nEVENT "<<i<<"\n===========\n";
-          cout<<"Name of the Event:" << eName<<"\nEvent admin: "<<name<<"\nEvent start time: "<<startT<<"\nEvent end time: "<<endT<<"\n\n";
-          i++;
-        }
-        output.close();
-      }
 
-  }
+        output.open("January.txt");
+
+        string temp;
+
+
+        //ADDED EVENTID VARIABLE
+        string eventID;
+
+
+
+        string creatorName;
+        string attendeeName;
+        string eventName;
+        int month;
+        int day;
+        int year;
+        int userChoice;
+        while(output>>temp)
+        {
+            output>>eventID;
+    				getline(output,eventName);
+    				getline(output,creatorName);
+    				output>>month;
+    				output>>day;
+    				output>>year;
+
+    			  cout << "\t ===== " << eventName << " =====" <<endl;
+    				//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
+            //cout<<"Date: "<< nameOfMonth(m_loadedMonth) <<", "<< dayOfWeek(m_loadedMonth,day,m_loadedYear) << " "<< m_loadedYear << "\n" ;
+    				cout<<"Date: "<< " January, (Day of the week) "<< year << "\n" ;
+    				cout<<"Event Creator: "<<creatorName<<"\n";
+    			  cout<<"Attendees: "<<"\n";
+            readAt(eventID);
+        	}
+
+        }
+      }
   return(0);
 }

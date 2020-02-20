@@ -1,5 +1,12 @@
-Midterm2	Angel	14-16
-Midterm	Alicia	12-14
-Midterm	Elena	3
-S	Noc	2323
-IDK	IDK	IDK
+Event: 143324 Ty's Birthday
+	Joseph Duong
+	1	26	2020
+Event: 813617 Mom's Birthday
+	Joseph Duong
+	1	25	2020
+Event: 498605 D Day Remembrance
+	Joseph Duong
+	1	6	2020
+Event: 037883 Kansas City Trip
+	Joseph Duong
+	1	3	2020
