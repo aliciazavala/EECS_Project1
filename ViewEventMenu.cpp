@@ -17,7 +17,7 @@ std::string ViewEventMenu::getName() const
   return "ViewEventMenu";
 }
 
-std::string ViewEventMenu::getEventId() const
+int ViewEventMenu::getEventId() const
 {
     return m_eventId;
 }
