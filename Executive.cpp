@@ -45,7 +45,9 @@ void Executive::run(bool test)
 
 	if(test)
 	{
+		loadTimeArr(std::string("000000000011111111110000000000111111111100000000000000"));
 		handleAttendTimeMenu();
+		//handleAttendTimeMenu();
 		//Menu* testMenu = new TimeMenu;
 		//m_menuStack->push(testMenu);
 	}
@@ -182,7 +184,7 @@ void Executive::handleNewEventMenu()
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
-events.open(FileName + ".txt", std::fstream::app);
+events.open("./data/" + FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
 	std::cin.ignore();
 	std::getline(std::cin, creatorName);
@@ -210,7 +212,7 @@ events.open(FileName + ".txt", std::fstream::app);
 	std::string array = ConvertArray();
 	int id = generateID();
 	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
-attendees.open("Attendees.txt",std::fstream::app);
+attendees.open("./data/Attendees.txt",std::fstream::app);
 	attendees<<id<<" "<<creatorName<<std::endl;
 	attendees<<array<<std::endl;
 attendees.close();
@@ -249,7 +251,7 @@ int Executive::EventsInMonth(int month)
 {
 	std::ifstream fin;
 	std::string line;
- 	fin.open(nameOfMonth(month)+".txt");
+ 	fin.open("./data/" + nameOfMonth(month)+".txt");
 	int count = 0;
 	while(!fin.eof())
 	{
@@ -294,11 +296,11 @@ void Executive::handleViewEventMenu()
     int i;
 
 
-    std::string fileName= nameOfMonth(m_loadedMonth)+".txt"; //open file month
+    std::string fileName= "./data.txt" + nameOfMonth(m_loadedMonth) + ".txt"; //open file month
     while(fin>>temp)
     {
-	i = 0;
-        if(temp==m_eventId)
+				i = 0;
+        if(temp == std::to_string(m_eventId))
         	{
 				fin>>eventId;
 				std::getline(fin,eventName);
@@ -319,7 +321,7 @@ void Executive::handleViewEventMenu()
 			    int id;
 			    //needs an attendee times variable
 
-			    attendees.open("Attendees.txt");
+			    attendees.open("./data/Attendees.txt");
 			    while(attendees>>id)
 			    {
 			      if(id == eventID)
@@ -366,7 +368,6 @@ void Executive::handleViewEventMenu()
 void Executive::handleTimeMenu()
 {
 	TimeMenu temp;
-	clearTimeArr();
 
 	clearTimeArr();
 	if(!temp.run(m_timeArr, m_militaryTime))
@@ -378,11 +379,10 @@ void Executive::handleTimeMenu()
 
 void Executive::handleAttendTimeMenu()
 {
-	TimeMenu* temp = m_menuStack->peek();
-	loadTimeArr(timeStr);
-	if(!temp.run(m_timeArr, m_militaryTime, 0))
+	TimeMenu temp;
+	if(!temp.run(m_timeArr, m_militaryTime))
 	{
-		clearTimeArr(timeStr);
+		clearTimeArr();
 	}
 	handleBack();
 }

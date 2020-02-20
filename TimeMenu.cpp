@@ -9,15 +9,6 @@ TimeMenu::TimeMenu()
 	m_attendMode = 0;
 }
 
-TimeMenu::TimeMenu(std::string timeStr)
-{
-	m_name = "TimeMenu";
-	current_x = 0;
-	current_y = 0;
-	m_timeStr = timeStr;
-	m_attendMode = 1;
-}
-
 TimeMenu::TimeMenu(const TimeMenu& original)
 {
 	m_name = original.m_name;
@@ -46,6 +37,10 @@ bool TimeMenu::run(char** timeArr, bool militaryTime)
 {
 	char choice;
 	char choiceSet[8] = {'w','a','s','d','y','n','F','E'};
+	if(timeArr[0][0] != '_')
+	{
+		m_attendMode = 1;
+	}
 	while(1)
 	{
 		print(timeArr, militaryTime);
@@ -137,12 +132,14 @@ void TimeMenu::print(char** timeArr, bool militaryTime)
 {
 	int currentHour = 5;
 	clearScreen();
-	std::cout << "\t ===== Select Time Slots";
 	if(m_attendMode)
 	{
-		std::cout << " to Attend";
+		std::cout << "\t ===== Select Available Time Slots to Attend =====\n";
 	}
-	std::cout << " =====\n";
+	else
+	{
+		std::cout << "\t ===== Select Times for the Event =====\n";
+	}
 
 	for(int i = 0; i < 19; i++)
 	{
@@ -180,7 +177,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime)
 	std::cout << "        up\t\t[y] Available to attend\n";
 	std::cout << "       [w]\t\t[n] Not Available\n";
 	std::cout << "left[a][s][d]right\t[F] Finish (blanks will be set to not available)\n";
-	std::cout << "       down\t\t[E] End without saving\n";
+	std::cout << "       down\t\t[Q] Quit without saving\n";
 	std::cout << "Action: ";
 }
 

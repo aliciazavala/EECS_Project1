@@ -27,7 +27,7 @@ void MonthMenu::print(int month, int year) const
 	int x = totalEvents;
 	std::ifstream fin;
 	std::string eventname;
-	fin.open(nameOfMonth(month)+".txt");
+	fin.open("./data/" + nameOfMonth(month)+".txt");
 	std::cout << "\t ===== Events for " << nameOfMonth(month) << " " << year << " =====" << std::endl;
 	for(int i = 1; i <= totalEvents; i++)
 	{
@@ -56,6 +56,7 @@ void MonthMenu::print(int month, int year) const
 		std::cout << "[1] New Event" << std::endl;
 	}
 	std::cout << "[0] Back" << std::endl;
+	fin.close();
 }
 int MonthMenu::returnID(int Eid)
 {
