@@ -5,7 +5,7 @@
 #include "project1_lib.h"
 #include <fstream>
 #include <string.h>
-#include "Executive.h" 
+#include "Executive.h"
 
 class MonthMenu : public Menu
 {
@@ -17,11 +17,12 @@ class MonthMenu : public Menu
 	void print(int month, int year) const;
 	std::string getName() const;
 	void setTotalEvents(int numEvents);
+	int returnID(int Eid);
 
 	private:
 	std::string m_menuName;
 	int totalEvents;
-	int* EventId;
+	int* EventID;
 	//point to event list
 };
 

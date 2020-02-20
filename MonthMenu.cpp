@@ -18,6 +18,7 @@ void MonthMenu::print() const
 void MonthMenu::setTotalEvents(int numEvents)
 {
 	totalEvents = numEvents;
+	int* EventID = new int[totalEvents];
 }
 void MonthMenu::print(int month, int year) const
 {
@@ -26,7 +27,6 @@ void MonthMenu::print(int month, int year) const
 	int x = totalEvents;
 	std::ifstream fin;
 	std::string eventname;
-	int* EventID = new int[totalEvents];
 	fin.open(nameOfMonth(month)+".txt");
 	std::cout << "\t ===== Events for " << nameOfMonth(month) << " " << year << " =====" << std::endl;
 	for(int i = 1; i <= totalEvents; i++)
@@ -38,10 +38,7 @@ void MonthMenu::print(int month, int year) const
 			fin>>eventname;
 		}while(eventname != "Event:");
 		fin>>eventid;
-		for(int i=0; i<totalEvents;i++)
-		{
-			EventID[i]=eventid;
-		}
+		EventID[totalEvents-x]=eventid;
 		fin.ignore(1,'\n');
 		std::getline(fin,eventname);
 		std::cout<<eventname<<": "<<EventID[totalEvents-x];
@@ -60,7 +57,10 @@ void MonthMenu::print(int month, int year) const
 	}
 	std::cout << "[0] Back" << std::endl;
 }
-
+int MonthMenu::returnID(int Eid)
+{
+	return EventID[Eid];
+}
 std::string MonthMenu::getName() const
 {
 	return m_menuName;
