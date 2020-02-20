@@ -268,6 +268,13 @@ void Executive::handleTimeMenu()
 	handleBack();
 }
 
+void Executive::handleAttendTimeMenu();
+{
+	TimeMenu temp;
+	loadTimeArr(timeStr);
+	
+}
+
 void Executive::handleBack()
 {
 	m_menuStack->pop();
@@ -280,6 +287,26 @@ void Executive::clearTimeArr()
 		for(int j = 0; j < 3; j++)
 		{
 			m_timeArr[i][j] = '_';
+		}
+	}
+}
+
+void loadTimeArr(std::string timeString)
+{
+	int index = 0;
+	for(int i = 0; i < 18; i++)
+	{
+		for(int j = 0; j < 3; j++)
+		{
+			if(timeString.at(index) == '0')
+			{
+				timeArr[i][j] = 'n';
+			}
+			else
+			{
+				timeArr[i][j] = 'y';
+			}
+			index++;
 		}
 	}
 }

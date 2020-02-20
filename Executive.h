@@ -48,12 +48,13 @@ class Executive
 	void handleViewEventMenu();
 	void handleSettingsMenu();
 	void handleTimeMenu();
+	void handleAttendTimeMenu();
 	void handleBack();
 	void clearTimeArr();
 
 	int EventsInMonth(int month);
 	void PrintEventsInMonth();
-
+	void convertTimeString(std::string timeString);
 /**	m_timeArr index mapping:
 	hour:	index:
 	5:00	[0][0]
