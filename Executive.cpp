@@ -258,6 +258,7 @@ void Executive::handleViewEventMenu()
     std::string temp;
     std::string creatorName;
     std::string eventName;
+    std::string eventId;
     int month;
     int day;
     int year;
@@ -270,6 +271,7 @@ void Executive::handleViewEventMenu()
 
         if(temp==m_eventId)
         	{
+				fin>>eventId;
 				std::getline(fin,eventName);
 				std::getline(fin,creatorName);
 				fin>>month;
@@ -281,7 +283,24 @@ void Executive::handleViewEventMenu()
 
 				std::cout<<"Date: "<< nameOfMonth(m_loadedMonth) <<", "<< dayOfWeek(m_loadedMonth,day,m_loadedYear) << " "<< m_loadedYear << "\n" ;
 				std::cout<<"Event Creator: "<<creatorName<<"\n";
-			// std::cout<<"Attendes: "<<"\n";
+			/* std::cout<<"Attendes: "<<"\n";
+			//READ ATTENDEES
+			    std::ifstream attendees;
+			    std::string attendeeName;
+			    std::string id;
+			    attendees.open("Attendees.txt");
+			    while(attendees>>id)
+			    {
+			      if(id == eventId)
+			      {
+				getline(attendees,attendeeName);
+				std::cout<<attendeeName<<std::endl;
+				//GET ATTENDEES TIMES AND PRINT THEM
+
+			      }
+			    }
+			    attendees.close();
+			*/
         	}
     	}
 
