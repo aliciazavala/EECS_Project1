@@ -205,7 +205,7 @@ void Executive::handleNewEventMenu()
 			std::cin>>day;
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
-	std::string id = generateID();
+	int id = generateID();
 	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<creatorName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl;
 	events.close();
 		std::cout << "[0] Back" << std::endl;
@@ -337,11 +337,15 @@ void Executive::handleTimeMenu()
 	handleBack();
 }
 
-void Executive::handleAttendTimeMenu();
+void Executive::handleAttendTimeMenu(std::string timeStr)
 {
 	TimeMenu temp;
 	loadTimeArr(timeStr);
-	
+	if(!temp.run(m_timeArr, m_militaryTime, 0))
+	{
+		loadTimeArr(timeStr);
+	}
+	handleBack();
 }
 
 void Executive::handleBack()
@@ -360,7 +364,7 @@ void Executive::clearTimeArr()
 	}
 }
 
-void loadTimeArr(std::string timeString)
+void Executive::loadTimeArr(std::string timeString)
 {
 	int index = 0;
 	for(int i = 0; i < 18; i++)
@@ -369,11 +373,7 @@ void loadTimeArr(std::string timeString)
 		{
 			if(timeString.at(index) == '0')
 			{
-				timeArr[i][j] = 'n';
-			}
-			else
-			{
-				timeArr[i][j] = 'y';
+				m_timeArr[i][j] = 'X';
 			}
 			index++;
 		}

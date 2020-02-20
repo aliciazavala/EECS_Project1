@@ -49,9 +49,10 @@ class Executive
 	void handleViewEventMenu();
 	void handleSettingsMenu();
 	void handleTimeMenu();
-	void handleAttendTimeMenu();
+	void handleAttendTimeMenu(std::string timeStr);
 	void handleBack();
 	void clearTimeArr();
+	void loadTimeArr(std::string timeString);
 
 	int EventsInMonth(int month);
 	void PrintEventsInMonth();

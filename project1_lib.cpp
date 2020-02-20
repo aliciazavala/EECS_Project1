@@ -314,7 +314,8 @@ int generateID()
 	std::random_device device;
 	int seed = device();
 	std::mt19937 generator(seed);
-	std::uniform_int_distribution<int> distribution(100000,999999);
+	std::uniform_int_distribution<int> distribution(100000000,999999999);
+	ID =  distribution(generator);
 	return (ID);
 }
 

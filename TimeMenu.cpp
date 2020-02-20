@@ -22,13 +22,13 @@ void TimeMenu::print() const
 	
 }
 
-bool TimeMenu::run(char** timeArr, bool militaryTime)
+bool TimeMenu::run(char** timeArr, bool militaryTime, bool attendMode)
 {
 	char choice;
 	char choiceSet[8] = {'w','a','s','d','y','n','F','E'};
 	while(1)
 	{
-		print(timeArr, militaryTime);
+		print(timeArr, militaryTime, attendMode);
 		choice = getCharFromSet(8,choiceSet);
 		if(choice == 'w')
 		{
@@ -87,11 +87,11 @@ void TimeMenu::setY(char** timeArr)
 	{
 		return;
 	}
-	if(current_x < 7)
+	if(current_x < 7 && timeArr[current_x][current_y] != 'X')
 	{
 		timeArr[current_x][current_y] = 'y';
 	}
-	else
+	else if(timeArr[current_x-1][current_y] != 'X')
 	{
 		timeArr[current_x-1][current_y] = 'y';
 	}
@@ -103,21 +103,27 @@ void TimeMenu::setN(char** timeArr)
 	{
 		return;
 	}
-	if(current_x < 7)
+	if(current_x < 7 && timeArr[current_x][current_y] != 'X')
 	{
 		timeArr[current_x][current_y] = 'n';
 	}
-	else
+	else if(timeArr[current_x-1][current_y] != 'X')
 	{
 		timeArr[current_x-1][current_y] = 'n';
 	}
 }
 
-void TimeMenu::print(char** timeArr, bool militaryTime)
+void TimeMenu::print(char** timeArr, bool militaryTime, bool attendMode)
 {
 	int currentHour = 5;
 	clearScreen();
-	std::cout << "\t ===== Select Time Slots =====\n";
+	std::cout << "\t ===== Select Time Slots";
+	if(attendMode)
+	{
+		std::cout << " to Attend";
+	}
+	std::cout << " =====\n";
+
 	for(int i = 0; i < 19; i++)
 	{
 		for(int j = 0; j < 3; j++)

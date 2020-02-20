@@ -15,7 +15,7 @@ class TimeMenu : public Menu
 	std::string getName() const;
 
 	void print() const;
-	bool run(char** timeArr,bool militaryTime);
+	bool run(char** timeArr,bool militaryTime, bool attendMode = 0);
 
 
 	private:
@@ -23,7 +23,7 @@ class TimeMenu : public Menu
 	int current_x;
 	int current_y;
 	
-	void print(char** timeArr, bool militaryTime);
+	void print(char** timeArr, bool militaryTime, bool attendMode);
 	
 	void fillBlank(char** timeArr);
 	void setY(char** timeArr);
