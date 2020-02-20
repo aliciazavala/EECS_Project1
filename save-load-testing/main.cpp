@@ -4,26 +4,6 @@
 
 using namespace std;
 
-//FUNCTION TO GET ATTENDEES
-void readAt(string eventID)
-{
-  ifstream attendees;
-  string attendeeName;
-  string id;
-  attendees.open("Attendees.txt");
-  while(attendees>>id)
-  {
-    if(id == eventID)
-    {
-      getline(attendees,attendeeName);
-      cout<<attendeeName<<endl;
-      //get attendees times and print them
-
-    }
-  }
-  attendees.close();
-}
-
 int main()
 {
   char option;
@@ -63,13 +43,13 @@ int main()
     if(option == 'b')
       {
 
-        output.open("January.txt");
+        output.open("./data/January.txt");
 
         string temp;
 
 
         //ADDED EVENTID VARIABLE
-        string eventID;
+        int eventID;
 
 
 
@@ -95,7 +75,30 @@ int main()
     				cout<<"Date: "<< " January, (Day of the week) "<< year << "\n" ;
     				cout<<"Event Creator: "<<creatorName<<"\n";
     			  cout<<"Attendees: "<<"\n";
-            readAt(eventID);
+
+            //READ ATTENDEES
+            ifstream attendees;
+            string attendeeName;
+            int id;
+            //attendee time variable
+
+            attendees.open("./data/Attendees.txt");
+            while(attendees>>id)
+            {
+              if(id == eventID)
+              {
+                getline(attendees,attendeeName);
+                //get attendee time variable
+                cout<<attendeeName<<endl;
+                //GET ATTENDEES TIMES AND PRINT THEM
+              }
+              else
+              {
+                getline(attendees,attendeeName);
+                //getline(attendees,attendeeTime);
+              }
+            }
+            attendees.close();
         	}
 
         }
