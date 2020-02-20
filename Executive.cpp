@@ -258,17 +258,18 @@ void Executive::handleViewEventMenu()
     std::string temp;
     std::string creatorName;
     std::string eventName;
-    std::string eventId;
+    int eventId;
     int month;
     int day;
     int year;
     int userChoice;
+    int i;
 
     
     std::string fileName= nameOfMonth(m_loadedMonth)+".txt"; //open file month
     while(fin>>temp)
     {
-
+	i = 0;
         if(temp==m_eventId)
         	{
 				fin>>eventId;
@@ -295,6 +296,7 @@ void Executive::handleViewEventMenu()
 			    {
 			      if(id == eventID)
 			      {
+			        i++;
 				std::getline(attendees,attendeeName);
 				//Line missing: get attendee's time variable 
 				
@@ -311,6 +313,13 @@ void Executive::handleViewEventMenu()
 			      }
 			      
 			    }
+			    
+			    //If there are no attendees
+			    if ( i = 0 )
+			    {
+			    	std::cout<<"No attendees.\n";
+			    }
+			    
 			    attendees.close();
 			*/
         	}
