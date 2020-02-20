@@ -101,6 +101,4 @@ int getCharFromSet(int size, char arr[], std::string errorMessage = "Invalid inp
 	*/
 int generateID();
 
-void addAttendee(std::string name, std::string times, int month, std::string eventID);
-
 #endif
