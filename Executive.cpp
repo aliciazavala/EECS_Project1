@@ -184,7 +184,7 @@ void Executive::handleNewEventMenu()
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
-events.open("./data/" + FileName + ".txt", std::fstream::app);
+	events.open("./data/" + FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter name of event creator: ";
 	std::cin.ignore();
 	std::getline(std::cin, creatorName);
@@ -208,21 +208,25 @@ events.open("./data/" + FileName + ".txt", std::fstream::app);
 	std::cout<<"Enter time of your event: "<<std::endl;
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
+
 	handleTimeMenu();
-	std::string array = ConvertArray();
-	int id = generateID();
-	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
-attendees.open("./data/Attendees.txt",std::fstream::app);
-	attendees<<id<<" "<<creatorName<<std::endl;
-	attendees<<array<<std::endl;
-attendees.close();
-events.close();
-		std::cout << "[0] Back" << std::endl;
-		int input = getIntRangeFromUser(0,0);
-		if(input == 0)
-		{
-			handleBack();
-		}
+	if(m_timeArr[0][0] != '_')//check to see if user did not quit without saving
+	{
+		std::string array = ConvertArray();
+		int id = generateID();
+		events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
+		attendees.open("./data/Attendees.txt",std::fstream::app);
+		attendees<<id<<" "<<creatorName<<std::endl;
+		attendees<<array<<std::endl;
+	}
+	attendees.close();
+	events.close();
+	std::cout << "[0] Back" << std::endl;
+	int input = getIntRangeFromUser(0,0);
+	if(input == 0)
+	{
+		handleBack();
+	}
 	//ask user for each event parameter
 	//output to file
 }
