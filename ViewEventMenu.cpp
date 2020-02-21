@@ -10,6 +10,11 @@ ViewEventMenu::~ViewEventMenu()
   
 }
 
+void ViewEventMenu::print() const
+{
+	clearScreen();	
+}	
+
 std::string ViewEventMenu::getName() const
 {
 	return m_menuName;
