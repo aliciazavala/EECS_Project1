@@ -2,7 +2,7 @@
 
 Project Page: https://ku-fpg.github.io/teaching/EECS_448_S20_Project1/
 
-SLIDES FOR PROJECT LINK
+SLIDES FOR PROJECT 
 https://docs.google.com/presentation/d/1UyMFoFyIEUA6BE7nF1k-vwD8T9BaYkCDxfCIz1jvXe4/edit?usp=sharing
 
 Documentation (10%)
