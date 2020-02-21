@@ -18,6 +18,7 @@ class MonthMenu : public Menu
 	std::string getName() const;
 	void setTotalEvents(int numEvents);
 	int returnID(int Eid);
+	int EventsinYear(int year);
 
 	private:
 	std::string m_menuName;

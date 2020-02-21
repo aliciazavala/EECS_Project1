@@ -160,11 +160,11 @@ void Executive::handleMonthMenu()
 		Menu* temp = new NewEventMenu(m_loadedMonth);
 		m_menuStack->push(temp);
 	}
-	/*else if(input>0 && input<range+1)
+	else if(input>0 && input<range+1)
 	{
 		m_eventId = temp.returnID(input-1);
+		std::cout<<m_eventId<<std::endl;
 	}
-	*/
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
 }
@@ -211,7 +211,7 @@ events.open("./data/" + FileName + ".txt", std::fstream::app);
 	handleTimeMenu();
 	std::string array = ConvertArray();
 	int id = generateID();
-	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
+	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<std::endl<<" "<<array<<std::endl;
 attendees.open("./data/Attendees.txt",std::fstream::app);
 	attendees<<id<<" "<<creatorName<<std::endl;
 	attendees<<array<<std::endl;
