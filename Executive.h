@@ -12,6 +12,7 @@
 #include "NewEventMenu.h"
 #include "SettingsMenu.h"
 #include "TimeMenu.h"
+#include "ViewEventMenu.h"
 #include "project1_lib.h"
 
 
