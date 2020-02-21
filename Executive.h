@@ -19,6 +19,7 @@
 class Executive
 {
 	public:
+	///initialized m_menuStack to nullptr, assigns current year, sets milirary Time to false, and creates empty 2D array for time slots. 
 	Executive();
 	~Executive();
 
