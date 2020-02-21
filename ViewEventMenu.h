@@ -5,7 +5,7 @@
 class ViewEventMenu: public Menu
 {
 public:
-  ViewEventMenu(int monthEvent);
+  ViewEventMenu();
   ~ViewEventMenu();
   void print() const;
 
