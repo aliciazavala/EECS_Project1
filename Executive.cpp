@@ -68,9 +68,9 @@ void Executive::run(bool test)
 		{
 			handleNewEventMenu();
 		}
-		else if(currentMenu == "ViewEventMenu")
+		else if(currentMenu == "EventMenu")
 		{
-			handleViewEventMenu();
+			handleEventMenu();
 		}
 		else if(currentMenu == "TimeMenu")
 		{
@@ -163,10 +163,21 @@ void Executive::handleMonthMenu()
 	else if(input>0 && input<range+1)
 	{
 		m_eventId = temp.returnID(input-1);
-		std::cout<<m_eventId<<std::endl;
+		Menu* temp = new EventMenu(m_eventId);
+		m_menuStack->push(temp);
 	}
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
+}
+void Executive::handleEventMenu()
+{
+	EventMenu temp(m_eventId);
+	temp.print(m_loadedMonth,m_loadedYear);
+	int input=getIntRangeFromUser(0,1);
+	if(input==0)
+	{
+		handleBack();
+	}
 }
 void Executive::PrintEventsInMonth()
 {
@@ -282,89 +293,6 @@ void Executive::handleSettingsMenu()
 	//go back one menu
 	handleBack();
 }
-void Executive::handleViewEventMenu()
-{
-	std::ifstream fin;
-    std::string temp;
-    std::string creatorName;
-    std::string eventName;
-    int eventId;
-    int month;
-    int day;
-    int year;
-    int userChoice;
-    int i;
-
-
-    std::string fileName= "./data.txt" + nameOfMonth(m_loadedMonth) + ".txt"; //open file month
-    while(fin>>temp)
-    {
-				i = 0;
-        if(temp == std::to_string(m_eventId))
-        	{
-				fin>>eventId;
-				std::getline(fin,eventName);
-				std::getline(fin,creatorName);
-				fin>>month;
-				fin>>day;
-				fin>>year;
-
-				std::cout << "\t ===== " << eventName << " =====" << std::endl;
-				//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
-
-				std::cout<<"Date: "<< nameOfMonth(m_loadedMonth) <<", "<< dayOfWeek(m_loadedMonth,day,m_loadedYear) << " "<< m_loadedYear << "\n" ;
-				std::cout<<"Event Creator: "<<creatorName<<"\n";
-			/* std::cout<<"Attendes: "<<"\n";
-			//READ ATTENDEES
-			    std::ifstream attendees;
-			    std::string attendeeName;
-			    int id;
-			    //needs an attendee times variable
-
-			    attendees.open("./data/Attendees.txt");
-			    while(attendees>>id)
-			    {
-			      if(id == eventID)
-			      {
-			        i++;
-				std::getline(attendees,attendeeName);
-				//Line missing: get attendee's time variable
-
-				std::cout<<attendeeName<<std::endl;
-				//Line missing: print attending time
-			      }
-
-
-			      //gets attendee's name line and attendee's time line and skips them
-			      else
-			      {
-				std::getline(attendees,attendeeName);
-				//Line missing: std::getline(attendees,attendeeTime);
-			      }
-
-			    }
-
-			    //If there are no attendees
-			    if ( i = 0 )
-			    {
-			    	std::cout<<"No attendees.\n";
-			    }
-
-			    attendees.close();
-			*/
-        	}
-    	}
-
-		std::cout << "[1] Attend" << std::endl;
-		std::cout << "[0] Back" << std::endl;
-		userChoice=getIntRangeFromUser(0,1);
-		if(userChoice==0)
-		{
-			handleBack();
-		}
-
-}
-
 void Executive::handleTimeMenu()
 {
 	TimeMenu temp;
