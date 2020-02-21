@@ -2,6 +2,9 @@
 
 Project Page: https://ku-fpg.github.io/teaching/EECS_448_S20_Project1/
 
+SLIDES FOR PROJECT 
+https://docs.google.com/presentation/d/1UyMFoFyIEUA6BE7nF1k-vwD8T9BaYkCDxfCIz1jvXe4/edit?usp=sharing
+
 Documentation (10%)
 You must use some kind of documentation format/software, and to provide documentation of your code. In short, you need to use some means of documentation that can be used to generate HTML documentation of your code. We should be able to open an HTML file to find out all the class information such as method names, signatures, pre and post conditions, etc.
 
