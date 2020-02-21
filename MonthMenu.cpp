@@ -2,13 +2,14 @@
 
 MonthMenu::MonthMenu()
 {
+	EventID = nullptr;
 	m_menuName = "MonthMenu";
 	totalEvents = 0; //placeholder
 }
 
 MonthMenu::~MonthMenu()
 {
-
+	delete[] EventID;
 }
 
 void MonthMenu::print() const
@@ -18,7 +19,7 @@ void MonthMenu::print() const
 void MonthMenu::setTotalEvents(int numEvents)
 {
 	totalEvents = numEvents;
-	int* EventID = new int[totalEvents];
+	EventID = new int[totalEvents];
 }
 void MonthMenu::print(int month, int year) const
 {
