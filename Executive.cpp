@@ -160,11 +160,12 @@ void Executive::handleMonthMenu()
 		Menu* temp = new NewEventMenu(m_loadedMonth);
 		m_menuStack->push(temp);
 	}
-	/*else if(input>0 && input<range+1)
+	else if(input>0 && input<range+1)
 	{
 		m_eventId = temp.returnID(input-1);
+		handleViewEventMenu();
 	}
-	*/
+	
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
 }
@@ -211,7 +212,7 @@ events.open("./data/" + FileName + ".txt", std::fstream::app);
 	handleTimeMenu();
 	std::string array = ConvertArray();
 	int id = generateID();
-	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
+	events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<std::endl<<array<<std::endl;
 attendees.open("./data/Attendees.txt",std::fstream::app);
 	attendees<<id<<" "<<creatorName<<std::endl;
 	attendees<<array<<std::endl;
@@ -288,80 +289,74 @@ void Executive::handleViewEventMenu()
     std::string temp;
     std::string creatorName;
     std::string eventName;
+	std::string timeArray;
     int eventId;
     int month;
     int day;
     int year;
     int userChoice;
-    int i;
 
-
-    std::string fileName= "./data.txt" + nameOfMonth(m_loadedMonth) + ".txt"; //open file month
+	fin.open("./data/" + nameOfMonth(m_loadedMonth)+".txt");//open file month
     while(fin>>temp)
     {
-				i = 0;
-        if(temp == std::to_string(m_eventId))
-        	{
-				fin>>eventId;
-				std::getline(fin,eventName);
-				std::getline(fin,creatorName);
-				fin>>month;
-				fin>>day;
-				fin>>year;
+		fin>>eventId;
+		std::getline(fin,eventName);
+		std::getline(fin,eventName);
+		fin>>month;
+		fin>>day;
+		fin>>year;
+		std::getline(fin,creatorName);
+		std::getline(fin,creatorName);
+		std::getline(fin,timeArray);
 
-				std::cout << "\t ===== " << eventName << " =====" << std::endl;
-				//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
-
-				std::cout<<"Date: "<< nameOfMonth(m_loadedMonth) <<", "<< dayOfWeek(m_loadedMonth,day,m_loadedYear) << " "<< m_loadedYear << "\n" ;
-				std::cout<<"Event Creator: "<<creatorName<<"\n";
-			/* std::cout<<"Attendes: "<<"\n";
-			//READ ATTENDEES
-			    std::ifstream attendees;
-			    std::string attendeeName;
-			    int id;
-			    //needs an attendee times variable
-
-			    attendees.open("./data/Attendees.txt");
-			    while(attendees>>id)
-			    {
-			      if(id == eventID)
-			      {
-			        i++;
-				std::getline(attendees,attendeeName);
-				//Line missing: get attendee's time variable
-
-				std::cout<<attendeeName<<std::endl;
-				//Line missing: print attending time
-			      }
-
-
-			      //gets attendee's name line and attendee's time line and skips them
-			      else
-			      {
-				std::getline(attendees,attendeeName);
-				//Line missing: std::getline(attendees,attendeeTime);
-			      }
-
-			    }
-
-			    //If there are no attendees
-			    if ( i = 0 )
-			    {
-			    	std::cout<<"No attendees.\n";
-			    }
-
-			    attendees.close();
-			*/
-        	}
-    	}
-
-		std::cout << "[1] Attend" << std::endl;
-		std::cout << "[0] Back" << std::endl;
-		userChoice=getIntRangeFromUser(0,1);
-		if(userChoice==0)
+		if (eventId == m_eventId)
 		{
-			handleBack();
+			std::cout << "\t ===== " << eventName << " =====" << std::endl;
+			//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
+			std::cout<<"Date: "<< nameOfMonth(m_loadedMonth) <<", "<< dayOfWeek(m_loadedMonth,day,m_loadedYear) << " "<<day<<" "<< m_loadedYear << "\n" ;
+			std::cout<<"Event Creator: "<<creatorName<<"\n";
+			std::cout<<"Attendees: "<<"\n";
+			//READ ATTENDEES
+			std::ifstream attendees;
+			std::string attendeeName;
+			int id;
+
+			attendees.open("./data/Attendees.txt");
+			while(attendees>>id)
+			{
+			if(id == m_eventId)
+			{
+			std::getline(attendees,attendeeName);
+			std::getline(attendees,timeArray);
+
+			std::cout<<attendeeName<<std::endl;
+			//Line missing: print attending time
+			}
+
+
+			//gets attendee's name line and attendee's time line and skips them
+			else
+			{
+			std::getline(attendees,attendeeName);
+			std::getline(attendees,timeArray);
+			}
+
+			}
+
+			std::cout<<"\n";
+			attendees.close();
+			
 		}
+				
+	}
+
+	std::cout << "[1] Attend" << std::endl;
+	std::cout << "[0] Back" << std::endl;
+	userChoice=getIntRangeFromUser(0,1);
+	if(userChoice==0)
+	{
+		handleBack();
+	}
 
 }
 
