@@ -208,6 +208,138 @@ std::string formatTime(int hour, int minute)
 	return (formattedHour + ":" +formattedMin);
 }
 
+std::string stringToTime(std::string timeStr, bool military)
+{
+	timeStr = timeStr + "0";
+	int i1 = -1;
+	int i2 = 0;
+	std::string finalString = "Times: ";
+	bool first = true;
+	for(int i = 0; i < 54; i++)
+	{
+		if(timeStr.at(i) == '1')
+		{
+			i1 = i;
+			for(int j = i; j <= 54; j++)
+			{
+				if(timeStr[j] == '0')
+				{
+					i2 = j-1;
+					if(military)
+					{
+						if(!first)
+						{
+							finalString = finalString + ", ";
+						}
+						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2);
+					}
+					else
+					{
+						if(!first)
+						{
+							finalString = finalString + ", ";
+						}
+						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2));
+					}
+					first = false;
+					i = j;
+					break;
+				}
+			}
+		}
+	}
+	if(finalString.at(finalString.length() - 1) == ' ')
+	{
+		finalString.pop_back();
+		finalString.pop_back();
+	}
+	return finalString;
+}
+
+std::string convertTo12Hr(std::string time)
+{
+	std::string temp = time.substr(0,2);
+	int hour = stoi(temp);
+	if(hour > 12)
+	{
+		if(hour - 12 < 10)
+		{
+			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM");
+		}
+		else
+		{
+			return(std::to_string(hour - 12) + time.substr(2,3) + " PM");
+		}
+	}
+	else
+	{
+		return (time + " AM");
+	}
+}
+
+std::string indexToTime(int index)
+{
+
+	switch (index)
+	{
+		case 0: return ("05:00");
+		case 1: return ("05:20");
+		case 2: return ("05:40");
+		case 3: return ("06:00");
+		case 4: return ("06:20");
+		case 5: return ("06:40");
+		case 6: return ("07:00");
+		case 7: return ("07:20");
+		case 8: return ("07:40");
+		case 9: return ("08:00");
+		case 10: return ("08:20");
+		case 11: return ("08:40");
+		case 12: return ("09:00");
+		case 13: return ("09:20");
+		case 14: return ("09:40");
+		case 15: return ("10:00");
+		case 16: return ("10:20");
+		case 17: return ("10:40");
+		case 18: return ("11:00");
+		case 19: return ("11:20");
+		case 21: return ("11:40");
+		case 20: return ("13:00");
+		case 22: return ("13:20");
+		case 23: return ("13:40");
+		case 24: return ("14:00");
+		case 25: return ("14:20");
+		case 26: return ("14:40");
+		case 28: return ("15:00");
+		case 27: return ("15:20");
+		case 29: return ("15:40");
+		case 30: return ("16:00");
+		case 31: return ("16:20");
+		case 32: return ("16:40");
+		case 33: return ("17:00");
+		case 34: return ("17:20");
+		case 35: return ("17:40");
+		case 36: return ("18:00");
+		case 37: return ("18:20");
+		case 38: return ("18:40");
+		case 39: return ("19:00");
+		case 40: return ("19:20");
+		case 41: return ("19:40");
+		case 42: return ("20:00");
+		case 43: return ("20:20");
+		case 44: return ("20:40");
+		case 45: return ("21:00");
+		case 46: return ("21:20");
+		case 47: return ("21:40");
+		case 48: return ("22:00");
+		case 49: return ("22:20");
+		case 50: return ("22:40");
+		case 51: return ("23:00");
+		case 52: return ("23:20");
+		case 53: return ("23:40");
+		default: throw(std::runtime_error("invalid index"));
+	}
+}
+
 int getValidIntFromUser(std::string errorMessage)
 {
 	int input;

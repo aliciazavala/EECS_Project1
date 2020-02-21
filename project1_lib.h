@@ -60,6 +60,12 @@ std::string formatTime(int hour, int min);
 
 void printTime(std::string formattedTime, bool militaryTime);
 
+std::string stringToTime(std::string timeStr, bool military);
+
+std::string convertTo12Hr(std::string time);
+
+std::string indexToTime(int index);
+
 /******************************************************************************
  *   OTHER FUNCTIONS
  *******************************************************************************/
