@@ -288,6 +288,8 @@ void Executive::handleViewEventMenu()
 {
 	ViewEventMenu temp = ViewEventMenu(m_eventId);
 	
+	temp.print();
+	
 	userChoice=getIntRangeFromUser(0,1);
 	
 	if(userChoice==0)
