@@ -1,10 +1,10 @@
-CalendarApp: main.o Executive.o Menu.o MainMenu.o MonthMenu.o project1_lib.o NewEventMenu.o SettingsMenu.o TimeMenu.o
-	g++ -std=c++11 -g -Wall main.o Executive.o Menu.o  MainMenu.o MonthMenu.o project1_lib.o NewEventMenu.o SettingsMenu.o TimeMenu.o -o CalendarApp
+CalendarApp: main.o Executive.o Menu.o MainMenu.o MonthMenu.o project1_lib.o NewEventMenu.o SettingsMenu.o TimeMenu.o ViewEventMenu.o
+	g++ -std=c++11 -g -Wall main.o Executive.o Menu.o  MainMenu.o MonthMenu.o project1_lib.o NewEventMenu.o SettingsMenu.o TimeMenu.o ViewEventMenu.o -o CalendarApp
 
 main.o: main.cpp Executive.h
 	g++ -std=c++11 -g -Wall -c main.cpp
 
-Executive.o: Executive.h Executive.cpp StackInterface.h Stack.h Stack.cpp SLNode.h Menu.h SettingsMenu.h NewEventMenu.h TimeMenu.h
+Executive.o: Executive.h Executive.cpp StackInterface.h Stack.h Stack.cpp SLNode.h Menu.h SettingsMenu.h NewEventMenu.h TimeMenu.h ViewEventMenu.h
 	g++ -std=c++11 -g -Wall -c Executive.cpp
 
 Menu.o: Menu.h Menu.cpp project1_lib.h
@@ -24,6 +24,9 @@ SettingsMenu.o: Menu.h SettingsMenu.h SettingsMenu.cpp project1_lib.h
 
 TimeMenu.o: Menu.h TimeMenu.h TimeMenu.cpp project1_lib.h
 	g++ -std=c++11 -g -Wall -c TimeMenu.cpp
+	
+ViewEventMenu.o: Menu.h ViewEventMenu.h ViewEventMenu.cpp project1_lib.h
+	g++ -std=c++11 -g -Wall -c ViewEventMenu.cpp
 
 project1_lib.o: project1_lib.h project1_lib.cpp
 	g++ -std=c++11 -g -Wall -c project1_lib.cpp
