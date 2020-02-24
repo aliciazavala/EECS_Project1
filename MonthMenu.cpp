@@ -35,7 +35,8 @@ void MonthMenu::print(int month, int year) const
 	int eventmonth;
 	int eventsINyear=0;
 	int eventyear;
-	int y = 0;
+	int y = totalEvents;
+	int x = 0;
 	std::ifstream fin;
 	std::string eventname;
 	fin.open("./data/" + nameOfMonth(month)+".txt");
@@ -54,7 +55,8 @@ void MonthMenu::print(int month, int year) const
 		if(eventyear == year)
 		{
 			EventID[totalEvents-y]=eventid;
-			y++;
+			y--;
+			x++;
 		}
 		if(eventyear == year)
 		{
@@ -66,7 +68,7 @@ void MonthMenu::print(int month, int year) const
 		{
 			if (i == totalEvents)
 			{
-				std::cout << "\n\n["<< y+1<< "] New Event" << std::endl<<std::endl;
+				std::cout << "\n\n["<< x+1<< "] New Event" << std::endl<<std::endl;
 			}
 		}
 	}
