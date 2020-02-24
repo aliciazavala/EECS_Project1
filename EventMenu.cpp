@@ -29,7 +29,6 @@ void EventMenu::print(int loadedmonth, int loadedyear)
     int month;
     int day;
     int year;
-    int userChoice;
 
 	fin.open("./data/" + nameOfMonth(loadedmonth)+".txt");//open file month
     while(fin>>temp)
