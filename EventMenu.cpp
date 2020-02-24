@@ -7,6 +7,7 @@ EventMenu::EventMenu()
 EventMenu::EventMenu(int id)
 {
   m_menuName = "EventMenu";
+  m_eventTime = " ";
   m_ID = id;
 }
 EventMenu::~EventMenu()
@@ -46,6 +47,7 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 
 		if (eventId == m_ID)
 		{
+			m_eventTime = timeArray;
 			std::cout << "\t ===== " << eventName << " =====" << std::endl;
 			//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
 			std::cout<<"Date: "<< nameOfMonth(loadedmonth) <<", "<< dayOfWeek(loadedmonth,day,loadedyear) << " "<<day<<" "<< loadedyear << "\n" ;
@@ -90,4 +92,9 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 std::string EventMenu::getName() const
 {
   return m_menuName;
+}
+
+std::string EventMenu::getTime() const
+{
+	return m_eventTime;
 }
