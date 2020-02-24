@@ -14,7 +14,7 @@
 #include "TimeMenu.h"
 #include "project1_lib.h"
 #include "EventMenu.h"
-
+#include "AttendMenu.h"
 
 
 class Executive
@@ -48,6 +48,7 @@ class Executive
 	void handleSettingsMenu();
 	void handleTimeMenu();
 	void handleAttendTimeMenu();
+	void handleAttendMenu();
 	void handleBack();
 	void clearTimeArr();
 	void loadTimeArr(std::string timeString);

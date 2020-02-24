@@ -20,7 +20,7 @@ class AttendMenu : public Menu
   private:
     std::string m_menuName;
     int m_ID;
-    string m_name;
+    std::string m_name;
 
 
 };

@@ -167,8 +167,7 @@ void Executive::handleMonthMenu()
 	else if(input>0 && input<range+1)
 	{
 		m_eventId = temp.returnID(input-1);
-		Menu* temp = new EventMenu(m_eventId);
-		m_menuStack->push(temp);
+		
 	}
 	//ask user to chose event or make event
 	//if make event, then create event menu and push
@@ -184,8 +183,8 @@ void Executive::handleEventMenu()
 	}
 	if(input == 1)
 	{
-		Menu* newMenu = new AttendMenu();
-	m_menuStack->push(newMenu);
+		Menu* temp = new AttendMenu();
+		m_menuStack->push(temp);
 	}
 }
 

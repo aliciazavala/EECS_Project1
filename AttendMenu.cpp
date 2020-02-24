@@ -1,11 +1,13 @@
-#include "AttebdMenu.h"
+#include "AttendMenu.h"
 
 AttendMenu::AttendMenu(int id)
 {
-	m_menuName = ;
+	m_menuName = "AttendMenu";
 	m_ID = id;
 }
-AttendMenu::AttendMenu(){}
+AttendMenu::AttendMenu(){
+  m_menuName = "AttendMenu";
+}
 
 
 AttendMenu::~AttendMenu(){}
@@ -22,15 +24,10 @@ void AttendMenu::print()
 	attendees<<m_ID<<" "<<name<<std::endl;
 }
 
-void print()const{}
+void AttendMenu::print()const{}
 
 std::string AttendMenu::getName() const
 {
 	return (m_menuName);
 }
 
-    string m_name;
-
-
-};
-#endif
