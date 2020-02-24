@@ -61,6 +61,7 @@ void MonthMenu::print(int month, int year) const
 		if(eventyear == year)
 		{
 			eventsINyear++;
+			x++;
 			std::cout << "\n[" << eventsINyear << "]";
 			std::cout<<eventname<<": "<<eventid;
 		}
@@ -68,7 +69,7 @@ void MonthMenu::print(int month, int year) const
 		{
 			if (i == totalEvents)
 			{
-				std::cout << "\n\n["<< eventsINyear+1<< "] New Event" << std::endl<<std::endl;
+				std::cout << "\n\n["<< x+1<< "] New Event" << std::endl<<std::endl;
 			}
 		}
 	}
