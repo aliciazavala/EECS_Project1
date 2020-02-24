@@ -185,7 +185,7 @@ void Executive::handleEventMenu()
 	if(input == 1)
 	{
 		Menu* newMenu = new AttendMenu();
-	m_menuStack->push(newMenu);
+		m_menuStack->push(newMenu);
 	}
 }
 
@@ -195,8 +195,10 @@ void Executive::handleAttendMenu()
 	attendees.open("./data/Attendees.txt",std::fstream::app);
 	AttendMenu temp(m_eventId);
 	temp.print();
+	m_eventTime = temp.getTime();
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
+	loadTimeArr(m_eventTime);
 	handleAttendTimeMenu();
 	std::string array = ConvertArray();
 	attendees<<array<<std::endl;
