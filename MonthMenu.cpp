@@ -82,6 +82,7 @@ void MonthMenu::print(int month, int year) const
 		std::cout<<EventID[i]<<std::endl;
 	}
 	*/
+	std::cout<<totalEvents;
 	std::cout << "[0] Back" << std::endl;
 	fin.close();
 }
