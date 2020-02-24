@@ -66,7 +66,7 @@ void MonthMenu::print(int month, int year) const
 		{
 			if (i == totalEvents)
 			{
-				std::cout << "\n\n["<< i+1<< "] New Event" << std::endl<<std::endl;
+				std::cout << "\n\n["<< y+1<< "] New Event" << std::endl<<std::endl;
 			}
 		}
 	}
