@@ -56,12 +56,10 @@ void MonthMenu::print(int month, int year) const
 		{
 			EventID[totalEvents-y]=eventid;
 			y--;
-			x++;
 		}
 		if(eventyear == year)
 		{
 			eventsINyear++;
-			x++;
 			std::cout << "\n[" << eventsINyear << "]";
 			std::cout<<eventname<<": "<<eventid;
 		}
@@ -69,7 +67,7 @@ void MonthMenu::print(int month, int year) const
 		{
 			if (i == totalEvents)
 			{
-				std::cout << "\n\n["<< x+1<< "] New Event" << std::endl<<std::endl;
+				std::cout << "\n\n["<< i+1<< "] New Event" << std::endl<<std::endl;
 			}
 		}
 	}
@@ -82,7 +80,6 @@ void MonthMenu::print(int month, int year) const
 		std::cout<<EventID[i]<<std::endl;
 	}
 	*/
-	std::cout<<totalEvents;
 	std::cout << "[0] Back" << std::endl;
 	fin.close();
 }
