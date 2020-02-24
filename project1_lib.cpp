@@ -57,7 +57,7 @@ std::string nameOfMonth(int m)
 			break;
 		case 9: return ("September");
 			break;
-		case 10: return ("Octcober");
+		case 10: return ("October");
 			break;
 		case 11: return ("November");
 			break;

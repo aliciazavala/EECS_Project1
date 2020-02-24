@@ -13,7 +13,8 @@
 #include "SettingsMenu.h"
 #include "TimeMenu.h"
 #include "project1_lib.h"
-
+#include "EventMenu.h"
+#include "AttendMenu.h"
 
 
 class Executive
@@ -30,8 +31,9 @@ class Executive
 	int m_loadedMonth;
 	bool m_militaryTime;
 	char** m_timeArr;//18x3 2D array
-	//see bottom of class for index mapping
+	std::string m_eventTime;
 	int m_eventId;
+	//see bottom of class for index mapping
 
 	//std::string m_fileName;
 	Stack<Menu*>* m_menuStack;
@@ -43,10 +45,11 @@ class Executive
 	void handleMainMenu();
 	void handleMonthMenu();
 	void handleNewEventMenu();
-	void handleViewEventMenu();
+	void handleEventMenu();
 	void handleSettingsMenu();
 	void handleTimeMenu();
 	void handleAttendTimeMenu();
+	void handleAttendMenu();
 	void handleBack();
 	void clearTimeArr();
 	void loadTimeArr(std::string timeString);
