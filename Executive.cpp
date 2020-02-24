@@ -80,6 +80,10 @@ void Executive::run(bool test)
 		{
 			handleSettingsMenu();
 		}
+		else if(currentMenu == "AttendMenu")
+		{
+			handleAttendMenu();
+		}
 	}
 	save();
 }
@@ -179,6 +183,23 @@ void Executive::handleEventMenu()
 		handleBack();
 	}
 }
+
+void Executive::handleAttendMenu()
+{
+	std::ofstream attendees;
+	attendees.open("./data/Attendees.txt",std::fstream::app)
+	AttendMenu temp(m_eventId);
+	temp.print();
+	TimeMenu* object = new TimeMenu();
+	m_menuStack->push(object);
+	handleAttendTimeMenu();
+	std::string array = ConvertArray();
+	attendees<<array<<std::endl;
+	attendees.close();
+	handleBack();
+	
+}
+
 void Executive::PrintEventsInMonth()
 {
 
