@@ -46,7 +46,7 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 
 		if (eventId == m_ID)
 		{
-			std::cout << "\t ===== " << eventName << " =====" << std::endl;
+			std::cout << "\t ===== " << eventName << "  =====" << std::endl;
 			//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
 			std::cout<<"Date: "<< nameOfMonth(loadedmonth) <<", "<< dayOfWeek(loadedmonth,day,loadedyear) << " "<<day<<" "<< loadedyear << "\n" ;
 			std::cout<<"Event Creator: "<<creatorName<<"\n";
