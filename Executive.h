@@ -31,6 +31,7 @@ class Executive
 	int m_loadedMonth;
 	bool m_militaryTime;
 	char** m_timeArr;//18x3 2D array
+	std::string m_eventTime;
 	int m_eventId;
 	//see bottom of class for index mapping
 
