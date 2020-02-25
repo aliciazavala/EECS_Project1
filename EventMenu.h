@@ -27,6 +27,7 @@ class EventMenu : public Menu
     std::string m_menuName;
     std::string m_eventTime;
     std::string m_password;
+    std::string m_eventname;
     int m_ID;
     bool m_militaryTime;
     bool m_adminMode;

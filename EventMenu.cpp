@@ -8,6 +8,7 @@ EventMenu::EventMenu(int id, bool militaryTime, bool adminMode)
 {
   m_menuName = "EventMenu";
   m_eventTime = " ";
+  m_eventname = " ";
   m_ID = id;
   m_militaryTime = militaryTime;
   m_adminMode = adminMode;
@@ -46,6 +47,7 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass)
 		fin>>eventId;
 		std::getline(fin,eventName);//whitespace
 		std::getline(fin,eventName);
+    m_eventname = eventName;
 		fin>>month;
 		fin>>day;
 		fin>>year;
@@ -129,6 +131,7 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass)
   else
   {
     std::cout << "[1] Print Availability" << std::endl;
+    std::cout << "[2] Settings" <<std::endl;
   }
 	std::cout << "[0] Back" << std::endl;
 }
@@ -169,7 +172,7 @@ int EventMenu::countAttendees(int index)
 void EventMenu::printAvailability()
 {
   clearScreen();
-  std::cout << "\t ===== Availability for " << " =====" << std::endl;
+  std::cout << "  ===== Availability for " << m_eventname << " =====" << std::endl;
 	int currentHour = 5;
 	int currentSlot = 0;
 	for(int i = 0; i < 18; i++)
