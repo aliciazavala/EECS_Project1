@@ -22,6 +22,8 @@ void AttendMenu::print()
 	std::cout << " Enter name: ";
 	std::cin >> name;
 	attendees<<m_ID<<" "<<name<<std::endl;
+
+	attendees.close();
 }
 
 void AttendMenu::print()const{}

@@ -54,6 +54,7 @@ class Executive
 	int EventsInMonth(int month);
 	void PrintEventsInMonth();
 	void convertTimeString(std::string timeString);
+	std::string getPassword();
 /**	m_timeArr index mapping:
 	hour:	index:
 	5:00	[0][0]

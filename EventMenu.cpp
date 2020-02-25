@@ -20,8 +20,8 @@ void EventMenu::print()const
 }
 void EventMenu::print(int loadedmonth, int loadedyear)
 {
-  clearScreen();
-	std::ifstream fin;
+    clearScreen();
+    std::ifstream fin;
     std::string temp;
     std::string creatorName;
     std::string eventName;
@@ -30,27 +30,30 @@ void EventMenu::print(int loadedmonth, int loadedyear)
     int month;
     int day;
     int year;
+    std::string password;
 
 	fin.open("./data/" + nameOfMonth(loadedmonth)+".txt");//open file month
     while(fin>>temp)
     {
 		fin>>eventId;
-		std::getline(fin,eventName);
+		std::getline(fin,eventName);//whitespace
 		std::getline(fin,eventName);
 		fin>>month;
 		fin>>day;
 		fin>>year;
-		std::getline(fin,creatorName);
+		std::getline(fin,creatorName);//whitepsace
 		std::getline(fin,creatorName);
 		std::getline(fin,timeArray);
+		std::getline(fin,password);
 
 		if (eventId == m_ID)
 		{
-			m_eventTime = timeArray;
+			m_eventTime = timeArray.substr(1,m_eventTime.size() - 1);//remove space from front
+			m_password = password.substr(1,m_eventTime.size() - 1);//remove space from front
 			std::cout << "\t ===== " << eventName << " =====" << std::endl;
 			//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
-			std::cout<<"Date: "<< nameOfMonth(loadedmonth) <<", "<< dayOfWeek(loadedmonth,day,loadedyear) << " "<<day<<" "<< loadedyear << "\n" ;
-			std::cout<<"Event Creator: "<<creatorName<<"\n";
+			std::cout<<"Date: "<< nameOfMonth(loadedmonth) <<", "<< dayOfWeek(loadedmonth,day,loadedyear) << " " << day << " " << loadedyear << "\n" ;
+			std::cout<<"Admin: "<<creatorName<<"\n";
 			std::cout<<"Attendees: "<<"\n";
 			//READ ATTENDEES
 			std::ifstream attendees;
@@ -86,6 +89,7 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 	}
 
 	std::cout << "[1] Attend" << std::endl;
+	std::cout << "[2] Admin Mode" << std::endl;
 	std::cout << "[0] Back" << std::endl;
 }
 std::string EventMenu::getName() const
@@ -96,4 +100,9 @@ std::string EventMenu::getName() const
 std::string EventMenu::getTime() const
 {
 	return m_eventTime;
+}
+
+std::string EventMenu::getPassword() const
+{
+	return m_password;
 }

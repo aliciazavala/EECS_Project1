@@ -17,10 +17,12 @@ class EventMenu : public Menu
     void print()const;
     std::string getTime() const;
     std::string getName() const;
+    std::string getPassword() const;
 
   private:
     std::string m_menuName;
     std::string m_eventTime;
+    std::string m_password;
     int m_ID;
 
 

@@ -1,11 +1,9 @@
 #include "Executive.h"
 Executive::Executive()
 {
-	//both should be empty at startup
 	m_menuStack = nullptr;
 
 	m_loadedYear = getCurrentYear();
-
 	m_militaryTime = false;
 
 	m_timeArr = new char*[18];
@@ -151,7 +149,7 @@ void Executive::handleEventMenu()
 {
 	EventMenu temp(m_eventId);
 	temp.print(m_loadedMonth,m_loadedYear);
-	int input=getIntRangeFromUser(0,1);
+	int input=getIntRangeFromUser(0,2);
 	m_eventTime = temp.getTime();
 	if(input==0)
 	{
@@ -174,10 +172,10 @@ void Executive::handleAttendMenu()
 	//m_eventTime = temp.getTime();
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
-	loadTimeArr(m_eventTime.substr(1,m_eventTime.size() - 1));
+	loadTimeArr(m_eventTime);
 	handleAttendTimeMenu();
 	std::string array = ConvertArray();
-	attendees<<array<<std::endl;
+	attendees << " " << array << std::endl;
 	attendees.close();
 	handleBack();
 
@@ -188,18 +186,21 @@ void Executive::PrintEventsInMonth()
 
 }
 
-void Executive::handleNewEventMenu()// don't save if quit
+void Executive::handleNewEventMenu()
 {
 	NewEventMenu temp = NewEventMenu(m_loadedMonth);
 	temp.print(m_loadedMonth,m_loadedYear);
-	int x = 0;
+
 	std::string creatorName;
 	std::string EventName;
 	int day;
+	
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
 	events.open("./data/" + FileName + ".txt", std::fstream::app);
+	attendees.open("./data/Attendees.txt",std::fstream::app);
+
 	std::cout<<"Enter name of event creator: ";
 	std::cin.ignore();
 	std::getline(std::cin, creatorName);
@@ -209,7 +210,7 @@ void Executive::handleNewEventMenu()// don't save if quit
 
 	do{
 
-		std::cout<<"Enter day of event (1 -" << daysInMonth(m_loadedMonth, m_loadedYear) <<": ";
+		std::cout<<"Enter day of event (1 -" << daysInMonth(m_loadedMonth,m_loadedYear) <<"): ";
 		std::cin>>day;
 		if(!isValidDate(m_loadedMonth,day,m_loadedYear))
 		{
@@ -226,10 +227,16 @@ void Executive::handleNewEventMenu()// don't save if quit
 	{
 		std::string array = ConvertArray();
 		int id = generateID();
-		events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
-		attendees.open("./data/Attendees.txt",std::fstream::app);
-		attendees<<id<<" "<<creatorName<<std::endl;
-		attendees<<array<<std::endl;
+		std::string password = getPassword();
+
+		events << "Event: "<< id <<std::endl << " " << EventName << std::endl;
+		events << " " << m_loadedMonth << '\t' << day << '\t' << m_loadedYear << std::endl;
+		events << " " << creatorName << std::endl;
+		events << " " << array << std::endl;
+		events << " " << password << std::endl;
+		
+		attendees << id << " " <<creatorName << std::endl;
+		attendees << " " << array << std::endl;
 	}
 	attendees.close();
 	events.close();
@@ -348,6 +355,27 @@ void Executive::loadTimeArr(std::string timeString)
 				m_timeArr[i][j] = 'X';
 			}
 			index++;
+		}
+	}
+}
+
+std::string Executive::getPassword()
+{
+	std::string password;
+	std::string confirm;
+	while(1)
+	{
+		std::cout << "Enter a password: ";
+		std::cin >> password;
+		std::cout << "Confirm Password: ";
+		std::cin >> confirm;
+		if(password != confirm)
+		{
+			std::cout << "Passwords do not match!\n";
+		}
+		else
+		{
+			return password;
 		}
 	}
 }
