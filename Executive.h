@@ -32,6 +32,7 @@ class Executive
 	bool m_militaryTime;
 	char** m_timeArr;//18x3 2D array
 	std::string m_eventTime;
+	std::string m_loadedPW;
 	int m_eventId;
 	//see bottom of class for index mapping
 
@@ -47,7 +48,7 @@ class Executive
 	void handleAttendTimeMenu();
 	void handleAttendMenu();
 	void handleBack();
-	void handleLoginMenu();
+	void handleAdminMenu();
 	void clearTimeArr();
 	void loadTimeArr(std::string timeString);
 

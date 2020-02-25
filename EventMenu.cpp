@@ -70,7 +70,7 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 			std::ifstream attendees;
 			std::string attendeeName;
 			int id;
-      
+
       //admin mode output
       if(m_adminMode)
       {
@@ -102,8 +102,11 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 
 	}
 
-	std::cout << "[1] Attend" << std::endl;
-	std::cout << "[2] Admin Mode" << std::endl;
+	if(!m_adminMode)
+  {
+    std::cout << "[1] Attend" << std::endl;
+    std::cout << "[2] Admin Mode" << std::endl;
+  }
 	std::cout << "[0] Back" << std::endl;
 }
 std::string EventMenu::getName() const

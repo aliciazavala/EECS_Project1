@@ -79,6 +79,10 @@ void Executive::run(bool test)
 		{
 			handleAttendMenu();
 		}
+		else if(currentMenu == "AdminMenu")
+		{
+
+		}
 	}
 }
 
@@ -156,10 +160,15 @@ void Executive::handleEventMenu()
 	{
 		handleBack();
 	}
-	if(input == 1)
+	else if(input == 1)
 	{
 		Menu* newMenu = new AttendMenu();
 		m_menuStack->push(newMenu);
+	}
+	else if(input == 2)
+	{
+		Menu* adminMenu = new EventMenu(m_eventId, m_militaryTime, true);
+		m_menuStack->push(adminMenu);
 	}
 }
 
@@ -195,7 +204,7 @@ void Executive::handleNewEventMenu()
 	std::string creatorName;
 	std::string EventName;
 	int day;
-	
+
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
@@ -237,7 +246,7 @@ void Executive::handleNewEventMenu()
 		events << " " << creatorName << std::endl;
 		events << " " << array << std::endl;
 		events << " " << password << std::endl;
-		
+
 		attendees << id << " " <<creatorName << std::endl;
 		attendees << " " << array << std::endl;
 	}
@@ -331,9 +340,10 @@ void Executive::handleAttendTimeMenu()
 	handleBack();
 }
 
-void Executive::handleLoginMenu()
+void Executive::handleAdminMenu()
 {
-	
+	EventMenu temp(m_eventId,m_militaryTime,true);
+
 }
 
 void Executive::handleBack()
@@ -363,9 +373,11 @@ void Executive::loadTimeArr(std::string timeString)
 			{
 				m_timeArr[i][j] = 'X';
 			}
+			else
+			{
+				m_timeArr[i][j] = '_';
+			}
 			index++;
 		}
 	}
 }
-
-
