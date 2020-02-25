@@ -154,7 +154,7 @@ void Executive::handleMonthMenu()
 void Executive::handleEventMenu()
 {
 	EventMenu temp(m_eventId, m_militaryTime, false);
-	temp.print(m_loadedMonth,m_loadedYear,loggedin);
+	temp.print(m_loadedMonth,m_loadedYear,loggedin, m_hideTimes);
 	int input=getIntRangeFromUser(0,3);
 	m_eventTime = temp.getTime();
 	if(input==0)
@@ -176,7 +176,7 @@ void Executive::handleEventMenu()
 void Executive::handleAdminMenu()
 {
 	EventMenu temp(m_eventId,m_militaryTime,true);
-	temp.print(m_loadedMonth,m_loadedYear,loggedin);
+	temp.print(m_loadedMonth,m_loadedYear,loggedin, m_hideTimes);
 	int input = getIntRangeFromUser(0,2);
 	if(input == 1)
 	{

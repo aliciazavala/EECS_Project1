@@ -33,7 +33,8 @@ void SettingsMenu::print(bool militaryTime, bool hideTimes) const
 	{
 		std::cout << "[1] Turn ON 24-hour time";
 	}
-	if(!hideTimes)
+	std::cout << std::endl;
+	if(hideTimes)
 	{
 		std::cout << "[2] Hide attendee times in Admin Mode";
 	}

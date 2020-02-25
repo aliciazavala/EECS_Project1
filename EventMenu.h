@@ -14,7 +14,7 @@ class EventMenu : public Menu
     EventMenu(int id, bool militaryTime, bool adminMode);
     EventMenu();
     ~EventMenu();
-    void print(int loadedmonth, int loadedyear,bool& pass);
+    void print(int loadedmonth, int loadedyear,bool& pass, bool hideTimes);
     void print()const;
     std::string getTime() const;
     std::string getName() const;

@@ -26,7 +26,7 @@ void EventMenu::print()const
 {
 
 }
-void EventMenu::print(int loadedmonth, int loadedyear, bool& pass)
+void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTimes)
 {
     clearScreen();
     std::ifstream fin;
@@ -105,7 +105,15 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass)
       			std::getline(attendees,timeString);
             timeString = timeString.substr(1,timeString.size() - 1);//remove space from front
             times->push_back(timeString);
-      			std::cout << attendeeName << ": "<< stringToTime(timeString, m_militaryTime)<< std::endl<<std::endl;
+      			std::cout << attendeeName;
+            if(hideTimes)
+            {
+                std::cout << ": "<< stringToTime(timeString, m_militaryTime)<< std::endl<<std::endl;
+            }
+            else
+            {
+              std::cout << std::endl;
+            }
       			//Line missing: print attending time
   			     }
 
