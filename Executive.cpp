@@ -123,9 +123,10 @@ void Executive::handleMonthMenu()
 	//create temp
 	MonthMenu temp;
 	//read number of events in a month from that file
-	int range = EventsInMonth(m_loadedMonth);
-	temp.setTotalEvents(range);
+	int range = 0;
+	temp.setTotalEvents(EventsInMonth(m_loadedMonth));
 	temp.print(m_loadedMonth, m_loadedYear);
+	range = temp.getEventsInYear();
 	int input = getIntRangeFromUser(0,range+1);
 	if(input == 0)
 	{
@@ -139,7 +140,7 @@ void Executive::handleMonthMenu()
 	else if(input>0 && input<range+1)
 	{
 		m_eventId = temp.returnID(input-1);
-		Menu* temp = new EventMenu(m_eventId);
+		Menu* temp = new EventMenu(m_eventId, m_militaryTime, false);
 		m_menuStack->push(temp);
 	}
 	//ask user to chose event or make event
@@ -147,7 +148,7 @@ void Executive::handleMonthMenu()
 }
 void Executive::handleEventMenu()
 {
-	EventMenu temp(m_eventId);
+	EventMenu temp(m_eventId, m_militaryTime, false);
 	temp.print(m_loadedMonth,m_loadedYear);
 	int input=getIntRangeFromUser(0,2);
 	m_eventTime = temp.getTime();
@@ -210,7 +211,7 @@ void Executive::handleNewEventMenu()
 
 	do{
 
-		std::cout<<"Enter day of event (1 -" << daysInMonth(m_loadedMonth,m_loadedYear) <<"): ";
+		std::cout<<"Enter day of event (1 - " << daysInMonth(m_loadedMonth,m_loadedYear) <<"): ";
 		std::cin>>day;
 		if(!isValidDate(m_loadedMonth,day,m_loadedYear))
 		{
@@ -227,6 +228,8 @@ void Executive::handleNewEventMenu()
 	{
 		std::string array = ConvertArray();
 		int id = generateID();
+
+		std::cout << "\t ===== Admin Password =====\n\n\n";
 		std::string password = getPassword();
 
 		events << "Event: "<< id <<std::endl << " " << EventName << std::endl;
@@ -240,7 +243,7 @@ void Executive::handleNewEventMenu()
 	}
 	attendees.close();
 	events.close();
-	std::cout << "[0] Back" << std::endl;
+	std::cout << "\n[0] Finish" << std::endl;
 	int input = getIntRangeFromUser(0,0);
 	if(input == 0)
 	{
@@ -249,6 +252,7 @@ void Executive::handleNewEventMenu()
 	//ask user for each event parameter
 	//output to file
 }
+
 std::string Executive::ConvertArray()
 {
 	std::string time = "                                                      ";
@@ -327,6 +331,11 @@ void Executive::handleAttendTimeMenu()
 	handleBack();
 }
 
+void Executive::handleLoginMenu()
+{
+	
+}
+
 void Executive::handleBack()
 {
 	m_menuStack->pop();
@@ -359,23 +368,4 @@ void Executive::loadTimeArr(std::string timeString)
 	}
 }
 
-std::string Executive::getPassword()
-{
-	std::string password;
-	std::string confirm;
-	while(1)
-	{
-		std::cout << "Enter a password: ";
-		std::cin >> password;
-		std::cout << "Confirm Password: ";
-		std::cin >> confirm;
-		if(password != confirm)
-		{
-			std::cout << "Passwords do not match!\n";
-		}
-		else
-		{
-			return password;
-		}
-	}
-}
+

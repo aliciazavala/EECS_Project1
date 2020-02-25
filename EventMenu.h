@@ -10,7 +10,7 @@
 class EventMenu : public Menu
 {
   public:
-    EventMenu(int id);
+    EventMenu(int id, bool militaryTime, bool adminMode);
     EventMenu();
     ~EventMenu();
     void print(int loadedmonth, int loadedyear);
@@ -24,6 +24,8 @@ class EventMenu : public Menu
     std::string m_eventTime;
     std::string m_password;
     int m_ID;
+    bool m_militaryTime;
+    bool m_adminMode;
 
 
 };

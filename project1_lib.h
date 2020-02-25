@@ -1,6 +1,7 @@
 #ifndef PROJECT1_LIB
 #define PROJECT1_LIB
 
+#include <stdio.h>
 #include <math.h>
 #include <string>
 #include <iostream>
@@ -8,7 +9,8 @@
 #include <random>
 #include <ctime>
 #include <vector>
-
+#include <termios.h>
+#include <unistd.h> 
 
 /******************************************************************************
  *   CONSTANT DEFINITIONS
@@ -106,5 +108,7 @@ int getCharFromSet(int size, char arr[], std::string errorMessage = "Invalid inp
 	@post returns a string representing an ID of 6 digits
 	*/
 int generateID();
+
+std::string getPassword();
 
 #endif

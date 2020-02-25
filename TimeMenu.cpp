@@ -159,7 +159,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime)
 				{
 					std::cout << timeArr[i][j];
 				}
-				else
+				else//account for the unavailable time slots (12:00 - 13:00)
 				{
 					std::cout << timeArr[i-1][j];
 				}

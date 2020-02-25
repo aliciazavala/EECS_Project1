@@ -213,7 +213,7 @@ std::string stringToTime(std::string timeStr, bool military)
 	timeStr = timeStr + "0";
 	int i1 = -1;
 	int i2 = 0;
-	std::string finalString = "Times: ";
+	std::string finalString = "";
 	bool first = true;
 	for(int i = 0; i < 54; i++)
 	{
@@ -451,4 +451,41 @@ int generateID()
 	return (ID);
 }
 
+std::string getPassword()
+{
+	std::string password;
+	std::string confirm;
+	termios t_original, t_hideInput;
 
+	//save original settings
+	tcgetattr(STDIN_FILENO, &t_original);
+
+	t_hideInput = t_original;
+	t_hideInput.c_lflag &= ~ECHO;
+	tcsetattr(STDIN_FILENO, TCSANOW, &t_hideInput);
+
+	while(1)
+	{
+		std::cout << "\nEnter a password (length 8-16): ";
+		std::cin >> password;
+		if(password.length() >= 8 || password.length() <= 16)
+		{
+			std::cout << "\nConfirm Password: ";
+			std::cin >> confirm;
+			if(password != confirm)
+			{
+				std::cout << "Passwords do not match!\n";
+			}
+			else
+			{
+				//enable ternimal echo
+				tcsetattr(STDIN_FILENO, TCSANOW, &t_original);
+				return password;
+			}
+		}
+		else
+		{
+			std::cout << "Invalid length!\n";
+		}
+	}
+}
