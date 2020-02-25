@@ -59,7 +59,6 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass)
 		{
       m_eventTime = timeString.substr(1,timeString.size() - 1);//remove space from front
 			m_password = password.substr(1,password.size() - 1);//remove space from front
-
       if(m_adminMode == true && pass == false)
       {
         termios t_original, t_hideInput;
