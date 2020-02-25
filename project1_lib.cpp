@@ -76,7 +76,7 @@ std::string dayOfWeek(int m, int d, int y)
 		y = y - 1;
 	}
 	int N = d + 2*m + floor((3*(m+1))/5) + y + floor(y/4) - floor(y/100) + floor(y/400) + 2;
-	switch(N%7)	
+	switch(N%7)
 	{
 		case 1: return ("Sunday");
 			break;
@@ -186,7 +186,7 @@ std::string formatTime(int hour, int minute)
 	{
 		throw(std::runtime_error("invalid time to format"));
 	}
-	
+
 	if(hour < 10)
 	{
 		formattedHour = "0" + std::to_string(hour);
@@ -248,13 +248,6 @@ std::string stringToTime(std::string timeStr, bool military)
 			}
 		}
 	}
-	/**
-	if(finalString.at(finalString.length() - 1) == ' ')
-	{
-		finalString.pop_back();
-		finalString.pop_back();
-	}
-	*/
 	return finalString;
 }
 

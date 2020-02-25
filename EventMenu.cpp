@@ -10,17 +10,22 @@ EventMenu::EventMenu(int id, bool militaryTime, bool adminMode)
   m_eventTime = " ";
   m_ID = id;
   m_militaryTime = militaryTime;
-  m_adminMode = false;
+  m_adminMode = adminMode;
+  times = new std::vector<std::string>;
+  if(adminMode == true)
+  {
+    m_menuName = "AdminMenu";
+  }
 }
 EventMenu::~EventMenu()
 {
-
+  delete times;
 }
 void EventMenu::print()const
 {
 
 }
-void EventMenu::print(int loadedmonth, int loadedyear)
+void EventMenu::print(int loadedmonth, int loadedyear, bool& pass)
 {
     clearScreen();
     std::ifstream fin;
@@ -33,6 +38,7 @@ void EventMenu::print(int loadedmonth, int loadedyear)
     int day;
     int year;
     std::string password;
+    std::string user_password;
 
 	fin.open("./data/" + nameOfMonth(loadedmonth)+".txt");//open file month
     while(fin>>temp)
@@ -52,9 +58,22 @@ void EventMenu::print(int loadedmonth, int loadedyear)
       m_eventTime = timeString.substr(1,timeString.size() - 1);//remove space from front
 			m_password = password.substr(1,password.size() - 1);//remove space from front
 
-      if(m_adminMode)
+      if(m_adminMode == true && pass == false)
       {
+        termios t_original, t_hideInput;
+        tcgetattr(STDIN_FILENO, &t_original);
+
+      	t_hideInput = t_original;
+      	t_hideInput.c_lflag &= ~ECHO;
+      	tcsetattr(STDIN_FILENO, TCSANOW, &t_hideInput);
+        do{
+          std::cout<<"Enter your admin password: "<<std::endl;
+          std::cin>>user_password;
+        }while(user_password != m_password);
+        pass = true;
+        clearScreen();
         std::cout << "\t ===== Status for " << eventName << " =====" << std::endl;
+        tcsetattr(STDIN_FILENO, TCSANOW, &t_original);
       }
       else
       {
@@ -72,9 +91,9 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 			int id;
 
       //admin mode output
-      if(m_adminMode)
+      if(m_adminMode == true)
       {
-        std::cout<< "Attendees: " <<"\n";
+        std::cout<< "Attendees: " <<"\n"<<"\n";
   			attendees.open("./data/Attendees.txt");
   			while(attendees>>id)
   			{
@@ -83,7 +102,8 @@ void EventMenu::print(int loadedmonth, int loadedyear)
       			std::getline(attendees,attendeeName);
       			std::getline(attendees,timeString);
             timeString = timeString.substr(1,timeString.size() - 1);//remove space from front
-      			std::cout << attendeeName << stringToTime(timeString, m_militaryTime)<< std::endl;
+            times->push_back(timeString);
+      			std::cout << attendeeName << ": "<< stringToTime(timeString, m_militaryTime)<< std::endl<<std::endl;
       			//Line missing: print attending time
   			     }
 
@@ -101,19 +121,87 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 		}
 
 	}
-
-	if(!m_adminMode)
+	if(m_adminMode != true)
   {
     std::cout << "[1] Attend" << std::endl;
     std::cout << "[2] Admin Mode" << std::endl;
   }
+  else
+  {
+    std::cout << "[1] Print Availability" << std::endl;
+  }
 	std::cout << "[0] Back" << std::endl;
+}
+int EventMenu::getTimeSlot(int x)
+{
+	switch(x)
+	{
+		case 0: return (0);
+		case 1: return (20);
+		case 2: return (40);
+		default: throw(std::runtime_error("time slot error"));
+	}
+}
+
+int EventMenu::countAttendees(int index)
+{
+	int totalCount = 0;
+	if(times->size() > 1)
+	{
+		for(unsigned int i = 0;i < times->size(); i++)
+		{
+			if((times->at(i)).at(index) == '1')
+			{
+				totalCount++;
+			}
+		}
+	}
+	else
+	{
+		if((times->at(0)).at(index) == '1')
+		{
+			totalCount++;
+		}
+	}
+	return totalCount;
+}
+
+void EventMenu::printAvailability()
+{
+  clearScreen();
+  std::cout << "\t ===== Availability for " << " =====" << std::endl;
+	int currentHour = 5;
+	int currentSlot = 0;
+	for(int i = 0; i < 18; i++)
+	{
+		for(int j = 0; j < 3; j++)
+		{
+			std::cout << " ";
+			printTime(formatTime(currentHour, getTimeSlot(j)), m_militaryTime);
+			std::cout << " - " << countAttendees(currentSlot) << "\t";
+      currentSlot++;
+		}
+    if(currentHour == 11)
+    {
+      std::cout << "\n ";
+      printTime("12:00", m_militaryTime);
+      std::cout << " - " << "X" << "\t";
+      std::cout << " ";
+      printTime("12:20", m_militaryTime);
+      std::cout << " - " << "X" << "\t";
+      std::cout << " ";
+      printTime("12:40", m_militaryTime);
+      std::cout << " - " << "X" << "\t";
+      currentHour++;
+    }
+		std::cout << std::endl;
+		currentHour++;
+	}
 }
 std::string EventMenu::getName() const
 {
   return m_menuName;
 }
-
 std::string EventMenu::getTime() const
 {
 	return m_eventTime;

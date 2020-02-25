@@ -34,6 +34,7 @@ class Executive
 	std::string m_eventTime;
 	std::string m_loadedPW;
 	int m_eventId;
+	bool loggedin;
 	//see bottom of class for index mapping
 
 	//std::string m_fileName;

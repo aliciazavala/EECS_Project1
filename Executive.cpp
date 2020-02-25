@@ -5,6 +5,7 @@ Executive::Executive()
 
 	m_loadedYear = getCurrentYear();
 	m_militaryTime = false;
+	loggedin = false;
 
 	m_timeArr = new char*[18];
 	for(int i = 0; i < 18; i++)
@@ -81,11 +82,10 @@ void Executive::run(bool test)
 		}
 		else if(currentMenu == "AdminMenu")
 		{
-
+			handleAdminMenu();
 		}
 	}
 }
-
 void Executive::handleMainMenu()
 {
 	MainMenu temp;
@@ -153,8 +153,8 @@ void Executive::handleMonthMenu()
 void Executive::handleEventMenu()
 {
 	EventMenu temp(m_eventId, m_militaryTime, false);
-	temp.print(m_loadedMonth,m_loadedYear);
-	int input=getIntRangeFromUser(0,2);
+	temp.print(m_loadedMonth,m_loadedYear,loggedin);
+	int input=getIntRangeFromUser(0,3);
 	m_eventTime = temp.getTime();
 	if(input==0)
 	{
@@ -167,11 +167,27 @@ void Executive::handleEventMenu()
 	}
 	else if(input == 2)
 	{
+		loggedin = false;
 		Menu* adminMenu = new EventMenu(m_eventId, m_militaryTime, true);
 		m_menuStack->push(adminMenu);
 	}
 }
-
+void Executive::handleAdminMenu()
+{
+	EventMenu temp(m_eventId,m_militaryTime,true);
+	temp.print(m_loadedMonth,m_loadedYear,loggedin);
+	int input = getIntRangeFromUser(0,1);
+	if(input == 1)
+	{
+		temp.printAvailability();
+		std::cout << "\n[0] Finish" << std::endl;
+	 	input = getIntRangeFromUser(0,0);
+	}
+	else if(input == 0)
+	{
+		handleBack();
+	}
+}
 void Executive::handleAttendMenu()
 {
 	std::string m_eventName;
@@ -188,9 +204,7 @@ void Executive::handleAttendMenu()
 	attendees << " " << array << std::endl;
 	attendees.close();
 	handleBack();
-
 }
-
 void Executive::PrintEventsInMonth()
 {
 
@@ -224,7 +238,7 @@ void Executive::handleNewEventMenu()
 		std::cin>>day;
 		if(!isValidDate(m_loadedMonth,day,m_loadedYear))
 		{
-			std::cout<<"Date not valid! ";
+			std::cout<<"Date not valid! "<<std::endl;
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
 
@@ -339,18 +353,10 @@ void Executive::handleAttendTimeMenu()
 	}
 	handleBack();
 }
-
-void Executive::handleAdminMenu()
-{
-	EventMenu temp(m_eventId,m_militaryTime,true);
-
-}
-
 void Executive::handleBack()
 {
 	m_menuStack->pop();
 }
-
 void Executive::clearTimeArr()
 {
 	for(int i = 0; i < 18; i++)
