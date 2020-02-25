@@ -248,11 +248,13 @@ std::string stringToTime(std::string timeStr, bool military)
 			}
 		}
 	}
+	/**
 	if(finalString.at(finalString.length() - 1) == ' ')
 	{
 		finalString.pop_back();
 		finalString.pop_back();
 	}
+	*/
 	return finalString;
 }
 
