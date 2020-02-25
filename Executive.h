@@ -38,10 +38,6 @@ class Executive
 	//std::string m_fileName;
 	Stack<Menu*>* m_menuStack;
 
-
-	bool load();
-	void save();
-
 	void handleMainMenu();
 	void handleMonthMenu();
 	void handleNewEventMenu();

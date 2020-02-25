@@ -34,14 +34,11 @@ Executive::~Executive()
 
 void Executive::run(bool test)
 {
-	if(load())//executes load
-	{
-		m_menuStack = new Stack<Menu*>;
 
-		Menu* newMenu = new MainMenu;
-		m_menuStack->push(newMenu);
+	m_menuStack = new Stack<Menu*>;
 
-	}
+	Menu* newMenu = new MainMenu;
+	m_menuStack->push(newMenu);
 
 	if(test)
 	{
@@ -85,29 +82,6 @@ void Executive::run(bool test)
 			handleAttendMenu();
 		}
 	}
-	save();
-}
-
-bool Executive::load()
-{
-	//read from file then return true or return false if file cannot be openned
-
-	//int m_eventsLoaded = 1;//should be read from file
-	//m_calendar = new Calendar(m_eventsLoaded);
-
-	return true;//placeholder return
-}
-
-void Executive::save()
-{
-	//save to file
-	//possible feature: encrypt the save file to prevent it from being read or altered
-	//			ex: convert chars to bits (8 bits) and then use XOR encryption
-	//				   x XOR key = y, where x, y, and key are 8bit strings
-	//				=> y XOR key = x
-
-
-	std::cout << "save complete\n";//placeholder return
 }
 
 void Executive::handleMainMenu()
@@ -178,6 +152,7 @@ void Executive::handleEventMenu()
 	EventMenu temp(m_eventId);
 	temp.print(m_loadedMonth,m_loadedYear);
 	int input=getIntRangeFromUser(0,1);
+	m_eventTime = temp.getTime();
 	if(input==0)
 	{
 		handleBack();
@@ -191,14 +166,15 @@ void Executive::handleEventMenu()
 
 void Executive::handleAttendMenu()
 {
+	std::string m_eventName;
 	std::ofstream attendees;
 	attendees.open("./data/Attendees.txt",std::fstream::app);
 	AttendMenu temp(m_eventId);
 	temp.print();
-	m_eventTime = temp.getTime();
+	//m_eventTime = temp.getTime();
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
-	loadTimeArr(m_eventTime);
+	loadTimeArr(m_eventTime.substr(1,m_eventTime.size() - 1));
 	handleAttendTimeMenu();
 	std::string array = ConvertArray();
 	attendees<<array<<std::endl;
@@ -212,7 +188,7 @@ void Executive::PrintEventsInMonth()
 
 }
 
-void Executive::handleNewEventMenu()
+void Executive::handleNewEventMenu()// don't save if quit
 {
 	NewEventMenu temp = NewEventMenu(m_loadedMonth);
 	temp.print(m_loadedMonth,m_loadedYear);
@@ -230,20 +206,17 @@ void Executive::handleNewEventMenu()
 	std::cout<<"Enter name of the event: ";
 	//std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
 	std::getline(std::cin, EventName);
+
 	do{
-	x++;
-	day = 0;
-	if(x==1)
+
+		std::cout<<"Enter day of event (1 -" << daysInMonth(m_loadedMonth, m_loadedYear) <<": ";
+		std::cin>>day;
+		if(!isValidDate(m_loadedMonth,day,m_loadedYear))
 		{
-			std::cout<<"Enter day of event: ";
-			std::cin>>day;
-		}
-		else if(x > 1)
-		{
-			std::cout<<"Enter a VALID day for the event: ";
-			std::cin>>day;
+			std::cout<<"Date not valid! ";
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
+
 	std::cout<<"Enter time of your event: "<<std::endl;
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
@@ -277,7 +250,7 @@ std::string Executive::ConvertArray()
 	{
 		for(int j = 0; j < 3; j++)
 		{
-			if(m_timeArr[i][j] == 'n' || m_timeArr[i][j]=='_')
+			if(m_timeArr[i][j] == 'n' || m_timeArr[i][j]=='_' || m_timeArr[i][j] == 'X')
 			{
 				time[x] = '0';
 			}
@@ -325,7 +298,7 @@ void Executive::handleSettingsMenu()
 	//go back one menu
 	handleBack();
 }
-void Executive::handleTimeMenu()
+void Executive::handleTimeMenu()//change text for admin
 {
 	TimeMenu temp;
 

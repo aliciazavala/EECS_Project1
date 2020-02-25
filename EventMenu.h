@@ -15,7 +15,7 @@ class EventMenu : public Menu
     ~EventMenu();
     void print(int loadedmonth, int loadedyear);
     void print()const;
-    std::string getTime() const
+    std::string getTime() const;
     std::string getName() const;
 
   private:
