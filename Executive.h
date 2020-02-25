@@ -30,6 +30,7 @@ class Executive
 	int m_loadedYear;
 	int m_loadedMonth;
 	bool m_militaryTime;
+	bool m_hideTimes;
 	char** m_timeArr;//18x3 2D array
 	std::string m_eventTime;
 	std::string m_loadedPW;

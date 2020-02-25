@@ -5,6 +5,7 @@ Executive::Executive()
 
 	m_loadedYear = getCurrentYear();
 	m_militaryTime = false;
+	m_hideTimes = false;
 	loggedin = false;
 
 	m_timeArr = new char*[18];
@@ -322,11 +323,15 @@ void Executive::handleSettingsMenu()
 	//allow the user to repeatedly change the time setting:
 	do
 	{
-		temp.print(m_militaryTime);
-		input  = getIntRangeFromUser(0,1);
+		temp.print(m_militaryTime,m_hideTimes);
+		input  = getIntRangeFromUser(0,2);
 		if(input == 1)
 		{
 			m_militaryTime = !m_militaryTime;
+		}
+		if(input == 2)
+		{
+			m_hideTimes = !m_hideTimes;
 		}
 	}while(input != 0);
 	//go back one menu

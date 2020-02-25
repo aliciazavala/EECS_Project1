@@ -15,7 +15,7 @@ class SettingsMenu : public Menu
 	std::string getName() const;
 
 	void print() const;
-	void print(bool militaryTime) const;
+	void print(bool militaryTime, bool hideTimes) const;
 	
 	private:
 	std::string menuName;
