@@ -76,7 +76,7 @@ std::string dayOfWeek(int m, int d, int y)
 		y = y - 1;
 	}
 	int N = d + 2*m + floor((3*(m+1))/5) + y + floor(y/4) - floor(y/100) + floor(y/400) + 2;
-	switch(N%7)	
+	switch(N%7)
 	{
 		case 1: return ("Sunday");
 			break;
@@ -186,7 +186,7 @@ std::string formatTime(int hour, int minute)
 	{
 		throw(std::runtime_error("invalid time to format"));
 	}
-	
+
 	if(hour < 10)
 	{
 		formattedHour = "0" + std::to_string(hour);
@@ -231,7 +231,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						{
 							finalString = finalString + ", ";
 						}
-						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2);
+						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2+1);
 					}
 					else
 					{
@@ -239,7 +239,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						{
 							finalString = finalString + ", ";
 						}
-						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2));
+						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2+1));
 					}
 					first = false;
 					i = j;
@@ -248,11 +248,12 @@ std::string stringToTime(std::string timeStr, bool military)
 			}
 		}
 	}
-	if(finalString.at(finalString.length() - 1) == ' ')
+/*	if(finalString.at(finalString.length() - 1) == ' ')
 	{
 		finalString.pop_back();
 		finalString.pop_back();
 	}
+	*/
 	return finalString;
 }
 
@@ -336,6 +337,7 @@ std::string indexToTime(int index)
 		case 51: return ("23:00");
 		case 52: return ("23:20");
 		case 53: return ("23:40");
+		case 54: return ("00:00");
 		default: throw(std::runtime_error("invalid index"));
 	}
 }
