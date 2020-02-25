@@ -36,7 +36,7 @@ void TimeMenu::print() const
 bool TimeMenu::run(char** timeArr, bool militaryTime)
 {
 	char choice;
-	char choiceSet[8] = {'w','a','s','d','y','n','F','E'};
+	char choiceSet[8] = {'w','a','s','d','y','n','F','Q'};
 	if(timeArr[0][0] != '_')
 	{
 		m_attendMode = 1;
@@ -74,7 +74,7 @@ bool TimeMenu::run(char** timeArr, bool militaryTime)
 			fillBlank(timeArr);
 			return true;
 		}
-		else if(choice == 'E')
+		else if(choice == 'Q')
 		{
 			return false;
 		}
@@ -159,7 +159,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime)
 				{
 					std::cout << timeArr[i][j];
 				}
-				else
+				else//account for the unavailable time slots (12:00 - 13:00)
 				{
 					std::cout << timeArr[i-1][j];
 				}
