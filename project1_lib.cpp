@@ -231,7 +231,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						{
 							finalString = finalString + ", ";
 						}
-						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2);
+						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2+1);
 					}
 					else
 					{
@@ -239,7 +239,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						{
 							finalString = finalString + ", ";
 						}
-						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2));
+						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2+1));
 					}
 					first = false;
 					i = j;
@@ -336,6 +336,7 @@ std::string indexToTime(int index)
 		case 51: return ("23:00");
 		case 52: return ("23:20");
 		case 53: return ("23:40");
+		case 54: return ("00:00");
 		default: throw(std::runtime_error("invalid index"));
 	}
 }
