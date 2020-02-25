@@ -83,7 +83,7 @@ void EventMenu::print(int loadedmonth, int loadedyear)
 		}
 
 	}
-
+  
 	std::cout << "[1] Attend" << std::endl;
 	std::cout << "[0] Back" << std::endl;
 }
