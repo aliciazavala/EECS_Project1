@@ -176,12 +176,18 @@ void Executive::handleAdminMenu()
 {
 	EventMenu temp(m_eventId,m_militaryTime,true);
 	temp.print(m_loadedMonth,m_loadedYear,loggedin);
-	int input = getIntRangeFromUser(0,1);
+	int input = getIntRangeFromUser(0,2);
 	if(input == 1)
 	{
 		temp.printAvailability();
 		std::cout << "\n[0] Finish" << std::endl;
 	 	input = getIntRangeFromUser(0,0);
+	}
+	else if(input == 2)
+	{
+		Menu* settings = new SettingsMenu();
+		m_menuStack->push(settings);
+		//input = getIntRangeFromUser(0,2);
 	}
 	else if(input == 0)
 	{
