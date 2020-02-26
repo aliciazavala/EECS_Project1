@@ -56,7 +56,6 @@ class Executive
 
 	std::string ConvertArray();
 	int EventsInMonth(int month);
-	void PrintEventsInMonth();
 	void convertTimeString(std::string timeString);
 /**	m_timeArr index mapping:
 	hour:	index:
