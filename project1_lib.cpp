@@ -358,14 +358,14 @@ int getValidIntFromUser(std::string errorMessage)// makes sure the user inputs a
 int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage)
 {
 	int input;
-	if(lowerBound > upperBound)
+	if(lowerBound > upperBound) //checks to see if the bounds are sensical.
 	{
 		throw(std::runtime_error("Invalid bounds!"));
 	}
 	while(1)
 	{
 		std::cin >> input;
-		if(std::cin.fail() || input < lowerBound || input > upperBound)
+		if(std::cin.fail() || input < lowerBound || input > upperBound) //checks to see if user input failed or if the input lay within bounds.
 		{
 			std::cin.clear();
 			std::cin.ignore();
