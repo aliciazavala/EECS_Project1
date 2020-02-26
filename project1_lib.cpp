@@ -397,7 +397,7 @@ std::string getStrFromSet(int size, std::string arr[], std::string errorMessage)
 	}
 }
 
-bool containsStr(std::string str, int size, std::string arr[])
+bool containsStr(std::string str, int size, std::string arr[]) //checks to see if an array contains a string
 {
 	for(int i = 0; i < size; i++)
 	{
