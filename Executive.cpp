@@ -337,21 +337,26 @@ void Executive::handleSettingsMenu()
 	//allow the user to repeatedly change the time setting:
 	do
 	{
+		//temp prints the options for the user
 		temp.print(m_militaryTime,m_hideTimes);
+		//Check for user input and handle it
 		input  = getIntRangeFromUser(0,2);
 		if(input == 1)
 		{
 			m_militaryTime = !m_militaryTime;
 		}
+
 		if(input == 2)
 		{
 			m_hideTimes = !m_hideTimes;
 		}
 	}while(input != 0);
-	//go back one menu
+	//Menu pops off the menu stack when user inputs 0
 	handleBack();
 }
-void Executive::handleTimeMenu()//change text for admin
+
+
+void Executive::handleTimeMenu()
 {
 	TimeMenu temp;
 
@@ -366,16 +371,21 @@ void Executive::handleTimeMenu()//change text for admin
 void Executive::handleAttendTimeMenu()
 {
 	TimeMenu temp;
+	//Check for a 'Quit without saving' option from the user, which will then clear the array
 	if(!temp.run(m_timeArr, m_militaryTime))
 	{
 		clearTimeArr();
 	}
 	handleBack();
 }
+
+//This function is mainly for readability
 void Executive::handleBack()
 {
 	m_menuStack->pop();
 }
+
+//This function loops through the 2D array m_timeArr to assign every index to the empty placeholder underscore
 void Executive::clearTimeArr()
 {
 	for(int i = 0; i < 18; i++)
@@ -386,6 +396,7 @@ void Executive::clearTimeArr()
 		}
 	}
 }
+
 
 void Executive::loadTimeArr(std::string timeString)
 {
