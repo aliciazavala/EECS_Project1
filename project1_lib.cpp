@@ -336,13 +336,13 @@ std::string indexToTime(int index) //maps the index of a 3x18 array to a corresp
 	}
 }
 
-int getValidIntFromUser(std::string errorMessage)
+int getValidIntFromUser(std::string errorMessage)// makes sure the user inputs a valid int
 {
 	int input;
 	while(1)
 	{
 		std::cin >> input;
-		if(std::cin.fail())
+		if(std::cin.fail()) //checks to see if preceding input succeeded or not. if so, the input is cleared, ignored, and the error message is displayed.
 		{
 			std::cin.clear();
 			std::cin.ignore();
