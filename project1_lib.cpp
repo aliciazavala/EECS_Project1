@@ -151,16 +151,16 @@ int getCurrentYear() //returns the current year
 
 void printTime(std::string time, bool militaryTime)
 {
-	if(militaryTime)
+	if(militaryTime) //if militaryTime is true, then time will be printed as is.
 	{
 		std::cout << time;//HH:MM
 				  //01234
 	}
 	else
 	{
-		std::string temp = time.substr(0,2);
+		std::string temp = time.substr(0,2); //the hour is extracted from the time string
 		int hour = stoi(temp);
-		if(hour > 12)
+		if(hour > 12) //converts the hour from military time to standard time.
 		{
 			if(hour - 12 < 10)
 			{
