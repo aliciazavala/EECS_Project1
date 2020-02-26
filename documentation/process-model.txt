@@ -9,11 +9,14 @@ new features can continue to be gradually added (2).
 
 This process model was a good fit for our project since we had high levels of uncertainty, meaning that we had freedom 
 on how to build the project to a great extent, and we encountered issues in suitable meeting times for the beginning 
-portion of the project, which was crucial for designing it. On top of that, Agile methodoloy does not require a lot of planning in order to get the project started, it is so easily adaptable for the reality, therefore it was the most 
+portion of the project, which was crucial for designing it. On top of that, Agile methodoloy does not require a lot of
+planning in order to get the project started, it is so easily adaptable for the reality, therefore it was the most 
 suitable process model for our team. 
 
 In addition to that, Agile methodology reduces total development time (1), which was very convenient since most team 
-members were actively occupied for the first segment of the project development. For better convenience, developing small upgrades and continously test these updates, increased our chances for our team to achieve completeness much faster than having a rigid sequence of steps to be followed, such as the Waterfall Model.
+members were actively occupied for the first segment of the project development. For better convenience, developing small
+upgrades and continously test these updates, increased our chances for our team to achieve completeness much faster than
+having a rigid sequence of steps to be followed, such as the Waterfall Model.
 
 To sum up, Agile worked best for our team because:
 
