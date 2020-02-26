@@ -3,7 +3,7 @@
 |    ＰＲＯＣＥＳＳ　ＭＯＤＥＬ      |
  --------------------------------
 
- --- Which Process Model was the most appropiate for Project 1? ---
+Which Process Model was the most appropiate for Project 1? 
 
 The process model that would be appropiate for this project is 'Agile Software Development'.
 
@@ -30,7 +30,9 @@ To sum up, the Agile methodology worked best for our team because:
   --> 
   -->
 
-How did our team implement the Agile Process Model, and to what extent? ---
+___________________________________________________________
+
+How did our team implement the Agile Process Model, and to what extent? 
 
    --> We broke up what the project into the Minimum Viable Product (MVP), which is the smallest and simplest 
    version of the project, in order to test what was working and what did not work (3). For instance, first we 
