@@ -27,9 +27,6 @@ To sum up, the Agile methodology worked best for our team because:
   --> We could not afford a lot of planning time.
   --> We were focused on fast delivery, due to having short period of time and limited organization.
   --> To keep adding and testing new small features/upgrades, in order to keep the project going.
-  --> 
-  -->
-
 
 * How did our team implement the Agile Process Model, and to what extent? 
 
@@ -44,21 +41,8 @@ To sum up, the Agile methodology worked best for our team because:
    --> We accomplish an upgrade, we run and tested it, if it did not work, we fixed it, if it worked, we published it
    and moved to the next upgrade.
    
-   -->
-
-
-
-
 
 //Talk about what were the disadvantages in using Agile (confusion between team members,etc????)
-
-
-***notes (to be deleted)****
--Adapted to the specific circumstances
--Incremental and iterative approach, in which the increments are small and typically, new releases of the system are created and made available to customers every few weeks
--Minimize documentation by using informal communications rather than formal meetings with written documents
-- Builds a small portion of each feature, one by one, and then voth gradually adding features and increasing their completeness
-- We are going to break up what we are going to do into Minimum viable product (MVP), smallest and simplest version, get feedback, see what works and doesn't work
 
 
  -------------------------------- 
