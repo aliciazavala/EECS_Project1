@@ -1,6 +1,6 @@
 #include "MonthMenu.h"
 
-MonthMenu::MonthMenu()
+MonthMenu::MonthMenu() //constructor initializes members to null
 {
 	EventID = nullptr;
 	m_menuName = "MonthMenu";
@@ -9,7 +9,7 @@ MonthMenu::MonthMenu()
 	EventID = nullptr;
 }
 
-MonthMenu::~MonthMenu()
+MonthMenu::~MonthMenu()	//destructor deletes EventID array
 {
 	delete[] EventID;
 }
