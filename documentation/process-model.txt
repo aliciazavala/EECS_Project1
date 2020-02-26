@@ -1,7 +1,7 @@
  
-                                   -------------------------------
-                                  |        Process Model          |
-                                   -------------------------------
+ -------------------------------- 
+ |        Process Model          |
+ --------------------------------
  
  ---- How did our team implement the Agile Process Model, and to what extent? ---- 
 
