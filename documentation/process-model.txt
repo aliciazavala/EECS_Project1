@@ -42,9 +42,6 @@ To sum up, the Agile methodology worked best for our team because:
    and moved to the next upgrade.
    
 
-//Talk about what were the disadvantages in using Agile (confusion between team members,etc????)
-
-
  -------------------------------- 
 |       ＲＥＳＯＵＲＣＥＳ          |
  --------------------------------
