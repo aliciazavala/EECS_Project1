@@ -145,6 +145,10 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
   }
 	std::cout << "[0] Back" << std::endl;
 }
+
+//This helper function makes the nested for loop in printAvailability readable.
+//The loop's control variable iterates from 0 to 2, which gets transalted into
+//one of the available time slots(XX:00, XX:20, XX:40)
 int EventMenu::getTimeSlot(int x)
 {
 	switch(x)
@@ -152,23 +156,31 @@ int EventMenu::getTimeSlot(int x)
 		case 0: return (0);
 		case 1: return (20);
 		case 2: return (40);
+    //The way this function is called does not require a catch as this throw will not happen
 		default: throw(std::runtime_error("time slot error"));
 	}
 }
 
+//This function accesses the time vector to count how many attendees are
+//available at a time slot, represented by index, for each time string
 int EventMenu::countAttendees(int index)
 {
+  //Initialize the counting varibable that will be returned
 	int totalCount = 0;
+  //The case for when the times vector has multiple time strings
 	if(times->size() > 1)
 	{
+    //i represents the vector's index
 		for(unsigned int i = 0;i < times->size(); i++)
 		{
+      //any 1s in the time strings will increment the totalCount by 1
 			if((times->at(i)).at(index) == '1')
 			{
 				totalCount++;
 			}
 		}
 	}
+  //the case for when the only attendee is the admin
 	else
 	{
 		if((times->at(0)).at(index) == '1')
