@@ -211,8 +211,8 @@ void Executive::handleAttendMenu()
 
 void Executive::handleNewEventMenu()
 {
-	NewEventMenu temp = NewEventMenu(m_loadedMonth); //bla
-	temp.print(m_loadedMonth,m_loadedYear);
+	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
+	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
 
 	std::string creatorName;
 	std::string EventName;
