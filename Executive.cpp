@@ -1,16 +1,13 @@
 #include "Executive.h"
 Executive::Executive()
 {
-	//Initialize member variables
 	m_menuStack = nullptr;
-	//The program always loads on the current year
+
 	m_loadedYear = getCurrentYear();
 	m_militaryTime = false;
 	m_hideTimes = false;
 	loggedin = false;
 
-	//The array which hold the time slots for an event is initialized and
-	//then cleared.
 	m_timeArr = new char*[18];
 	for(int i = 0; i < 18; i++)
 	{
@@ -37,21 +34,24 @@ Executive::~Executive()
 
 void Executive::run(bool test)
 {
-	std::string currentMenu;
-	//m_menuStack is the stack which holds all of the menus that are loaded.
-	//The menus all inherit from the Menu class so they can be stored in m_menuStack.
-	//The menus in this stack remain constant as they are mainly used to save the program's current state.
+
 	m_menuStack = new Stack<Menu*>;
 
-	//The main menu is always the first menu pushed onto the menu stack.
 	Menu* newMenu = new MainMenu;
 	m_menuStack->push(newMenu);
 
-	//The program loop which loads different menus depending on what is
-	//at the top of the menu stack.
-	while(!m_menuStack->isEmpty())
+	if(test)
 	{
-		currentMenu = (m_menuStack->peek())->getName();
+		loadTimeArr(std::string("000000000011111111110000000000111111111100000000000000"));
+		handleAttendTimeMenu();
+		//handleAttendTimeMenu();
+		//Menu* testMenu = new TimeMenu;
+		//m_menuStack->push(testMenu);
+	}
+
+	while(!m_menuStack->isEmpty())//loops as long as there are menus
+	{
+		std::string currentMenu = (m_menuStack->peek())->getName();
 
 		if(currentMenu == "MainMenu")
 		{
@@ -89,18 +89,13 @@ void Executive::run(bool test)
 }
 void Executive::handleMainMenu()
 {
-	//Temporary menu subclasses are created as not all subclass functions may be defined in the Menu base class
 	MainMenu temp;
+	temp.print(m_loadedYear);//print
 
-	//The print method prints the visuals while executive handles the input
-	temp.print(m_loadedYear);
-
-	//To use the function getStrFromSet, a set of valid inputs must be created
 	std::string validInputs[16] = {"q","1","2","3","4","5","6","7","8","9","10","11","12","b","n","s"};
 	std::string monthArr[12] = {"1","2","3","4","5","6","7","8","9","10","11","12"};
 	std::string input = getStrFromSet(16, validInputs);//ask user for input
 
-	//Check for a month number selection
 	if(containsStr(input, 12, monthArr))
 	{
 		m_loadedMonth = stoi(input);
@@ -108,27 +103,18 @@ void Executive::handleMainMenu()
 		m_menuStack->push(newMenu);
 
 	}
-	//Check for quitting the program
 	else if(input == "q")
 	{
 		handleBack();
 	}
-	//Check for moving back 1 year
-	else if(input == "b")
+	else if(input == "b")// move back 1 year
 	{
-		//1582 is the first year of the gregorian calendar
-		//This prevents conflicts with the isValidDate function
-		if(m_loadedYear > 1584)
-		{
-			m_loadedYear = m_loadedYear - 1;
-		}
+		m_loadedYear = m_loadedYear - 1;
 	}
-	//Check for moving 1 year forward.
-	else if(input == "n")
+	else if(input == "n")// move forward 1 year
 	{
-		m_loadedYear = m_loadedYear + 1;
+		m_loadedYear = m_loadedYear + 1;//currently no upper limit for year
 	}
-	//Check for accessing the settings menu.
 	else if(input == "s")
 	{
 		Menu* newMenu = new SettingsMenu();
@@ -245,7 +231,6 @@ void Executive::handleAttendMenu()
 	attendees.close();
 	handleBack();
 }
-
 //menu for creating a new event
 void Executive::handleNewEventMenu()
 {
@@ -253,7 +238,8 @@ void Executive::handleNewEventMenu()
 	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
 	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
 
-	std::string creatorName; // Variables to read in from the file
+
+	std::string creatorName;
 	std::string EventName;
 	int day;
 	//Open file, prompt user for input regarding the event being created
@@ -261,10 +247,10 @@ void Executive::handleNewEventMenu()
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
-	events.open("./data/" + FileName + ".txt", std::fstream::app); // Open the specific month text file
-	attendees.open("./data/Attendees.txt",std::fstream::app); // Open the attendees.txt
+	events.open("./data/" + FileName + ".txt", std::fstream::app);
+	attendees.open("./data/Attendees.txt",std::fstream::app);
 
-	std::cout<<"Enter name of event creator: "; //Gets event information( creator, name of the event)
+	std::cout<<"Enter name of event creator: ";
 	std::cin.ignore();
 	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";

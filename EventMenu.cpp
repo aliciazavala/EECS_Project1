@@ -4,6 +4,7 @@ EventMenu::EventMenu()
 {
 
 }
+//EventMenu constructor that takes an int for the Event id and two bools
 EventMenu::EventMenu(int id, bool militaryTime, bool adminMode)
 {
   m_menuName = "EventMenu";
@@ -13,6 +14,7 @@ EventMenu::EventMenu(int id, bool militaryTime, bool adminMode)
   m_militaryTime = militaryTime;
   m_adminMode = adminMode;
   times = new std::vector<std::string>;
+  //if adminMode = true, this EventMenu object uses added features for admin users
   if(adminMode == true)
   {
     m_menuName = "AdminMenu";
@@ -22,12 +24,14 @@ EventMenu::~EventMenu()
 {
   delete times;
 }
+//virtual print(does not get used)
 void EventMenu::print()const
 {
 
 }
 void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTimes)
 {
+  //declare variables to be used in this method call
     clearScreen();
     std::ifstream fin;
     std::string temp;
@@ -41,24 +45,24 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
     std::string password;
     std::string user_password;
 
-	fin.open("./data/" + nameOfMonth(loadedmonth)+".txt");//open file month
+	fin.open("./data/" + nameOfMonth(loadedmonth)+".txt");//open file month read necessary information
     while(fin>>temp)
     {
 		fin>>eventId;
 		std::getline(fin,eventName);//whitespace
-		std::getline(fin,eventName);
+		std::getline(fin,eventName);//read event's name
 		fin>>month;
 		fin>>day;
 		fin>>year;
 		std::getline(fin,creatorName);//whitepsace
-		std::getline(fin,creatorName);
-		std::getline(fin,timeString);
-		std::getline(fin,password);
-		if (eventId == m_ID)
+		std::getline(fin,creatorName);//read event's admin's name
+		std::getline(fin,timeString);//read time string for the event
+		std::getline(fin,password);//read admin's password
+		if (eventId == m_ID)//when matching ID for event is found in file, read event time string and admin password
 		{
       m_eventTime = timeString.substr(1,timeString.size() - 1);//remove space from front
 			m_password = password.substr(1,password.size() - 1);//remove space from front
-      if(m_adminMode == true && pass == false)
+      if(m_adminMode == true && pass == false)//if EventMenu is on adminMode, prompt for saved password
       {
         termios t_original, t_hideInput;
         tcgetattr(STDIN_FILENO, &t_original);
@@ -76,11 +80,10 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
         m_eventname = eventName;
         tcsetattr(STDIN_FILENO, TCSANOW, &t_original);
       }
-      else
+      else//if EventMenu is not on adminMode, print event's information
       {
         std::cout << "\t ===== " << eventName << " =====" << std::endl;
       }
-			//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
 			std::cout<< "Date: " << nameOfMonth(loadedmonth) <<", "<< dayOfWeek(loadedmonth,day,loadedyear) << " " << day << " " << loadedyear << "\n" ;
 			std::cout<< "Admin: " <<creatorName<<"\n";
       std::cout << "Event Time(s) : " << stringToTime(m_eventTime, m_militaryTime) << "\n";
@@ -90,21 +93,22 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
 			std::string attendeeName;
 			int id;
 
-      //admin mode output
+      //if EventMenu is on adminMode, print attendees list and Availability information
       if(m_adminMode == true)
       {
         std::cout<< "Attendees: " <<"\n"<<"\n";
+        //open attendees text file
   			attendees.open("./data/Attendees.txt");
   			while(attendees>>id)
   			{
-    			if(id == m_ID)
+    			if(id == m_ID)//if matching event ID, read attendee's name and time Availability string
       			{
       			std::getline(attendees,attendeeName);
       			std::getline(attendees,timeString);
             timeString = timeString.substr(1,timeString.size() - 1);//remove space from front
             times->push_back(timeString);
       			std::cout << attendeeName;
-            if(hideTimes)
+            if(hideTimes)//option to hide Availability of attendee and just print the name
             {
                 std::cout << ": "<< stringToTime(timeString, m_militaryTime)<< std::endl<<std::endl;
             }
@@ -115,7 +119,7 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
       			//Line missing: print attending time
   			     }
 
-    			//gets attendee's name line and attendee's time line and skips them
+    			//Gets attendee's name line and attendee's time line and skips them
     			else
     			{
       			std::getline(attendees,attendeeName);
@@ -129,12 +133,12 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
 		}
 
 	}
-	if(m_adminMode != true)
+	if(m_adminMode != true)//If not on adminMode, give the option to enter adminMode or to attend event
   {
     std::cout << "[1] Attend" << std::endl;
     std::cout << "[2] Admin Mode" << std::endl;
   }
-  else
+  else//When in adminMode give options to print event Availability, go to setting menu and go to previous menu
   {
     std::cout << "[1] Print Availability" << std::endl;
     std::cout << "[2] Settings" <<std::endl;
@@ -219,17 +223,17 @@ void EventMenu::printAvailability()
 		currentHour++;
 	}
 }
-
+//Getter for the menu's name
 std::string EventMenu::getName() const
 {
   return m_menuName;
 }
-
+//Getter for time of the event
 std::string EventMenu::getTime() const
 {
 	return m_eventTime;
 }
-
+//Getter for password picked by admin user for the event
 std::string EventMenu::getPassword() const
 {
 	return m_password;

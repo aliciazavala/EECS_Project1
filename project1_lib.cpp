@@ -125,24 +125,24 @@ bool isValidDate(int m, int d, int y)
 	return true;
 }
 
-bool isHoliday(int m, int d)
+bool isHoliday(int m, int d) //returns true if date is a holiday.
 {
-	if(m == 1 && d == 1)
+	if(m == 1 && d == 1) //checks to see if event is on new year's
 	{
 		return true;
 	}
-	else if(m == 7 && d == 4)
+	else if(m == 7 && d == 4) //checks to see if event is on 4th of july
 	{
 		return true;
 	}
-	else if(m == 12 && d == 25)
+	else if(m == 12 && d == 25) //checks to see if event is on Christmas
 	{
 		return true;
 	}
 	return false;
 }
 
-int getCurrentYear()
+int getCurrentYear() //returns the current year
 {
 	time_t now = time(0);
 	tm* ltm = localtime(&now);
@@ -151,16 +151,16 @@ int getCurrentYear()
 
 void printTime(std::string time, bool militaryTime)
 {
-	if(militaryTime)
+	if(militaryTime) //if militaryTime is true, then time will be printed as is.
 	{
 		std::cout << time;//HH:MM
 				  //01234
 	}
 	else
 	{
-		std::string temp = time.substr(0,2);
+		std::string temp = time.substr(0,2); //the hour is extracted from the time string
 		int hour = stoi(temp);
-		if(hour > 12)
+		if(hour > 12) //converts the hour from military time to standard time. "PM" is automatically added because hour is past noon
 		{
 			if(hour - 12 < 10)
 			{
@@ -173,7 +173,7 @@ void printTime(std::string time, bool militaryTime)
 		}
 		else
 		{
-			std::cout << time << " AM";
+			std::cout << time << " AM"; // "AM" is added because temp is less than 12, meaning noon is not reached yet.
 		}
 	}
 }
@@ -182,12 +182,12 @@ std::string formatTime(int hour, int minute)
 {
 	std::string formattedHour;
 	std::string formattedMin;
-	if(hour < 0 || hour > 24 || minute < 0 || minute > 60)
+	if(hour < 0 || hour > 24 || minute < 0 || minute > 60) //checks for validity of time
 	{
 		throw(std::runtime_error("invalid time to format"));
 	}
 
-	if(hour < 10)
+	if(hour < 10) //makes sure the time follows the HH:MM format
 	{
 		formattedHour = "0" + std::to_string(hour);
 	}
@@ -196,7 +196,7 @@ std::string formatTime(int hour, int minute)
 		formattedHour = std::to_string(hour);
 	}
 
-	if(minute < 10)
+	if(minute < 10) //makes sure the time follows the HH:MM format
 	{
 		formattedMin = "0" + std::to_string(minute);
 	}
@@ -251,28 +251,28 @@ std::string stringToTime(std::string timeStr, bool military)
 	return finalString;
 }
 
-std::string convertTo12Hr(std::string time)
+std::string convertTo12Hr(std::string time) //converts time from military time to standard time
 {
-	std::string temp = time.substr(0,2);
+	std::string temp = time.substr(0,2); //extracts hour from time string
 	int hour = stoi(temp);
 	if(hour > 12)
 	{
 		if(hour - 12 < 10)
 		{
-			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM");
+			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM"); //formats hour so that time string follows HH:MM format
 		}
 		else
 		{
-			return(std::to_string(hour - 12) + time.substr(2,3) + " PM");
+			return(std::to_string(hour - 12) + time.substr(2,3) + " PM"); //in this 'else' and its corresponding 'if', the PM is automatically added because we are in the afternoon
 		}
 	}
 	else
 	{
-		return (time + " AM");
+		return (time + " AM"); //appends " AM" to end of time string because time is less than 12 (before noon)
 	}
 }
 
-std::string indexToTime(int index)
+std::string indexToTime(int index) //maps the index of a 3x18 array to a corresponding time slot.
 {
 
 	switch (index)
