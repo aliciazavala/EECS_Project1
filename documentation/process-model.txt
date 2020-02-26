@@ -2,7 +2,8 @@
  -------------------------------- 
 |    ＰＲＯＣＥＳＳ　ＭＯＤＥＬ      |
  --------------------------------
- 
+ 𝐫𝐞𝐬𝐨𝐮𝐫𝐜𝐞𝐬
+
  ------ Which Process Model was the most appropiate for Project 1? ---- 
 
 The process model that would be appropiate for this project is 'Agile Software Development'.
@@ -22,7 +23,7 @@ members were actively occupied for the first segment of the project development.
 upgrades and continously test these updates, increased our chances for our team to achieve completeness much faster than
 having a rigid sequence of steps to be followed, such as the Waterfall Model.
 
----- To sum up, Agile worked best for our team because: ----
+To sum up, the Agile methodology worked best for our team because: 
 
 --> We could not afford a lot of planning time.
 --> We were focused on fast delivery, due to having short period of time and limited organization.
