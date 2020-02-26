@@ -272,7 +272,7 @@ std::string convertTo12Hr(std::string time) //converts time from military time t
 	}
 }
 
-std::string indexToTime(int index)
+std::string indexToTime(int index) //maps the index of a 3x18 array to a corresponding time slot.
 {
 
 	switch (index)
