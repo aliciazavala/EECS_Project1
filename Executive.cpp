@@ -211,7 +211,7 @@ void Executive::handleAttendMenu()
 
 void Executive::handleNewEventMenu()
 {
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
+	NewEventMenu temp = NewEventMenu(m_loadedMonth); //bla
 	temp.print(m_loadedMonth,m_loadedYear);
 
 	std::string creatorName;
