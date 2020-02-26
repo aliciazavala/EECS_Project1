@@ -182,12 +182,12 @@ std::string formatTime(int hour, int minute)
 {
 	std::string formattedHour;
 	std::string formattedMin;
-	if(hour < 0 || hour > 24 || minute < 0 || minute > 60)
+	if(hour < 0 || hour > 24 || minute < 0 || minute > 60) //checks for validity of time
 	{
 		throw(std::runtime_error("invalid time to format"));
 	}
 
-	if(hour < 10)
+	if(hour < 10) //makes sure the time follows the HH:MM format
 	{
 		formattedHour = "0" + std::to_string(hour);
 	}
@@ -196,7 +196,7 @@ std::string formatTime(int hour, int minute)
 		formattedHour = std::to_string(hour);
 	}
 
-	if(minute < 10)
+	if(minute < 10) //makes sure the time follows the HH:MM format
 	{
 		formattedMin = "0" + std::to_string(minute);
 	}
