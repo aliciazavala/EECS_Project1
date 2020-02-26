@@ -125,17 +125,17 @@ bool isValidDate(int m, int d, int y)
 	return true;
 }
 
-bool isHoliday(int m, int d)
+bool isHoliday(int m, int d) //returns true if date is a holiday.
 {
-	if(m == 1 && d == 1)
+	if(m == 1 && d == 1) //checks to see if event is on new year's
 	{
 		return true;
 	}
-	else if(m == 7 && d == 4)
+	else if(m == 7 && d == 4) //checks to see if event is on 4th of july
 	{
 		return true;
 	}
-	else if(m == 12 && d == 25)
+	else if(m == 12 && d == 25) //checks to see if event is on Christmas
 	{
 		return true;
 	}
