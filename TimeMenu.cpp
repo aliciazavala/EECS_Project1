@@ -37,10 +37,11 @@ bool TimeMenu::run(char** timeArr, bool militaryTime, bool attendMode)
 	char choice;
 	//create a set of chars to use in getCharFromSet function
 	char choiceSet[8] = {'w','a','s','d','y','n','F','Q'};
-	
 
+	//this loop handles inputs from choicSet above and only exits with the inputs F or Q
 	while(1)
 	{
+		//the current state of the menu is printed at the beginning of every loop
 		print(timeArr, militaryTime, attendMode);
 		choice = getCharFromSet(8,choiceSet);
 		if(choice == 'w')
@@ -80,6 +81,7 @@ bool TimeMenu::run(char** timeArr, bool militaryTime, bool attendMode)
 
 }
 
+//This functions fills the empty ('_') spots in the array with 'n' as a result of input 'F'
 void TimeMenu::fillBlank(char** timeArr)
 {
 	for(int i = 0; i < 18; i++)
@@ -94,9 +96,11 @@ void TimeMenu::fillBlank(char** timeArr)
 	}
 }
 
+//This function converts the current_x index in the menu to a valid index in timeArr and marks it with 'y'
+//This is needed because the menu displays an extra row, 12:00, which is not represented in timeArr
 void TimeMenu::setY(char** timeArr)
 {
-	if(current_x == 7)
+	if(current_x == 7)//prevent the user from enterring a time in row 12:00
 	{
 		return;
 	}
@@ -104,15 +108,16 @@ void TimeMenu::setY(char** timeArr)
 	{
 		timeArr[current_x][current_y] = 'y';
 	}
-	else if(timeArr[current_x-1][current_y] != 'X')
+	else if(timeArr[current_x-1][current_y] != 'X')//account for the extra row
 	{
 		timeArr[current_x-1][current_y] = 'y';
 	}
 }
 
+//This function converts the current_x index in the menu to a valid index in timeArr and marks it with 'n'
 void TimeMenu::setN(char** timeArr)
 {
-	if(current_x == 7)
+	if(current_x == 7)//prevent the user from enterring a time in row 12:00
 	{
 		return;
 	}
@@ -120,17 +125,19 @@ void TimeMenu::setN(char** timeArr)
 	{
 		timeArr[current_x][current_y] = 'n';
 	}
-	else if(timeArr[current_x-1][current_y] != 'X')
+	else if(timeArr[current_x-1][current_y] != 'X')//account for the extra row
 	{
 		timeArr[current_x-1][current_y] = 'n';
 	}
 }
 
+//This function handles the visuals for the menu and is printed every time it is updated.
+//This menu can be usedto allow entry for time slots in an existing with the parameter attendMode set to true
 void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 {
 	int currentHour = 5;
 	clearScreen();
-	if(attendMode)
+	if(attendMode)//different title for attending an event
 	{
 		std::cout << "\t ===== Select Available Time Slots to Attend =====\n";
 	}
@@ -138,12 +145,12 @@ void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 	{
 		std::cout << "\t ===== Select Times for the Event =====\n";
 	}
-
+	//This nested for loop prints out every row in the menu
 	for(int i = 0; i < 19; i++)
 	{
 		for(int j = 0; j < 3; j++)
 		{
-			if(i == current_x && j == current_y)
+			if(i == current_x && j == current_y)//Check to see if the current location is selected
 			{
 				std::cout << " >";
 			}
@@ -151,6 +158,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 			{
 				std::cout << "  ";
 			}
+			//the available times to attend are in this if condition
 			if((currentHour >= 5 && currentHour < 12)||(currentHour >=13 && currentHour <24))
 			{
 				if(currentHour < 12)
@@ -162,7 +170,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 					std::cout << timeArr[i-1][j];
 				}
 			}
-			else
+			else//prints X in row 12:00
 			{
 				std::cout << "X";
 			}
@@ -172,6 +180,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 		std::cout << std::endl;
 		currentHour++;
 	}
+	//Available user actions
 	std::cout << "        up\t\t[y] Available to attend\n";
 	std::cout << "       [w]\t\t[n] Not Available\n";
 	std::cout << "left[a][s][d]right\t[F] Finish (blanks will be set to not available)\n";
@@ -199,7 +208,7 @@ void TimeMenu::moveCursor(std::string direction) //updates the "coordinates" of 
 	}
 }
 
-int TimeMenu::getTimeSlot(int x) //maps time slot to corresponding 20 minute slot. 
+int TimeMenu::getTimeSlot(int x) //maps time slot to corresponding 20 minute slot.
 {
 	switch(x)
 	{

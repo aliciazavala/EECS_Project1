@@ -149,12 +149,12 @@ int getCurrentYear() //returns the current year
 	return(1900 + ltm->tm_year);
 }
 
+//Prints time in as a string with structure HH:MM in either 24-hour or 12-hour format
 void printTime(std::string time, bool militaryTime)
 {
 	if(militaryTime) //if militaryTime is true, then time will be printed as is.
 	{
-		std::cout << time;//HH:MM
-				  //01234
+		std::cout << time;
 	}
 	else
 	{
@@ -178,6 +178,7 @@ void printTime(std::string time, bool militaryTime)
 	}
 }
 
+//Converts an int representing an hour and an int representing a minut to a string with format "HH:MM"
 std::string formatTime(int hour, int minute)
 {
 	std::string formattedHour;
@@ -208,32 +209,36 @@ std::string formatTime(int hour, int minute)
 	return (formattedHour + ":" +formattedMin);
 }
 
+//This function takes the 54 char size string which represents available time slotsand converts
+//them into a readable format that condenses contiguous time slots
 std::string stringToTime(std::string timeStr, bool military)
 {
-	timeStr = timeStr + "0";
-	int i1 = -1;
+	timeStr = timeStr + "0";//this 0 bit serves as a stop to the algorithm
+	int i1 = -1;//this initialization can be arbitrary
 	int i2 = 0;
 	std::string finalString = "";
-	bool first = true;
+	bool first = true;//check the first contiguous time slots in a set of multiple contiguous time slots
+
 	for(int i = 0; i < 54; i++)
 	{
 		if(timeStr.at(i) == '1')
 		{
-			i1 = i;
+			i1 = i;//sets the position of the first contiguous time slots
 			for(int j = i; j <= 54; j++)
 			{
 				if(timeStr[j] == '0')
 				{
-					i2 = j-1;
-					if(military)
+					i2 = j-1;//sets the position of the last contiguous time slots
+					if(military)//24-hour format
 					{
-						if(!first)
+						if(!first)//adds a comma after the first contiguous time slots
 						{
 							finalString = finalString + ", ";
 						}
+						//concatenate contiguous time slots
 						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2+1);
 					}
-					else
+					else// 12-hour format
 					{
 						if(!first)
 						{
@@ -242,7 +247,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2+1));
 					}
 					first = false;
-					i = j;
+					i = j;//the algorithm begins to look for the next contiguous time slots from the last position accessed
 					break;
 				}
 			}
@@ -331,7 +336,7 @@ std::string indexToTime(int index) //maps the index of a 3x18 array to a corresp
 		case 51: return ("23:00");
 		case 52: return ("23:20");
 		case 53: return ("23:40");
-		case 54: return ("00:00");
+		case 54: return ("00:00");//does not represent a valid time slot, but it ends the previous time slot
 		default: throw(std::runtime_error("invalid index"));
 	}
 }
@@ -378,6 +383,7 @@ int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage
 	}
 }
 
+//Prompts the user to enter a string in terminal which must exist in the set arr
 std::string getStrFromSet(int size, std::string arr[], std::string errorMessage)
 {
 	std::string input;
@@ -409,7 +415,7 @@ bool containsStr(std::string str, int size, std::string arr[]) //checks to see i
 	return false;
 }
 
-
+//Prompts the user to enter a char in terminal which must exist in the set arr
 int getCharFromSet(int size, char arr[], std::string errorMessage)
 {
 	char input;
@@ -436,28 +442,31 @@ int getCharFromSet(int size, char arr[], std::string errorMessage)
 	}
 }
 
+//Generates an ID using the mersene twister random number generation
 int generateID()
 {
 	int ID;
 	std::random_device device;
-	int seed = device();
-	std::mt19937 generator(seed);
-	std::uniform_int_distribution<int> distribution(100000000,999999999);
+	int seed = device();//The seed is automatically set
+	std::mt19937 generator(seed);//seeds the mersene twiter RNG
+	std::uniform_int_distribution<int> distribution(100000000,999999999);//constraints the ID to be of length 9
 	ID =  distribution(generator);
 	return (ID);
 }
 
+//Prompts the user to enter a password of length 6-18 through terminal
 std::string getPassword()
 {
 	std::string password;
 	std::string confirm;
+	//create two objects for terminal states
 	termios t_original, t_hideInput;
 
 	//save original settings
 	tcgetattr(STDIN_FILENO, &t_original);
 
 	t_hideInput = t_original;
-	t_hideInput.c_lflag &= ~ECHO;
+	t_hideInput.c_lflag &= ~ECHO;//disable echo as the user types the password
 	tcsetattr(STDIN_FILENO, TCSANOW, &t_hideInput);
 
 	while(1)
