@@ -181,7 +181,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime)
 	std::cout << "Action: ";
 }
 
-void TimeMenu::moveCursor(std::string direction)
+void TimeMenu::moveCursor(std::string direction) //updates the "coordinates" of the cursor on the time slot array
 {
 	if(direction == "up" && current_x > 0)
 	{
