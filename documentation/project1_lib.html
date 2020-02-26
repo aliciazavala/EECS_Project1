@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>project1_lib.cpp</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="AttendMenu.html">
+                  EECS448_Project1/AttendMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="EventMenu.html">
+                  EECS448_Project1/EventMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="Executive.html">
+                  EECS448_Project1/Executive.cpp
+                </a>
+              
+                
+                <a class="source" href="MainMenu.html">
+                  EECS448_Project1/MainMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="Menu.html">
+                  EECS448_Project1/Menu.cpp
+                </a>
+              
+                
+                <a class="source" href="MonthMenu.html">
+                  EECS448_Project1/MonthMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="NewEventMenu.html">
+                  EECS448_Project1/NewEventMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="SettingsMenu.html">
+                  EECS448_Project1/SettingsMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="Stack.html">
+                  EECS448_Project1/Stack.cpp
+                </a>
+              
+                
+                <a class="source" href="TimeMenu.html">
+                  EECS448_Project1/TimeMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="main.html">
+                  EECS448_Project1/main.cpp
+                </a>
+              
+                
+                <a class="source" href="project1_lib.html">
+                  EECS448_Project1/project1_lib.cpp
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>project1_lib.cpp</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"project1_lib.h"</span></span>
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">daysInMonth</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> y)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(m == <span class="hljs-number">2</span>) <span class="hljs-comment">//this checks for february, and the nested conditional statements check to see if it's a leap year.</span>
+	{
+		<span class="hljs-keyword">if</span>(y % <span class="hljs-number">4</span> != <span class="hljs-number">0</span>)
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-number">28</span>;
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(y % <span class="hljs-number">100</span> != <span class="hljs-number">0</span>)
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-number">29</span>;
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(y % <span class="hljs-number">400</span> != <span class="hljs-number">0</span>)
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-number">28</span>;
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-number">29</span>;
+		}
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(m == <span class="hljs-number">1</span> || m == <span class="hljs-number">3</span> || m == <span class="hljs-number">5</span> || m == <span class="hljs-number">7</span> || m == <span class="hljs-number">8</span> || m == <span class="hljs-number">10</span> || m == <span class="hljs-number">12</span>) <span class="hljs-comment">//if the month is january, march, may, july, august, october, or december, retern 31 days.</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-number">31</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (m == <span class="hljs-number">4</span> || m == <span class="hljs-number">6</span> || m == <span class="hljs-number">9</span> || m == <span class="hljs-number">11</span>) <span class="hljs-comment">//if month is april, june, september, or november, return 30 days.</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-number">30</span>;
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		<span class="hljs-keyword">throw</span>(<span class="hljs-built_in">std</span>::runtime_error(<span class="hljs-string">"invalid month"</span>)); <span class="hljs-comment">//throws error if invalid month is given.</span>
+	}
+}
+
+<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">nameOfMonth</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m)</span> <span class="hljs-comment">//maps parameter to corresponding month and returns that month's name.</span>
+</span>{
+	<span class="hljs-keyword">switch</span>(m)
+	{
+		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"January"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"February"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"March"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"April"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"May"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"June"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"July"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">8</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"August"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">9</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"September"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">10</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"October"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">11</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"November"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">12</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"December"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">default</span>: <span class="hljs-keyword">throw</span>(<span class="hljs-built_in">std</span>::runtime_error(<span class="hljs-string">"Not a month"</span>));
+			<span class="hljs-keyword">break</span>;
+	}
+}
+
+<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">dayOfWeek</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> d, <span class="hljs-keyword">int</span> y)</span> <span class="hljs-comment">//given a month, day, and year, the day of the week that date falls on is returned.</span>
+</span>{
+	<span class="hljs-keyword">if</span>(m == <span class="hljs-number">1</span> || m == <span class="hljs-number">2</span>)
+	{
+		m = m + <span class="hljs-number">12</span>;
+		y = y - <span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">int</span> N = d + <span class="hljs-number">2</span>*m + <span class="hljs-built_in">floor</span>((<span class="hljs-number">3</span>*(m+<span class="hljs-number">1</span>))/<span class="hljs-number">5</span>) + y + <span class="hljs-built_in">floor</span>(y/<span class="hljs-number">4</span>) - <span class="hljs-built_in">floor</span>(y/<span class="hljs-number">100</span>) + <span class="hljs-built_in">floor</span>(y/<span class="hljs-number">400</span>) + <span class="hljs-number">2</span>;
+	<span class="hljs-keyword">switch</span>(N%<span class="hljs-number">7</span>)
+	{
+		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Sunday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Monday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Tuesday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Wednesday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Thursday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Friday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"Saturday"</span>);
+			<span class="hljs-keyword">break</span>;
+		<span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"undefined"</span>);
+			<span class="hljs-keyword">break</span>;
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isValidDate</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> d, <span class="hljs-keyword">int</span> y)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(m &lt; <span class="hljs-number">0</span> || m &gt; <span class="hljs-number">12</span>) <span class="hljs-comment">//checks to see if the month is one of the twelve existing months.</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	}
+	<span class="hljs-keyword">if</span>(y &lt; <span class="hljs-number">1582</span>)<span class="hljs-comment">//first gregorian calendar year</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	}
+	<span class="hljs-keyword">if</span>(y == <span class="hljs-number">1582</span>)<span class="hljs-comment">//first gregorian calendar date</span>
+	{
+		<span class="hljs-keyword">if</span>(m &lt; <span class="hljs-number">10</span> &amp;&amp; d &lt; <span class="hljs-number">15</span>)
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		}
+	}
+	<span class="hljs-keyword">if</span>(d &lt; <span class="hljs-number">0</span> || d &gt; daysInMonth(m,y)) <span class="hljs-comment">//checks to see if the day exists for that month.</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	}
+	<span class="hljs-keyword">if</span>(isHoliday(m, d)) <span class="hljs-comment">//checks to see if the day is scheduleable, i.e. not a holiday.</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">isHoliday</span><span class="hljs-params">(<span class="hljs-keyword">int</span> m, <span class="hljs-keyword">int</span> d)</span> <span class="hljs-comment">//returns true if date is a holiday.</span>
+</span>{
+	<span class="hljs-keyword">if</span>(m == <span class="hljs-number">1</span> &amp;&amp; d == <span class="hljs-number">1</span>) <span class="hljs-comment">//checks to see if event is on new year's</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(m == <span class="hljs-number">7</span> &amp;&amp; d == <span class="hljs-number">4</span>) <span class="hljs-comment">//checks to see if event is on 4th of july</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(m == <span class="hljs-number">12</span> &amp;&amp; d == <span class="hljs-number">25</span>) <span class="hljs-comment">//checks to see if event is on Christmas</span>
+	{
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getCurrentYear</span><span class="hljs-params">()</span> <span class="hljs-comment">//returns the current year</span>
+</span>{
+	<span class="hljs-keyword">time_t</span> now = time(<span class="hljs-number">0</span>);
+	tm* ltm = localtime(&amp;now);
+	<span class="hljs-keyword">return</span>(<span class="hljs-number">1900</span> + ltm-&gt;tm_year);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Prints time in as a string with structure HH:MM in either 24-hour or 12-hour format</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">printTime</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> time, <span class="hljs-keyword">bool</span> militaryTime)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(militaryTime) <span class="hljs-comment">//if militaryTime is true, then time will be printed as is.</span>
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; time;
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> temp = time.substr(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>); <span class="hljs-comment">//the hour is extracted from the time string</span>
+		<span class="hljs-keyword">int</span> hour = stoi(temp);
+		<span class="hljs-keyword">if</span>(hour &gt; <span class="hljs-number">12</span>) <span class="hljs-comment">//converts the hour from military time to standard time. "PM" is automatically added because hour is past noon</span>
+		{
+			<span class="hljs-keyword">if</span>(hour - <span class="hljs-number">12</span> &lt; <span class="hljs-number">10</span>)
+			{
+				<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"0"</span> + <span class="hljs-built_in">std</span>::to_string(hour - <span class="hljs-number">12</span>) &lt;&lt; time.substr(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-string">" PM"</span>;
+			}
+			<span class="hljs-keyword">else</span>
+			{
+				<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; hour - <span class="hljs-number">12</span> &lt;&lt; time.substr(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) &lt;&lt; <span class="hljs-string">" PM"</span>;
+			}
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; time &lt;&lt; <span class="hljs-string">" AM"</span>; <span class="hljs-comment">// "AM" is added because temp is less than 12, meaning noon is not reached yet.</span>
+		}
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Converts an int representing an hour and an int representing a minut to a string with format “HH:MM”</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">formatTime</span><span class="hljs-params">(<span class="hljs-keyword">int</span> hour, <span class="hljs-keyword">int</span> minute)</span>
+</span>{
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> formattedHour;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> formattedMin;
+	<span class="hljs-keyword">if</span>(hour &lt; <span class="hljs-number">0</span> || hour &gt; <span class="hljs-number">24</span> || minute &lt; <span class="hljs-number">0</span> || minute &gt; <span class="hljs-number">60</span>) <span class="hljs-comment">//checks for validity of time</span>
+	{
+		<span class="hljs-keyword">throw</span>(<span class="hljs-built_in">std</span>::runtime_error(<span class="hljs-string">"invalid time to format"</span>));
+	}
+
+	<span class="hljs-keyword">if</span>(hour &lt; <span class="hljs-number">10</span>) <span class="hljs-comment">//makes sure the time follows the HH:MM format</span>
+	{
+		formattedHour = <span class="hljs-string">"0"</span> + <span class="hljs-built_in">std</span>::to_string(hour);
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		formattedHour = <span class="hljs-built_in">std</span>::to_string(hour);
+	}
+
+	<span class="hljs-keyword">if</span>(minute &lt; <span class="hljs-number">10</span>) <span class="hljs-comment">//makes sure the time follows the HH:MM format</span>
+	{
+		formattedMin = <span class="hljs-string">"0"</span> + <span class="hljs-built_in">std</span>::to_string(minute);
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		formattedMin = <span class="hljs-built_in">std</span>::to_string(minute);
+	}
+
+	<span class="hljs-keyword">return</span> (formattedHour + <span class="hljs-string">":"</span> +formattedMin);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>This function takes the 54 char size string which represents available time slotsand converts
+them into a readable format that condenses contiguous time slots</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">stringToTime</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> timeStr, <span class="hljs-keyword">bool</span> military)</span>
+</span>{
+	timeStr = timeStr + <span class="hljs-string">"0"</span>;<span class="hljs-comment">//this 0 bit serves as a stop to the algorithm</span>
+	<span class="hljs-keyword">int</span> i1 = <span class="hljs-number">-1</span>;<span class="hljs-comment">//this initialization can be arbitrary</span>
+	<span class="hljs-keyword">int</span> i2 = <span class="hljs-number">0</span>;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> finalString = <span class="hljs-string">""</span>;
+	<span class="hljs-keyword">bool</span> first = <span class="hljs-literal">true</span>;<span class="hljs-comment">//check the first contiguous time slots in a set of multiple contiguous time slots</span>
+
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">54</span>; i++)
+	{
+		<span class="hljs-keyword">if</span>(timeStr.at(i) == <span class="hljs-string">'1'</span>)
+		{
+			i1 = i;<span class="hljs-comment">//sets the position of the first contiguous time slots</span>
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = i; j &lt;= <span class="hljs-number">54</span>; j++)
+			{
+				<span class="hljs-keyword">if</span>(timeStr[j] == <span class="hljs-string">'0'</span>)
+				{
+					i2 = j<span class="hljs-number">-1</span>;<span class="hljs-comment">//sets the position of the last contiguous time slots</span>
+					<span class="hljs-keyword">if</span>(military)<span class="hljs-comment">//24-hour format</span>
+					{
+						<span class="hljs-keyword">if</span>(!first)<span class="hljs-comment">//adds a comma after the first contiguous time slots</span>
+						{
+							finalString = finalString + <span class="hljs-string">", "</span>;
+						}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>concatenate contiguous time slots</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>						finalString = finalString + indexToTime(i1) + <span class="hljs-string">" - "</span> + indexToTime(i2+<span class="hljs-number">1</span>);
+					}
+					<span class="hljs-keyword">else</span><span class="hljs-comment">// 12-hour format</span>
+					{
+						<span class="hljs-keyword">if</span>(!first)
+						{
+							finalString = finalString + <span class="hljs-string">", "</span>;
+						}
+						finalString = finalString + convertTo12Hr(indexToTime(i1)) + <span class="hljs-string">" - "</span> + convertTo12Hr(indexToTime(i2+<span class="hljs-number">1</span>));
+					}
+					first = <span class="hljs-literal">false</span>;
+					i = j;<span class="hljs-comment">//the algorithm begins to look for the next contiguous time slots from the last position accessed</span>
+					<span class="hljs-keyword">break</span>;
+				}
+			}
+		}
+	}
+	<span class="hljs-keyword">return</span> finalString;
+}
+
+<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">convertTo12Hr</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> time)</span> <span class="hljs-comment">//converts time from 24 hour time to standard time</span>
+</span>{
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> temp = time.substr(<span class="hljs-number">0</span>,<span class="hljs-number">2</span>); <span class="hljs-comment">//extracts hour from time string</span>
+	<span class="hljs-keyword">int</span> hour = stoi(temp);
+	<span class="hljs-keyword">if</span>(hour &gt; <span class="hljs-number">12</span>)
+	{
+		<span class="hljs-keyword">if</span>(hour - <span class="hljs-number">12</span> &lt; <span class="hljs-number">10</span>)
+		{
+			<span class="hljs-keyword">return</span>( <span class="hljs-string">'0'</span> + <span class="hljs-built_in">std</span>::to_string(hour - <span class="hljs-number">12</span>) + time.substr(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) + <span class="hljs-string">" PM"</span>); <span class="hljs-comment">//formats hour so that time string follows HH:MM format</span>
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">return</span>(<span class="hljs-built_in">std</span>::to_string(hour - <span class="hljs-number">12</span>) + time.substr(<span class="hljs-number">2</span>,<span class="hljs-number">3</span>) + <span class="hljs-string">" PM"</span>); <span class="hljs-comment">//in this 'else' and its corresponding 'if', the PM is automatically added because we are in the afternoon</span>
+		}
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		<span class="hljs-keyword">return</span> (time + <span class="hljs-string">" AM"</span>); <span class="hljs-comment">//appends " AM" to end of time string because time is less than 12 (before noon)</span>
+	}
+}
+
+<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">indexToTime</span><span class="hljs-params">(<span class="hljs-keyword">int</span> index)</span> <span class="hljs-comment">//maps the index of a 3x18 array to a corresponding time slot.</span>
+</span>{
+
+	<span class="hljs-keyword">switch</span> (index)
+	{
+		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"05:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"05:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"05:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">3</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"06:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">4</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"06:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">5</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"06:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">6</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"07:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">7</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"07:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">8</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"07:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">9</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"08:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">10</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"08:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">11</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"08:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">12</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"09:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">13</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"09:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">14</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"09:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">15</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"10:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">16</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"10:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">17</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"10:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">18</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"11:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">19</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"11:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">21</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"11:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">20</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"13:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">22</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"13:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">23</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"13:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">24</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"14:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">25</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"14:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">26</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"14:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">28</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"15:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">27</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"15:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">29</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"15:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">30</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"16:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">31</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"16:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">32</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"16:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">33</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"17:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">34</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"17:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">35</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"17:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">36</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"18:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">37</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"18:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">38</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"18:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">39</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"19:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">40</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"19:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">41</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"19:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">42</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"20:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">43</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"20:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">44</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"20:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">45</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"21:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">46</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"21:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">47</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"21:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">48</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"22:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">49</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"22:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">50</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"22:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">51</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"23:00"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">52</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"23:20"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">53</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"23:40"</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">54</span>: <span class="hljs-keyword">return</span> (<span class="hljs-string">"00:00"</span>);<span class="hljs-comment">//does not represent a valid time slot, but it ends the previous time slot</span>
+		<span class="hljs-keyword">default</span>: <span class="hljs-keyword">throw</span>(<span class="hljs-built_in">std</span>::runtime_error(<span class="hljs-string">"invalid index"</span>));
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getValidIntFromUser</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> errorMessage)</span><span class="hljs-comment">// makes sure the user inputs a valid int</span>
+</span>{
+	<span class="hljs-keyword">int</span> input;
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; input;
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.fail()) <span class="hljs-comment">//checks to see if preceding input succeeded or not. if so, the input is cleared, ignored, and the error message is displayed.</span>
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.clear();
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.ignore();
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; errorMessage &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">return</span> input;
+		}
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>sets a range of input for user and if the input is not valid, throws error message. </p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getIntRangeFromUser</span><span class="hljs-params">(<span class="hljs-keyword">int</span> lowerBound, <span class="hljs-keyword">int</span> upperBound, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> errorMessage)</span>
+</span>{
+	<span class="hljs-keyword">int</span> input;
+	<span class="hljs-keyword">if</span>(lowerBound &gt; upperBound) <span class="hljs-comment">//checks to see if the bounds are sensical.</span>
+	{
+		<span class="hljs-keyword">throw</span>(<span class="hljs-built_in">std</span>::runtime_error(<span class="hljs-string">"Invalid bounds!"</span>));
+	}
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; input;
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.fail() || input &lt; lowerBound || input &gt; upperBound) <span class="hljs-comment">//checks to see if user input failed or if the input lay within bounds.</span>
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.clear();
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.ignore();
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; errorMessage;
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">return</span> input;
+		}
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Prompts the user to enter a string in terminal which must exist in the set arr</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">getStrFromSet</span><span class="hljs-params">(<span class="hljs-keyword">int</span> size, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> arr[], <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> errorMessage)</span>
+</span>{
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> input;
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; input;
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.fail())
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.clear();
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.ignore();
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(containsStr(input, size, arr))
+		{
+			<span class="hljs-keyword">return</span> input;
+		}
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; errorMessage &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">containsStr</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> str, <span class="hljs-keyword">int</span> size, <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> arr[])</span> <span class="hljs-comment">//checks to see if an array contains a string</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++)
+	{
+		<span class="hljs-keyword">if</span>(arr[i] == str)
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+		}
+	}
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Prompts the user to enter a char in terminal which must exist in the set arr</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">getCharFromSet</span><span class="hljs-params">(<span class="hljs-keyword">int</span> size, <span class="hljs-keyword">char</span> arr[], <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> errorMessage)</span>
+</span>{
+	<span class="hljs-keyword">char</span> input;
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; input;
+		<span class="hljs-keyword">if</span>(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.fail())
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.clear();
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span>.ignore();
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; size; i++)
+			{
+
+				<span class="hljs-keyword">if</span>(arr[i] == input)
+				{
+					<span class="hljs-keyword">return</span> input;
+				}
+			}
+		}
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; errorMessage &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>Generates an ID using the mersene twister random number generation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">generateID</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-keyword">int</span> ID;
+	<span class="hljs-built_in">std</span>::random_device device;
+	<span class="hljs-keyword">int</span> seed = device();<span class="hljs-comment">//The seed is automatically set</span>
+	<span class="hljs-function"><span class="hljs-built_in">std</span>::mt19937 <span class="hljs-title">generator</span><span class="hljs-params">(seed)</span></span>;<span class="hljs-comment">//seeds the mersene twiter RNG</span>
+	<span class="hljs-function"><span class="hljs-built_in">std</span>::uniform_int_distribution&lt;<span class="hljs-keyword">int</span>&gt; <span class="hljs-title">distribution</span><span class="hljs-params">(<span class="hljs-number">100000000</span>,<span class="hljs-number">999999999</span>)</span></span>;<span class="hljs-comment">//constraints the ID to be of length 9</span>
+	ID =  distribution(generator);
+	<span class="hljs-keyword">return</span> (ID);
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Prompts the user to enter a password of length 6-18 through terminal</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">getPassword</span><span class="hljs-params">()</span>
+</span>{
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> password;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> confirm;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>create two objects for terminal states</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	termios t_original, t_hideInput;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>save original settings</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	tcgetattr(STDIN_FILENO, &amp;t_original);
+
+	t_hideInput = t_original;
+	t_hideInput.c_lflag &amp;= ~ECHO;<span class="hljs-comment">//disable echo as the user types the password</span>
+	tcsetattr(STDIN_FILENO, TCSANOW, &amp;t_hideInput);
+
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nEnter a password (length 8-16): "</span>;
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; password;
+		<span class="hljs-keyword">if</span>(password.length() &gt;= <span class="hljs-number">8</span> || password.length() &lt;= <span class="hljs-number">16</span>)
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nConfirm Password: "</span>;
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; confirm;
+			<span class="hljs-keyword">if</span>(password != confirm)
+			{
+				<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Passwords do not match!\n"</span>;
+			}
+			<span class="hljs-keyword">else</span>
+			{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>enable ternimal echo</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				tcsetattr(STDIN_FILENO, TCSANOW, &amp;t_original);
+				<span class="hljs-keyword">return</span> password;
+			}
+		}
+		<span class="hljs-keyword">else</span>
+		{
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Invalid length!\n"</span>;
+		}
+	}
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
