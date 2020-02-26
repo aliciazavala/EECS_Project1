@@ -25,9 +25,11 @@ To sum up, Agile worked best for our team because:
 --> To keep adding and testing new small features/upgrades, in order to keep the project going.
 -->
 
-//Delivery in small parts and ability to change fast. This is the most important component. You delivered, market test. Works - okay, move forward. Doesn’t work, change, test and pivot, finally deliver.
+//Delivery in small parts and ability to change fast. This is the most important component. 
+You delivered, market test. Works - okay, move forward.
+Doesn’t work, change, test and pivot, finally deliver.
+
 //Talk about what were the disadvantages in using Agile (confusion between team members,etc)
-However, the Agile methodology did
 
 
 
@@ -39,6 +41,10 @@ However, the Agile methodology did
 - We are going to break up what we are going to do into Minimum viable product (MVP), smallest and simplest version, get feedback, see what works and doesn't work
 
 ---- Resources ----
+
 1. https://www.javatpoint.com/software-engineering-agile-model
 2. https://medium.com/omarelgabrys-blog/software-engineering-software-process-and-software-process-models-part-2-4a9d06213fdc
--
+
+
+-------------------
+
