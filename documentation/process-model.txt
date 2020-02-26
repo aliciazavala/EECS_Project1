@@ -13,7 +13,7 @@ new features can continue to be gradually added (2).
 
 This process model was a good fit for our project since we had high levels of uncertainty, meaning that we had freedom 
 on how to build the project to a great extent, and we encountered issues in suitable meeting times for the beginning 
-portion of the project, which was crucial for designing it. On top of that, Agile methodoloy does not require a lot of
+portion of the project, which was a crucial factor to avoid misunderstandings and confussion. On top of that, Agile methodoloy does not require a lot of
 planning in order to get the project started, it is so easily adaptable for the reality, therefore it was the most 
 appropiate process model for our particular circumstances. 
 
