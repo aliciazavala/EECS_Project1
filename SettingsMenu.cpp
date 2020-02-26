@@ -17,9 +17,10 @@ std::string SettingsMenu::getName() const //return name of current menu (Setting
 
 void SettingsMenu::print() const
 {
-	
+	//virtual print method(empty)
 }
-
+//This menu print/shows the user the options to see 24 hour time configuration or 12 hours 
+//it also shows the user the options to pick if they want to see the attendees individual availability or just a list of attendees. 
 void SettingsMenu::print(bool militaryTime, bool hideTimes) const
 {
 	clearScreen();
