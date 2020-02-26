@@ -245,30 +245,13 @@ void Executive::handleAttendMenu()
 	attendees.close();
 	handleBack();
 }
-<<<<<<< HEAD
+
 //menu for creating a new event
-||||||| merged common ancestors
-void Executive::PrintEventsInMonth()
-{
-
-}
-
-=======
-
->>>>>>> 0e1981f966fe5378f0d0c1c2193d98e477acd8e8
 void Executive::handleNewEventMenu()
 {
-<<<<<<< HEAD
 	//create temporary NewEventMenu object and print
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
-	temp.print(m_loadedMonth,m_loadedYear);
-||||||| merged common ancestors
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
-	temp.print(m_loadedMonth,m_loadedYear);
-=======
 	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
 	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
->>>>>>> 0e1981f966fe5378f0d0c1c2193d98e477acd8e8
 
 	std::string creatorName; // Variables to read in from the file
 	std::string EventName;
