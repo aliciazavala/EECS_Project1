@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>TimeMenu.cpp</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="AttendMenu.html">
+                  EECS448_Project1/AttendMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="EventMenu.html">
+                  EECS448_Project1/EventMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="Executive.html">
+                  EECS448_Project1/Executive.cpp
+                </a>
+              
+                
+                <a class="source" href="MainMenu.html">
+                  EECS448_Project1/MainMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="Menu.html">
+                  EECS448_Project1/Menu.cpp
+                </a>
+              
+                
+                <a class="source" href="MonthMenu.html">
+                  EECS448_Project1/MonthMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="NewEventMenu.html">
+                  EECS448_Project1/NewEventMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="SettingsMenu.html">
+                  EECS448_Project1/SettingsMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="Stack.html">
+                  EECS448_Project1/Stack.cpp
+                </a>
+              
+                
+                <a class="source" href="TimeMenu.html">
+                  EECS448_Project1/TimeMenu.cpp
+                </a>
+              
+                
+                <a class="source" href="main.html">
+                  EECS448_Project1/main.cpp
+                </a>
+              
+                
+                <a class="source" href="project1_lib.html">
+                  EECS448_Project1/project1_lib.cpp
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>TimeMenu.cpp</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"TimeMenu.h"</span></span>
+
+TimeMenu::TimeMenu() <span class="hljs-comment">//initializes members to null</span>
+{
+	m_name = <span class="hljs-string">"TimeMenu"</span>;
+	current_x = <span class="hljs-number">0</span>;
+	current_y = <span class="hljs-number">0</span>;
+	m_timeStr = <span class="hljs-string">" "</span>;
+
+}
+
+TimeMenu::TimeMenu(<span class="hljs-keyword">const</span> TimeMenu&amp; original) <span class="hljs-comment">//makes deep copy of TimeMenu</span>
+{
+	m_name = original.m_name;
+	current_x = original.current_x;
+	current_y = original.current_y;
+	m_timeStr = original.m_timeStr;
+}
+
+TimeMenu::~TimeMenu()
+{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>empty destructor</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>}
+
+<span class="hljs-function"><span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> <span class="hljs-title">TimeMenu::getName</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span>
+</span>{
+	<span class="hljs-keyword">return</span> m_name;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TimeMenu::print</span><span class="hljs-params">()</span> <span class="hljs-keyword">const</span>
+</span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>This print function is not used, but it is required for inheritance</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>}
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">TimeMenu::run</span><span class="hljs-params">(<span class="hljs-keyword">char</span>** timeArr, <span class="hljs-keyword">bool</span> militaryTime, <span class="hljs-keyword">bool</span> attendMode)</span>
+</span>{
+	<span class="hljs-keyword">char</span> choice;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>create a set of chars to use in getCharFromSet function</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">char</span> choiceSet[<span class="hljs-number">8</span>] = {<span class="hljs-string">'w'</span>,<span class="hljs-string">'a'</span>,<span class="hljs-string">'s'</span>,<span class="hljs-string">'d'</span>,<span class="hljs-string">'y'</span>,<span class="hljs-string">'n'</span>,<span class="hljs-string">'F'</span>,<span class="hljs-string">'Q'</span>};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>this loop handles inputs from choicSet above and only exits with the inputs F or Q</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>the current state of the menu is printed at the beginning of every loop</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		print(timeArr, militaryTime, attendMode);
+		choice = getCharFromSet(<span class="hljs-number">8</span>,choiceSet);
+		<span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'w'</span>)
+		{
+			moveCursor(<span class="hljs-string">"up"</span>);
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'a'</span>)
+		{
+			moveCursor(<span class="hljs-string">"left"</span>);
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'s'</span>)
+		{
+			moveCursor(<span class="hljs-string">"down"</span>);
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'d'</span>)
+		{
+			moveCursor(<span class="hljs-string">"right"</span>);
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'y'</span>)
+		{
+			setY(timeArr);
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'n'</span>)
+		{
+			setN(timeArr);
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'F'</span>)
+		{
+			fillBlank(timeArr);
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+		}
+		<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(choice == <span class="hljs-string">'Q'</span>)
+		{
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		}
+	}
+
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>This functions fills the empty (‘_’) spots in the array with ‘n’ as a result of input ‘F’</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TimeMenu::fillBlank</span><span class="hljs-params">(<span class="hljs-keyword">char</span>** timeArr)</span>
+</span>{
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">18</span>; i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++)
+		{
+			<span class="hljs-keyword">if</span>(timeArr[i][j] == <span class="hljs-string">'_'</span>)
+			{
+				timeArr[i][j] = <span class="hljs-string">'n'</span>;
+			}
+		}
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>This function converts the current_x index in the menu to a valid index in timeArr and marks it with ‘y’
+This is needed because the menu displays an extra row, 12:00, which is not represented in timeArr</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TimeMenu::setY</span><span class="hljs-params">(<span class="hljs-keyword">char</span>** timeArr)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(current_x == <span class="hljs-number">7</span>)<span class="hljs-comment">//prevent the user from enterring a time in row 12:00</span>
+	{
+		<span class="hljs-keyword">return</span>;
+	}
+	<span class="hljs-keyword">if</span>(current_x &lt; <span class="hljs-number">7</span> &amp;&amp; timeArr[current_x][current_y] != <span class="hljs-string">'X'</span>)
+	{
+		timeArr[current_x][current_y] = <span class="hljs-string">'y'</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(timeArr[current_x<span class="hljs-number">-1</span>][current_y] != <span class="hljs-string">'X'</span>)<span class="hljs-comment">//account for the extra row</span>
+	{
+		timeArr[current_x<span class="hljs-number">-1</span>][current_y] = <span class="hljs-string">'y'</span>;
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>This function converts the current_x index in the menu to a valid index in timeArr and marks it with ‘n’</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TimeMenu::setN</span><span class="hljs-params">(<span class="hljs-keyword">char</span>** timeArr)</span>
+</span>{
+	<span class="hljs-keyword">if</span>(current_x == <span class="hljs-number">7</span>)<span class="hljs-comment">//prevent the user from enterring a time in row 12:00</span>
+	{
+		<span class="hljs-keyword">return</span>;
+	}
+	<span class="hljs-keyword">if</span>(current_x &lt; <span class="hljs-number">7</span> &amp;&amp; timeArr[current_x][current_y] != <span class="hljs-string">'X'</span>)
+	{
+		timeArr[current_x][current_y] = <span class="hljs-string">'n'</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(timeArr[current_x<span class="hljs-number">-1</span>][current_y] != <span class="hljs-string">'X'</span>)<span class="hljs-comment">//account for the extra row</span>
+	{
+		timeArr[current_x<span class="hljs-number">-1</span>][current_y] = <span class="hljs-string">'n'</span>;
+	}
+}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>This function handles the visuals for the menu and is printed every time it is updated.
+This menu can be usedto allow entry for time slots in an existing with the parameter attendMode set to true</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TimeMenu::print</span><span class="hljs-params">(<span class="hljs-keyword">char</span>** timeArr, <span class="hljs-keyword">bool</span> militaryTime,<span class="hljs-keyword">bool</span> attendMode)</span>
+</span>{
+	<span class="hljs-keyword">int</span> currentHour = <span class="hljs-number">5</span>;
+	clearScreen();
+	<span class="hljs-keyword">if</span>(attendMode)<span class="hljs-comment">//different title for attending an event</span>
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\t ===== Select Available Time Slots to Attend =====\n"</span>;
+	}
+	<span class="hljs-keyword">else</span>
+	{
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\t ===== Select Times for the Event =====\n"</span>;
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>This nested for loop prints out every row in the menu</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">19</span>; i++)
+	{
+		<span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">3</span>; j++)
+		{
+			<span class="hljs-keyword">if</span>(i == current_x &amp;&amp; j == current_y)<span class="hljs-comment">//Check to see if the current location is selected</span>
+			{
+				<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">" &gt;"</span>;
+			}
+			<span class="hljs-keyword">else</span>
+			{
+				<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"  "</span>;
+			}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>the available times to attend are in this if condition</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span>((currentHour &gt;= <span class="hljs-number">5</span> &amp;&amp; currentHour &lt; <span class="hljs-number">12</span>)||(currentHour &gt;=<span class="hljs-number">13</span> &amp;&amp; currentHour &lt;<span class="hljs-number">24</span>))
+			{
+				<span class="hljs-keyword">if</span>(currentHour &lt; <span class="hljs-number">12</span>)
+				{
+					<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; timeArr[i][j];
+				}
+				<span class="hljs-keyword">else</span><span class="hljs-comment">//account for the unavailable time slots (12:00 - 13:00)</span>
+				{
+					<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; timeArr[i<span class="hljs-number">-1</span>][j];
+				}
+			}
+			<span class="hljs-keyword">else</span><span class="hljs-comment">//prints X in row 12:00</span>
+			{
+				<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"X"</span>;
+			}
+			printTime(formatTime(currentHour, getTimeSlot(j)), militaryTime);
+			<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">'\t'</span>;
+		}
+		<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-built_in">std</span>::<span class="hljs-built_in">endl</span>;
+		currentHour++;
+	}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Available user actions</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"        up\t\t[y] Available to attend\n"</span>;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"       [w]\t\t[n] Not Available\n"</span>;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"left[a][s][d]right\t[F] Finish (blanks will be set to not available)\n"</span>;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"       down\t\t[Q] Quit without saving\n"</span>;
+	<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Action: "</span>;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TimeMenu::moveCursor</span><span class="hljs-params">(<span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> direction)</span> <span class="hljs-comment">//updates the "coordinates" of the cursor on the time slot array</span>
+</span>{
+	<span class="hljs-keyword">if</span>(direction == <span class="hljs-string">"up"</span> &amp;&amp; current_x &gt; <span class="hljs-number">0</span>)
+	{
+		current_x = current_x<span class="hljs-number">-1</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(direction == <span class="hljs-string">"right"</span> &amp;&amp; current_y &lt; <span class="hljs-number">2</span>)
+	{
+		current_y = current_y+<span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(direction ==<span class="hljs-string">"down"</span> &amp;&amp; current_x &lt; <span class="hljs-number">18</span>)
+	{
+		current_x = current_x+<span class="hljs-number">1</span>;
+	}
+	<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(direction == <span class="hljs-string">"left"</span> &amp;&amp; current_y &gt; <span class="hljs-number">0</span>)
+	{
+		current_y = current_y<span class="hljs-number">-1</span>;
+	}
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">TimeMenu::getTimeSlot</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> <span class="hljs-comment">//maps time slot to corresponding 20 minute slot.</span>
+</span>{
+	<span class="hljs-keyword">switch</span>(x)
+	{
+		<span class="hljs-keyword">case</span> <span class="hljs-number">0</span>: <span class="hljs-keyword">return</span> (<span class="hljs-number">0</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">1</span>: <span class="hljs-keyword">return</span> (<span class="hljs-number">20</span>);
+		<span class="hljs-keyword">case</span> <span class="hljs-number">2</span>: <span class="hljs-keyword">return</span> (<span class="hljs-number">40</span>);
+		<span class="hljs-keyword">default</span>: <span class="hljs-keyword">throw</span>(<span class="hljs-built_in">std</span>::runtime_error(<span class="hljs-string">"time slot error"</span>));
+	}
+}</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
