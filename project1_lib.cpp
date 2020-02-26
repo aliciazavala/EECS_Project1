@@ -68,7 +68,7 @@ std::string nameOfMonth(int m) //maps parameter to corresponding month and retur
 	}
 }
 
-std::string dayOfWeek(int m, int d, int y)
+std::string dayOfWeek(int m, int d, int y) //given a month, day, and year, the day of the week that date falls on is returned.
 {
 	if(m == 1 || m == 2)
 	{
@@ -99,7 +99,7 @@ std::string dayOfWeek(int m, int d, int y)
 
 bool isValidDate(int m, int d, int y)
 {
-	if(m < 0 || m > 12)
+	if(m < 0 || m > 12) //checks to see if the month is one of the twelve existing months.
 	{
 		return false;
 	}
@@ -114,11 +114,11 @@ bool isValidDate(int m, int d, int y)
 			return false;
 		}
 	}
-	if(d < 0 || d > daysInMonth(m,y))
+	if(d < 0 || d > daysInMonth(m,y)) //checks to see if the day exists for that month.
 	{
 		return false;
 	}
-	if(isHoliday(m, d))
+	if(isHoliday(m, d)) //checks to see if the day is scheduleable, i.e. not a holiday.
 	{
 		return false;
 	}
