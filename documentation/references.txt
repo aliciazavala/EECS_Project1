@@ -1,0 +1,6 @@
+ -------------------------------- 
+|      R E F E R E N C E S      |
+ --------------------------------
+
+generateID() in project1_lib.cpp:
+Assencio, Diego. Generating Random Numbers in C - Diego Assencio, diego.assencio.com/?index=6890b8c50169ef45b74db135063c227c.
