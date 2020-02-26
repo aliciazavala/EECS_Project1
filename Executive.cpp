@@ -37,15 +37,21 @@ Executive::~Executive()
 
 void Executive::run(bool test)
 {
-
+	std::string currentMenu;
+	//m_menuStack is the stack which holds all of the menus that are loaded.
+	//The menus all inherit from the Menu class so they can be stored in m_menuStack.
+	//The menus in this stack remain constant as they are mainly used to save the program's current state.
 	m_menuStack = new Stack<Menu*>;
 
+	//The main menu is always the first menu pushed onto the menu stack.
 	Menu* newMenu = new MainMenu;
 	m_menuStack->push(newMenu);
 
-	while(!m_menuStack->isEmpty())//loops as long as there are menus
+	//The program loop which loads different menus depending on what is
+	//at the top of the menu stack.
+	while(!m_menuStack->isEmpty())
 	{
-		std::string currentMenu = (m_menuStack->peek())->getName();
+		currentMenu = (m_menuStack->peek())->getName();
 
 		if(currentMenu == "MainMenu")
 		{
@@ -83,14 +89,18 @@ void Executive::run(bool test)
 }
 void Executive::handleMainMenu()
 {
-	//Create a temp to call functions 
+	//Temporary menu subclasses are created as not all subclass functions may be defined in the Menu base class
 	MainMenu temp;
+
+	//The print method prints the visuals while executive handles the input
 	temp.print(m_loadedYear);
 
+	//To use the function getStrFromSet, a set of valid inputs must be created
 	std::string validInputs[16] = {"q","1","2","3","4","5","6","7","8","9","10","11","12","b","n","s"};
 	std::string monthArr[12] = {"1","2","3","4","5","6","7","8","9","10","11","12"};
 	std::string input = getStrFromSet(16, validInputs);//ask user for input
 
+	//Check for a month number selection
 	if(containsStr(input, 12, monthArr))
 	{
 		m_loadedMonth = stoi(input);
@@ -98,21 +108,27 @@ void Executive::handleMainMenu()
 		m_menuStack->push(newMenu);
 
 	}
+	//Check for quitting the program
 	else if(input == "q")
 	{
 		handleBack();
 	}
-	else if(input == "b")// move back 1 year
+	//Check for moving back 1 year
+	else if(input == "b")
 	{
+		//1582 is the first year of the gregorian calendar
+		//This prevents conflicts with the isValidDate function
 		if(m_loadedYear > 1584)
 		{
 			m_loadedYear = m_loadedYear - 1;
 		}
 	}
-	else if(input == "n")// move forward 1 year
+	//Check for moving 1 year forward.
+	else if(input == "n")
 	{
-		m_loadedYear = m_loadedYear + 1;//currently no upper limit for year
+		m_loadedYear = m_loadedYear + 1;
 	}
+	//Check for accessing the settings menu.
 	else if(input == "s")
 	{
 		Menu* newMenu = new SettingsMenu();
