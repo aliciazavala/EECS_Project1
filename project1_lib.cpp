@@ -68,7 +68,7 @@ std::string nameOfMonth(int m) //maps parameter to corresponding month and retur
 	}
 }
 
-std::string dayOfWeek(int m, int d, int y)
+std::string dayOfWeek(int m, int d, int y) //given a month, day, and year, the day of the week that date falls on is returned.
 {
 	if(m == 1 || m == 2)
 	{
