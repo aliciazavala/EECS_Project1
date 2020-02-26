@@ -1,3 +1,12 @@
+/**
+*	@file main.cpp
+*	@brief creates executive object, executes the executive::run object
+*
+*	@author Manuel Sadoval, Angel Guerrero, Alicia Zavala, Elena Zavala, Joseph Duong
+*	@date 2/21/20
+*
+*/
+
 #include "Executive.h"
 #include <string>
 #include <iostream>

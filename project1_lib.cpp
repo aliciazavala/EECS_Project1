@@ -2,7 +2,7 @@
 
 int daysInMonth(int m, int y)
 {
-	if(m == 2)
+	if(m == 2) //this checks for february, and the nested conditional statements check to see if it's a leap year.
 	{
 		if(y % 4 != 0)
 		{
@@ -21,21 +21,21 @@ int daysInMonth(int m, int y)
 			return 29;
 		}
 	}
-	else if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
+	else if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) //if the month is january, march, may, july, august, october, or december, retern 31 days.
 	{
 		return 31;
 	}
-	else if (m == 4 || m == 6 || m == 9 || m == 11)
+	else if (m == 4 || m == 6 || m == 9 || m == 11) //if month is april, june, september, or november, return 30 days.
 	{
 		return 30;
 	}
 	else
 	{
-		throw(std::runtime_error("invalid month"));
+		throw(std::runtime_error("invalid month")); //throws error if invalid month is given.
 	}
 }
 
-std::string nameOfMonth(int m)
+std::string nameOfMonth(int m) //maps parameter to corresponding month and returns that month's name.
 {
 	switch(m)
 	{
@@ -68,7 +68,7 @@ std::string nameOfMonth(int m)
 	}
 }
 
-std::string dayOfWeek(int m, int d, int y)
+std::string dayOfWeek(int m, int d, int y) //given a month, day, and year, the day of the week that date falls on is returned.
 {
 	if(m == 1 || m == 2)
 	{
@@ -99,7 +99,7 @@ std::string dayOfWeek(int m, int d, int y)
 
 bool isValidDate(int m, int d, int y)
 {
-	if(m < 0 || m > 12)
+	if(m < 0 || m > 12) //checks to see if the month is one of the twelve existing months.
 	{
 		return false;
 	}
@@ -114,35 +114,35 @@ bool isValidDate(int m, int d, int y)
 			return false;
 		}
 	}
-	if(d < 0 || d > daysInMonth(m,y))
+	if(d < 0 || d > daysInMonth(m,y)) //checks to see if the day exists for that month.
 	{
 		return false;
 	}
-	if(isHoliday(m, d))
+	if(isHoliday(m, d)) //checks to see if the day is scheduleable, i.e. not a holiday.
 	{
 		return false;
 	}
 	return true;
 }
 
-bool isHoliday(int m, int d)
+bool isHoliday(int m, int d) //returns true if date is a holiday.
 {
-	if(m == 1 && d == 1)
+	if(m == 1 && d == 1) //checks to see if event is on new year's
 	{
 		return true;
 	}
-	else if(m == 7 && d == 4)
+	else if(m == 7 && d == 4) //checks to see if event is on 4th of july
 	{
 		return true;
 	}
-	else if(m == 12 && d == 25)
+	else if(m == 12 && d == 25) //checks to see if event is on Christmas
 	{
 		return true;
 	}
 	return false;
 }
 
-int getCurrentYear()
+int getCurrentYear() //returns the current year
 {
 	time_t now = time(0);
 	tm* ltm = localtime(&now);
@@ -151,16 +151,16 @@ int getCurrentYear()
 
 void printTime(std::string time, bool militaryTime)
 {
-	if(militaryTime)
+	if(militaryTime) //if militaryTime is true, then time will be printed as is.
 	{
 		std::cout << time;//HH:MM
 				  //01234
 	}
 	else
 	{
-		std::string temp = time.substr(0,2);
+		std::string temp = time.substr(0,2); //the hour is extracted from the time string
 		int hour = stoi(temp);
-		if(hour > 12)
+		if(hour > 12) //converts the hour from military time to standard time.
 		{
 			if(hour - 12 < 10)
 			{
@@ -182,12 +182,12 @@ std::string formatTime(int hour, int minute)
 {
 	std::string formattedHour;
 	std::string formattedMin;
-	if(hour < 0 || hour > 24 || minute < 0 || minute > 60)
+	if(hour < 0 || hour > 24 || minute < 0 || minute > 60) //checks for validity of time
 	{
 		throw(std::runtime_error("invalid time to format"));
 	}
 
-	if(hour < 10)
+	if(hour < 10) //makes sure the time follows the HH:MM format
 	{
 		formattedHour = "0" + std::to_string(hour);
 	}
@@ -196,7 +196,7 @@ std::string formatTime(int hour, int minute)
 		formattedHour = std::to_string(hour);
 	}
 
-	if(minute < 10)
+	if(minute < 10) //makes sure the time follows the HH:MM format
 	{
 		formattedMin = "0" + std::to_string(minute);
 	}

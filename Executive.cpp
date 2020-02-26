@@ -231,12 +231,44 @@ void Executive::handleAttendMenu()
 	attendees.close();
 	handleBack();
 }
+<<<<<<< HEAD
 //menu for creating a new event
+||||||| merged common ancestors
+<<<<<<< HEAD
+//menu for creating a new event
+||||||| merged common ancestors
+void Executive::PrintEventsInMonth()
+{
+
+}
+
+=======
+
+>>>>>>> 0e1981f966fe5378f0d0c1c2193d98e477acd8e8
+=======
+
+//menu for creating a new event
+>>>>>>> 35ffafd13c683ec38774cc51a23edaf82869c57d
 void Executive::handleNewEventMenu()
 {
 	//create temporary NewEventMenu object and print
+<<<<<<< HEAD
 	NewEventMenu temp = NewEventMenu(m_loadedMonth);
 	temp.print(m_loadedMonth,m_loadedYear);
+||||||| merged common ancestors
+	NewEventMenu temp = NewEventMenu(m_loadedMonth);
+	temp.print(m_loadedMonth,m_loadedYear);
+||||||| merged common ancestors
+	NewEventMenu temp = NewEventMenu(m_loadedMonth);
+	temp.print(m_loadedMonth,m_loadedYear);
+=======
+	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
+	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
+>>>>>>> 0e1981f966fe5378f0d0c1c2193d98e477acd8e8
+=======
+	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
+	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
+>>>>>>> 35ffafd13c683ec38774cc51a23edaf82869c57d
 
 	std::string creatorName;
 	std::string EventName;
@@ -353,21 +385,26 @@ void Executive::handleSettingsMenu()
 	//allow the user to repeatedly change the time setting:
 	do
 	{
+		//temp prints the options for the user
 		temp.print(m_militaryTime,m_hideTimes);
+		//Check for user input and handle it
 		input  = getIntRangeFromUser(0,2);
 		if(input == 1)
 		{
 			m_militaryTime = !m_militaryTime;
 		}
+
 		if(input == 2)
 		{
 			m_hideTimes = !m_hideTimes;
 		}
 	}while(input != 0);
-	//go back one menu
+	//Menu pops off the menu stack when user inputs 0
 	handleBack();
 }
-void Executive::handleTimeMenu()//change text for admin
+
+
+void Executive::handleTimeMenu()
 {
 	TimeMenu temp;
 
@@ -382,16 +419,21 @@ void Executive::handleTimeMenu()//change text for admin
 void Executive::handleAttendTimeMenu()
 {
 	TimeMenu temp;
+	//Check for a 'Quit without saving' option from the user, which will then clear the array
 	if(!temp.run(m_timeArr, m_militaryTime))
 	{
 		clearTimeArr();
 	}
 	handleBack();
 }
+
+//This function is mainly for readability
 void Executive::handleBack()
 {
 	m_menuStack->pop();
 }
+
+//This function loops through the 2D array m_timeArr to assign every index to the empty placeholder underscore
 void Executive::clearTimeArr()
 {
 	for(int i = 0; i < 18; i++)
@@ -402,6 +444,7 @@ void Executive::clearTimeArr()
 		}
 	}
 }
+
 
 void Executive::loadTimeArr(std::string timeString)
 {
