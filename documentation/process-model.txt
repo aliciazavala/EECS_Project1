@@ -1,9 +1,9 @@
  
  -------------------------------- 
- |        Process Model          |
+|    ＰＲＯＣＥＳＳ　ＭＯＤＥＬ      |
  --------------------------------
  
- ---- How did our team implement the Agile Process Model, and to what extent? ---- 
+ ------ Which Process Model was the most appropiate for Project 1? ---- 
 
 The process model that would be appropiate for this project is 'Agile Software Development'.
 
