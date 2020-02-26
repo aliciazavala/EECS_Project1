@@ -178,22 +178,24 @@ int EventMenu::countAttendees(int index)
 	}
 	return totalCount;
 }
-
+//prints the number of attendees for each time slot selected for the event
 void EventMenu::printAvailability()
 {
   clearScreen();
   std::cout << "  ===== Availability for " << m_eventname << " =====" << std::endl;
 	int currentHour = 5;
 	int currentSlot = 0;
+  //looping through all possible time slots
 	for(int i = 0; i < 18; i++)
 	{
 		for(int j = 0; j < 3; j++)
 		{
 			std::cout << " ";
-			printTime(formatTime(currentHour, getTimeSlot(j)), m_militaryTime);
-			std::cout << " - " << countAttendees(currentSlot) << "\t";
+			printTime(formatTime(currentHour, getTimeSlot(j)), m_militaryTime);//prints time slot
+			std::cout << " - " << countAttendees(currentSlot) << "\t";//prints number of attendees for given time slot
       currentSlot++;
 		}
+    //if the for loop is going over the times from 12 am to 1pm, prints an X
     if(currentHour == 11)
     {
       std::cout << "\n ";
