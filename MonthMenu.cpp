@@ -18,13 +18,13 @@ void MonthMenu::print() const
 {
 
 }
-void MonthMenu::setTotalEvents(int numEvents)
+void MonthMenu::setTotalEvents(int numEvents) //creates an array big enough to store events.
 {
 	totalEvents = numEvents;
 	EventID = new int[totalEvents];
 	for(int i=0; i<totalEvents; i++)
 	{
-		EventID[i]=0;
+		EventID[i]=0; //initializes ID numbers for all events to be zero.
 	}
 
 }
