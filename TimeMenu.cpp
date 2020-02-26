@@ -1,6 +1,6 @@
 #include "TimeMenu.h"
 
-TimeMenu::TimeMenu()
+TimeMenu::TimeMenu() //initializes members to null
 {
 	m_name = "TimeMenu";
 	current_x = 0;
@@ -9,7 +9,7 @@ TimeMenu::TimeMenu()
 
 }
 
-TimeMenu::TimeMenu(const TimeMenu& original)
+TimeMenu::TimeMenu(const TimeMenu& original) //makes deep copy of TimeMenu
 {
 	m_name = original.m_name;
 	current_x = original.current_x;
@@ -19,7 +19,7 @@ TimeMenu::TimeMenu(const TimeMenu& original)
 
 TimeMenu::~TimeMenu()
 {
-
+	//empty destructor
 }
 
 std::string TimeMenu::getName() const
@@ -179,7 +179,7 @@ void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 	std::cout << "Action: ";
 }
 
-void TimeMenu::moveCursor(std::string direction)
+void TimeMenu::moveCursor(std::string direction) //updates the "coordinates" of the cursor on the time slot array
 {
 	if(direction == "up" && current_x > 0)
 	{
@@ -199,7 +199,7 @@ void TimeMenu::moveCursor(std::string direction)
 	}
 }
 
-int TimeMenu::getTimeSlot(int x)
+int TimeMenu::getTimeSlot(int x) //maps time slot to corresponding 20 minute slot. 
 {
 	switch(x)
 	{

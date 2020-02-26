@@ -1,4 +1,73 @@
-The process model that would be appropiate for this project is 'Agile Software Development' 
+ 
+ -------------------------------- 
+|    ＰＲＯＣＥＳＳ　ＭＯＤＥＬ      |
+ --------------------------------
 
------- I would expand on this tonight once I do proper research
--Elena
+* Which Process Model was the most appropiate for Project 1? 
+
+The process model that would be appropiate for this project is 'Agile Software Development'.
+
+Agile refers to the software development technique based on iterative development (1), where small increments are built 
+over a short period of time, delivering a version of the product fast enough, so that it can be tested constantly, and 
+new features can continue to be gradually added (2).
+
+This process model was a good fit for our project since we had high levels of uncertainty, meaning that we had freedom 
+on how to build the project to a great extent, and we encountered issues in suitable meeting times for the beginning 
+portion of the project, which was a crucial factor to avoid misunderstandings and confussion between team members. On 
+top of that, Agile methodoloy does not require a lot of planning in order to get the project started, it is so easily
+adaptable for the reality, therefore it was the most appropiate process model for our particular circumstances. 
+
+In addition to that, Agile methodology reduces total development time (1), which was very convenient since most team 
+members were actively occupied for the first segment of the project development. For better convenience, developing small
+upgrades and to continously test these updates, increased our chances for our team to achieve completeness much faster than
+having a rigid sequence of steps to be followed, such as the Waterfall Model.
+
+To sum up, the Agile methodology worked best for our team because: 
+
+  --> We could not afford a lot of planning time.
+  --> We were focused on fast delivery, due to having short period of time and limited organization.
+  --> To keep adding and testing new small features/upgrades, in order to keep the project going.
+  --> 
+  -->
+
+
+* How did our team implement the Agile Process Model, and to what extent? 
+
+   --> Identified the project requirements, then began working on the project by iteration through different stages
+   of new updates and upgrades. 
+   
+   --> We broke up the project into the Minimum Viable Product (MVP), which is the smallest and simplest 
+   version of the project, in order to test what was working and what did not work (3). For instance, first we 
+   made sure that we had a version of our Calendar App which at least allowed users to create an event, and 
+   store that into a file. This was very simple because it was the minimum version of what the Calendar App should do.
+   
+   --> We accomplish an upgrade, we run and tested it, if it did not work, we fixed it, if it worked, we published it
+   and moved to the next upgrade.
+   
+   -->
+
+
+
+
+
+//Talk about what were the disadvantages in using Agile (confusion between team members,etc????)
+
+
+
+***notes (to be deleted)****
+-Adapted to the specific circumstances
+-Incremental and iterative approach, in which the increments are small and typically, new releases of the system are created and made available to customers every few weeks
+-Minimize documentation by using informal communications rather than formal meetings with written documents
+- Builds a small portion of each feature, one by one, and then voth gradually adding features and increasing their completeness
+- We are going to break up what we are going to do into Minimum viable product (MVP), smallest and simplest version, get feedback, see what works and doesn't work
+
+
+ -------------------------------- 
+|       ＲＥＳＯＵＲＣＥＳ          |
+ --------------------------------
+
+
+1. Agile Model - https://www.javatpoint.com/software-engineering-agile-model
+2. Software Engineering — Software Process and Software Process Models (Part 2) - https://medium.com/omarelgabrys-blog/software-engineering-software-process-and-software-process-models-part-2-4a9d06213fdc
+3. Code Academy - Software Development Methodology: What is Agile? - https://www.youtube.com/watch?v=GzzkpAOxHXs
+

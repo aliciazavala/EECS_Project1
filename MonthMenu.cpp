@@ -1,6 +1,6 @@
 #include "MonthMenu.h"
 
-MonthMenu::MonthMenu()
+MonthMenu::MonthMenu() //constructor initializes members to null
 {
 	EventID = nullptr;
 	m_menuName = "MonthMenu";
@@ -9,7 +9,7 @@ MonthMenu::MonthMenu()
 	EventID = nullptr;
 }
 
-MonthMenu::~MonthMenu()
+MonthMenu::~MonthMenu()	//destructor deletes EventID array
 {
 	delete[] EventID;
 }
@@ -18,13 +18,13 @@ void MonthMenu::print() const
 {
 
 }
-void MonthMenu::setTotalEvents(int numEvents)
+void MonthMenu::setTotalEvents(int numEvents) //creates an array big enough to store events.
 {
 	totalEvents = numEvents;
 	EventID = new int[totalEvents];
 	for(int i=0; i<totalEvents; i++)
 	{
-		EventID[i]=0;
+		EventID[i]=0; //initializes ID numbers for all events to be zero.
 	}
 
 }
@@ -88,18 +88,18 @@ void MonthMenu::print(int month, int year)
 	fin.close();
 }
 
-int MonthMenu::getEventsInYear() const
+int MonthMenu::getEventsInYear() const //returns number of events in a given year.
 {
 	return m_eventsInYear;
 }
 
-int MonthMenu::returnID(int Eid)
+int MonthMenu::returnID(int Eid) //returns ID for a given event
 {
 	return EventID[Eid];
 }
 
 
-std::string MonthMenu::getName() const
+std::string MonthMenu::getName() const //returns name of current menu (MonthMenu)
 {
 	return m_menuName;
 }

@@ -2,7 +2,7 @@
 
 SettingsMenu::SettingsMenu()
 {
-	menuName = "SettingsMenu";
+	menuName = "SettingsMenu"; //sets current menu name to "SettingsMenu"
 }
 
 SettingsMenu::~SettingsMenu()
@@ -10,7 +10,7 @@ SettingsMenu::~SettingsMenu()
 	//empty
 }
 
-std::string SettingsMenu::getName() const
+std::string SettingsMenu::getName() const //return name of current menu (SettingsMenu)
 {
 	return menuName;
 }

@@ -336,13 +336,13 @@ std::string indexToTime(int index) //maps the index of a 3x18 array to a corresp
 	}
 }
 
-int getValidIntFromUser(std::string errorMessage)
+int getValidIntFromUser(std::string errorMessage)// makes sure the user inputs a valid int
 {
 	int input;
 	while(1)
 	{
 		std::cin >> input;
-		if(std::cin.fail())
+		if(std::cin.fail()) //checks to see if preceding input succeeded or not. if so, the input is cleared, ignored, and the error message is displayed.
 		{
 			std::cin.clear();
 			std::cin.ignore();
@@ -358,14 +358,14 @@ int getValidIntFromUser(std::string errorMessage)
 int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage)
 {
 	int input;
-	if(lowerBound > upperBound)
+	if(lowerBound > upperBound) //checks to see if the bounds are sensical.
 	{
 		throw(std::runtime_error("Invalid bounds!"));
 	}
 	while(1)
 	{
 		std::cin >> input;
-		if(std::cin.fail() || input < lowerBound || input > upperBound)
+		if(std::cin.fail() || input < lowerBound || input > upperBound) //checks to see if user input failed or if the input lay within bounds.
 		{
 			std::cin.clear();
 			std::cin.ignore();
@@ -397,7 +397,7 @@ std::string getStrFromSet(int size, std::string arr[], std::string errorMessage)
 	}
 }
 
-bool containsStr(std::string str, int size, std::string arr[])
+bool containsStr(std::string str, int size, std::string arr[]) //checks to see if an array contains a string
 {
 	for(int i = 0; i < size; i++)
 	{
