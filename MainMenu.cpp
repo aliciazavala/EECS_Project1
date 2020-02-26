@@ -2,12 +2,12 @@
 
 MainMenu::MainMenu()
 {
-	
+	//empty constructor
 }
 
 MainMenu::~MainMenu()
 {
-	
+	//empty destructor
 }
 
 std::string MainMenu::getName() const
