@@ -19,7 +19,7 @@ adaptable for the reality, therefore it was the most appropiate process model fo
 
 In addition to that, Agile methodology reduces total development time (1), which was very convenient since most team 
 members were actively occupied for the first segment of the project development. For better convenience, developing small
-upgrades and continously test these updates, increased our chances for our team to achieve completeness much faster than
+upgrades and to continously test these updates, increased our chances for our team to achieve completeness much faster than
 having a rigid sequence of steps to be followed, such as the Waterfall Model.
 
 To sum up, the Agile methodology worked best for our team because: 
