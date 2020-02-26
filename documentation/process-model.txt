@@ -47,7 +47,11 @@ Doesn’t work, change, test and pivot, finally deliver.
 - Builds a small portion of each feature, one by one, and then voth gradually adding features and increasing their completeness
 - We are going to break up what we are going to do into Minimum viable product (MVP), smallest and simplest version, get feedback, see what works and doesn't work
 
----- Resources ----
+
+ -------------------------------- 
+|       ＲＥＳＯＵＲＣＥＳ          |
+ --------------------------------
+
 
 1. https://www.javatpoint.com/software-engineering-agile-model
 2. https://medium.com/omarelgabrys-blog/software-engineering-software-process-and-software-process-models-part-2-4a9d06213fdc
