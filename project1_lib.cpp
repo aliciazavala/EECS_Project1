@@ -251,24 +251,24 @@ std::string stringToTime(std::string timeStr, bool military)
 	return finalString;
 }
 
-std::string convertTo12Hr(std::string time)
+std::string convertTo12Hr(std::string time) //converts time from military time to standard time
 {
-	std::string temp = time.substr(0,2);
+	std::string temp = time.substr(0,2); //extracts hour from time string
 	int hour = stoi(temp);
 	if(hour > 12)
 	{
 		if(hour - 12 < 10)
 		{
-			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM");
+			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM"); //formats hour so that time string follows HH:MM format
 		}
 		else
 		{
-			return(std::to_string(hour - 12) + time.substr(2,3) + " PM");
+			return(std::to_string(hour - 12) + time.substr(2,3) + " PM"); //in this 'else' and its corresponding 'if', the PM is automatically added because we are in the afternoon
 		}
 	}
 	else
 	{
-		return (time + " AM");
+		return (time + " AM"); //appends " AM" to end of time string because time is less than 12 (before noon)
 	}
 }
 
