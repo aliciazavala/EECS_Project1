@@ -1,24 +1,24 @@
 template<typename ItemType>
-Stack<ItemType>::Stack()
+Stack<ItemType>::Stack() //stack constructor sets m_top to nullptr
 {
 	m_top = nullptr;
 }
 
 
 template<typename ItemType>
-Stack<ItemType>::Stack(const Stack<ItemType>& original)
+Stack<ItemType>::Stack(const Stack<ItemType>& original) //copy constructor of stack
 {
 	m_top = nullptr;
 	SLNode<ItemType>* nodePtr = original.m_top;
 	Stack<ItemType> transferStack;
 	while(nodePtr != nullptr)
 	{
-		transferStack.push(nodePtr->getItem());
+		transferStack.push(nodePtr->getItem()); //moves items from original stack to copy stack
 		nodePtr = nodePtr->getNext();
 	}
 	while(transferStack.m_top != nullptr)
 	{
-		push(transferStack.peek());
+		push(transferStack.peek()); //puts items in copy stack in correct order
 		transferStack.pop();
 	}
 }
