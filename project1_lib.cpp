@@ -256,7 +256,7 @@ std::string stringToTime(std::string timeStr, bool military)
 	return finalString;
 }
 
-std::string convertTo12Hr(std::string time) //converts time from military time to standard time
+std::string convertTo12Hr(std::string time) //converts time from 24 hour time to standard time
 {
 	std::string temp = time.substr(0,2); //extracts hour from time string
 	int hour = stoi(temp);
@@ -359,7 +359,7 @@ int getValidIntFromUser(std::string errorMessage)// makes sure the user inputs a
 		}
 	}
 }
-
+//sets a range of input for user and if the input is not valid, throws error message. 
 int getIntRangeFromUser(int lowerBound, int upperBound, std::string errorMessage)
 {
 	int input;
