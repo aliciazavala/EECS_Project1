@@ -1,0 +1,4 @@
+The process model that would be appropiate for this project is 'Agile Software Development' 
+
+------ I would expand on this tonight once I do proper research
+-Elena

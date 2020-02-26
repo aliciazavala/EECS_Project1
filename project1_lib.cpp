@@ -2,7 +2,7 @@
 
 int daysInMonth(int m, int y)
 {
-	if(m == 2)
+	if(m == 2) //this checks for february, and the nested conditional statements check to see if it's a leap year.
 	{
 		if(y % 4 != 0)
 		{
@@ -21,17 +21,17 @@ int daysInMonth(int m, int y)
 			return 29;
 		}
 	}
-	else if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12)
+	else if(m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) //if the month is january, march, may, july, august, october, or december, retern 31 days.
 	{
 		return 31;
 	}
-	else if (m == 4 || m == 6 || m == 9 || m == 11)
+	else if (m == 4 || m == 6 || m == 9 || m == 11) //if month is april, june, september, or november, return 30 days.
 	{
 		return 30;
 	}
 	else
 	{
-		throw(std::runtime_error("invalid month"));
+		throw(std::runtime_error("invalid month")); //throws error if invalid month is given.
 	}
 }
 
