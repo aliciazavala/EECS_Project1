@@ -14,15 +14,17 @@ class MonthMenu : public Menu
 	~MonthMenu();
 
 	void print() const;
-	void print(int month, int year) const;
+	void print(int month, int year);
 	std::string getName() const;
 	void setTotalEvents(int numEvents);
+	int getEventsInYear() const;
 	int returnID(int Eid);
 
 	private:
 	std::string m_menuName;
 	int totalEvents;
 	int* EventID;
+	int m_eventsInYear;
 	//point to event list
 };
 

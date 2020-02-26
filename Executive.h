@@ -31,17 +31,15 @@ class Executive
 	int m_loadedYear;
 	int m_loadedMonth;
 	bool m_militaryTime;
+	bool m_hideTimes;
 	char** m_timeArr;//18x3 2D array
 	std::string m_eventTime;
+	std::string m_loadedPW;
 	int m_eventId;
-	//see bottom of class for index mapping
+	bool loggedin;
 
-	//std::string m_fileName;
+	//Stack that holds menu objects
 	Stack<Menu*>* m_menuStack;
-
-
-	bool load();
-	void save();
 
 	void handleMainMenu();
 	void handleMonthMenu();
@@ -52,12 +50,12 @@ class Executive
 	void handleAttendTimeMenu();
 	void handleAttendMenu();
 	void handleBack();
+	void handleAdminMenu();
 	void clearTimeArr();
 	void loadTimeArr(std::string timeString);
 
 	std::string ConvertArray();
 	int EventsInMonth(int month);
-	void PrintEventsInMonth();
 	void convertTimeString(std::string timeString);
 /**	m_timeArr index mapping:
 	hour:	index:

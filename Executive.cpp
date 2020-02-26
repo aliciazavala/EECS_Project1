@@ -1,13 +1,16 @@
 #include "Executive.h"
 Executive::Executive()
 {
-	//both should be empty at startup
+	//Initialize member variables
 	m_menuStack = nullptr;
-
+	//The program always loads on the current year
 	m_loadedYear = getCurrentYear();
-
 	m_militaryTime = false;
+	m_hideTimes = false;
+	loggedin = false;
 
+	//The array which hold the time slots for an event is initialized and
+	//then cleared.
 	m_timeArr = new char*[18];
 	for(int i = 0; i < 18; i++)
 	{
@@ -34,23 +37,11 @@ Executive::~Executive()
 
 void Executive::run(bool test)
 {
-	if(load())//executes load
-	{
-		m_menuStack = new Stack<Menu*>;
 
-		Menu* newMenu = new MainMenu;
-		m_menuStack->push(newMenu);
+	m_menuStack = new Stack<Menu*>;
 
-	}
-
-	if(test)
-	{
-		loadTimeArr(std::string("000000000011111111110000000000111111111100000000000000"));
-		handleAttendTimeMenu();
-		//handleAttendTimeMenu();
-		//Menu* testMenu = new TimeMenu;
-		//m_menuStack->push(testMenu);
-	}
+	Menu* newMenu = new MainMenu;
+	m_menuStack->push(newMenu);
 
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
 	{
@@ -84,36 +75,17 @@ void Executive::run(bool test)
 		{
 			handleAttendMenu();
 		}
+		else if(currentMenu == "AdminMenu")
+		{
+			handleAdminMenu();
+		}
 	}
-	save();
 }
-
-bool Executive::load()
-{
-	//read from file then return true or return false if file cannot be openned
-
-	//int m_eventsLoaded = 1;//should be read from file
-	//m_calendar = new Calendar(m_eventsLoaded);
-
-	return true;//placeholder return
-}
-
-void Executive::save()
-{
-	//save to file
-	//possible feature: encrypt the save file to prevent it from being read or altered
-	//			ex: convert chars to bits (8 bits) and then use XOR encryption
-	//				   x XOR key = y, where x, y, and key are 8bit strings
-	//				=> y XOR key = x
-
-
-	std::cout << "save complete\n";//placeholder return
-}
-
 void Executive::handleMainMenu()
 {
+	//Create a temp to call functions 
 	MainMenu temp;
-	temp.print(m_loadedYear);//print
+	temp.print(m_loadedYear);
 
 	std::string validInputs[16] = {"q","1","2","3","4","5","6","7","8","9","10","11","12","b","n","s"};
 	std::string monthArr[12] = {"1","2","3","4","5","6","7","8","9","10","11","12"};
@@ -132,7 +104,10 @@ void Executive::handleMainMenu()
 	}
 	else if(input == "b")// move back 1 year
 	{
-		m_loadedYear = m_loadedYear - 1;
+		if(m_loadedYear > 1584)
+		{
+			m_loadedYear = m_loadedYear - 1;
+		}
 	}
 	else if(input == "n")// move forward 1 year
 	{
@@ -143,17 +118,16 @@ void Executive::handleMainMenu()
 		Menu* newMenu = new SettingsMenu();
 		m_menuStack->push(newMenu);
 	}
-
 }
-
 void Executive::handleMonthMenu()
 {
 	//create temp
 	MonthMenu temp;
 	//read number of events in a month from that file
-	int range = EventsInMonth(m_loadedMonth);
-	temp.setTotalEvents(range);
+	int range = 0;
+	temp.setTotalEvents(EventsInMonth(m_loadedMonth));
 	temp.print(m_loadedMonth, m_loadedYear);
+	range = temp.getEventsInYear();
 	int input = getIntRangeFromUser(0,range+1);
 	if(input == 0)
 	{
@@ -167,7 +141,7 @@ void Executive::handleMonthMenu()
 	else if(input>0 && input<range+1)
 	{
 		m_eventId = temp.returnID(input-1);
-		Menu* temp = new EventMenu(m_eventId);
+		Menu* temp = new EventMenu(m_eventId, m_militaryTime, false);
 		m_menuStack->push(temp);
 	}
 	//ask user to chose event or make event
@@ -175,75 +149,98 @@ void Executive::handleMonthMenu()
 }
 void Executive::handleEventMenu()
 {
-	EventMenu temp(m_eventId);
-	temp.print(m_loadedMonth,m_loadedYear);
-	int input=getIntRangeFromUser(0,1);
+	EventMenu temp(m_eventId, m_militaryTime, false);
+	temp.print(m_loadedMonth,m_loadedYear,loggedin, m_hideTimes);
+	int input=getIntRangeFromUser(0,3);
+	m_eventTime = temp.getTime();
 	if(input==0)
 	{
 		handleBack();
 	}
-	if(input == 1)
+	else if(input == 1)
 	{
 		Menu* newMenu = new AttendMenu();
 		m_menuStack->push(newMenu);
 	}
+	else if(input == 2)
+	{
+		loggedin = false;
+		Menu* adminMenu = new EventMenu(m_eventId, m_militaryTime, true);
+		m_menuStack->push(adminMenu);
+	}
 }
-
+void Executive::handleAdminMenu()
+{
+	EventMenu temp(m_eventId,m_militaryTime,true);
+	temp.print(m_loadedMonth,m_loadedYear,loggedin, m_hideTimes);
+	int input = getIntRangeFromUser(0,2);
+	if(input == 1)
+	{
+		temp.printAvailability();
+		std::cout << "\n[0] Finish" << std::endl;
+	 	input = getIntRangeFromUser(0,0);
+	}
+	else if(input == 2)
+	{
+		Menu* settings = new SettingsMenu();
+		m_menuStack->push(settings);
+		//input = getIntRangeFromUser(0,2);
+	}
+	else if(input == 0)
+	{
+		handleBack();
+	}
+}
 void Executive::handleAttendMenu()
 {
+	std::string m_eventName;
 	std::ofstream attendees;
 	attendees.open("./data/Attendees.txt",std::fstream::app);
 	AttendMenu temp(m_eventId);
 	temp.print();
-	m_eventTime = temp.getTime();
+	//m_eventTime = temp.getTime();
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
 	loadTimeArr(m_eventTime);
 	handleAttendTimeMenu();
 	std::string array = ConvertArray();
-	attendees<<array<<std::endl;
+	attendees << " " << array << std::endl;
 	attendees.close();
 	handleBack();
-
-}
-
-void Executive::PrintEventsInMonth()
-{
-
 }
 
 void Executive::handleNewEventMenu()
 {
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
-	temp.print(m_loadedMonth,m_loadedYear);
-	int x = 0;
-	std::string creatorName;
+	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
+	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
+
+	std::string creatorName; // Variables to read in from the file
 	std::string EventName;
 	int day;
+
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
-	events.open("./data/" + FileName + ".txt", std::fstream::app);
-	std::cout<<"Enter name of event creator: ";
+	events.open("./data/" + FileName + ".txt", std::fstream::app); // Open the specific month text file
+	attendees.open("./data/Attendees.txt",std::fstream::app); // Open the attendees.txt
+
+	std::cout<<"Enter name of event creator: "; //Gets event information( creator, name of the event)
 	std::cin.ignore();
 	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";
 	//std::cin.ignore(); // ignores \n that cin >> str has lefted (if user pressed enter key)
 	std::getline(std::cin, EventName);
+
 	do{
-	x++;
-	day = 0;
-	if(x==1)
+
+		std::cout<<"Enter day of event (1 - " << daysInMonth(m_loadedMonth,m_loadedYear) <<"): ";
+		std::cin>>day;
+		if(!isValidDate(m_loadedMonth,day,m_loadedYear))
 		{
-			std::cout<<"Enter day of event: ";
-			std::cin>>day;
-		}
-		else if(x > 1)
-		{
-			std::cout<<"Enter a VALID day for the event: ";
-			std::cin>>day;
+			std::cout<<"Date not valid! "<<std::endl;
 		}
 	}while(!isValidDate(m_loadedMonth,day,m_loadedYear));
+
 	std::cout<<"Enter time of your event: "<<std::endl;
 	TimeMenu* object = new TimeMenu();
 	m_menuStack->push(object);
@@ -253,14 +250,22 @@ void Executive::handleNewEventMenu()
 	{
 		std::string array = ConvertArray();
 		int id = generateID();
-		events<<"Event: "<<id<<std::endl<<" "<<EventName<<std::endl<<" "<<m_loadedMonth<<'\t'<<day<<'\t'<<m_loadedYear<<std::endl<<" "<<creatorName<<" "<<array<<std::endl;
-		attendees.open("./data/Attendees.txt",std::fstream::app);
-		attendees<<id<<" "<<creatorName<<std::endl;
-		attendees<<array<<std::endl;
+
+		std::cout << "\t ===== Admin Password =====\n\n\n";
+		std::string password = getPassword();
+
+		events << "Event: "<< id <<std::endl << " " << EventName << std::endl;
+		events << " " << m_loadedMonth << '\t' << day << '\t' << m_loadedYear << std::endl;
+		events << " " << creatorName << std::endl;
+		events << " " << array << std::endl;
+		events << " " << password << std::endl;
+
+		attendees << id << " " <<creatorName << std::endl;
+		attendees << " " << array << std::endl;
 	}
 	attendees.close();
 	events.close();
-	std::cout << "[0] Back" << std::endl;
+	std::cout << "\n[0] Finish" << std::endl;
 	int input = getIntRangeFromUser(0,0);
 	if(input == 0)
 	{
@@ -269,6 +274,7 @@ void Executive::handleNewEventMenu()
 	//ask user for each event parameter
 	//output to file
 }
+
 std::string Executive::ConvertArray()
 {
 	std::string time = "                                                      ";
@@ -277,7 +283,7 @@ std::string Executive::ConvertArray()
 	{
 		for(int j = 0; j < 3; j++)
 		{
-			if(m_timeArr[i][j] == 'n' || m_timeArr[i][j]=='_')
+			if(m_timeArr[i][j] == 'n' || m_timeArr[i][j]=='_' || m_timeArr[i][j] == 'X')
 			{
 				time[x] = '0';
 			}
@@ -315,17 +321,21 @@ void Executive::handleSettingsMenu()
 	//allow the user to repeatedly change the time setting:
 	do
 	{
-		temp.print(m_militaryTime);
-		input  = getIntRangeFromUser(0,1);
+		temp.print(m_militaryTime,m_hideTimes);
+		input  = getIntRangeFromUser(0,2);
 		if(input == 1)
 		{
 			m_militaryTime = !m_militaryTime;
+		}
+		if(input == 2)
+		{
+			m_hideTimes = !m_hideTimes;
 		}
 	}while(input != 0);
 	//go back one menu
 	handleBack();
 }
-void Executive::handleTimeMenu()
+void Executive::handleTimeMenu()//change text for admin
 {
 	TimeMenu temp;
 
@@ -346,12 +356,10 @@ void Executive::handleAttendTimeMenu()
 	}
 	handleBack();
 }
-
 void Executive::handleBack()
 {
 	m_menuStack->pop();
 }
-
 void Executive::clearTimeArr()
 {
 	for(int i = 0; i < 18; i++)
@@ -373,6 +381,10 @@ void Executive::loadTimeArr(std::string timeString)
 			if(timeString.at(index) == '0')
 			{
 				m_timeArr[i][j] = 'X';
+			}
+			else
+			{
+				m_timeArr[i][j] = '_';
 			}
 			index++;
 		}

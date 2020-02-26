@@ -20,8 +20,11 @@ void AttendMenu::print()
 	clearScreen();
 	std::cout << "\t ===== Attending Event =====" << std::endl;
 	std::cout << " Enter name: ";
-	std::cin >> name;
+	std::cin.ignore();
+	std::getline(std::cin,name);
 	attendees<<m_ID<<" "<<name<<std::endl;
+
+	attendees.close();
 }
 
 void AttendMenu::print()const{}
@@ -30,4 +33,3 @@ std::string AttendMenu::getName() const
 {
 	return (m_menuName);
 }
-

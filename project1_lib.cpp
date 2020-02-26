@@ -76,7 +76,7 @@ std::string dayOfWeek(int m, int d, int y)
 		y = y - 1;
 	}
 	int N = d + 2*m + floor((3*(m+1))/5) + y + floor(y/4) - floor(y/100) + floor(y/400) + 2;
-	switch(N%7)	
+	switch(N%7)
 	{
 		case 1: return ("Sunday");
 			break;
@@ -186,7 +186,7 @@ std::string formatTime(int hour, int minute)
 	{
 		throw(std::runtime_error("invalid time to format"));
 	}
-	
+
 	if(hour < 10)
 	{
 		formattedHour = "0" + std::to_string(hour);
@@ -213,7 +213,7 @@ std::string stringToTime(std::string timeStr, bool military)
 	timeStr = timeStr + "0";
 	int i1 = -1;
 	int i2 = 0;
-	std::string finalString = "Times: ";
+	std::string finalString = "";
 	bool first = true;
 	for(int i = 0; i < 54; i++)
 	{
@@ -231,7 +231,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						{
 							finalString = finalString + ", ";
 						}
-						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2);
+						finalString = finalString + indexToTime(i1) + " - " + indexToTime(i2+1);
 					}
 					else
 					{
@@ -239,7 +239,7 @@ std::string stringToTime(std::string timeStr, bool military)
 						{
 							finalString = finalString + ", ";
 						}
-						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2));
+						finalString = finalString + convertTo12Hr(indexToTime(i1)) + " - " + convertTo12Hr(indexToTime(i2+1));
 					}
 					first = false;
 					i = j;
@@ -247,11 +247,6 @@ std::string stringToTime(std::string timeStr, bool military)
 				}
 			}
 		}
-	}
-	if(finalString.at(finalString.length() - 1) == ' ')
-	{
-		finalString.pop_back();
-		finalString.pop_back();
 	}
 	return finalString;
 }
@@ -336,6 +331,7 @@ std::string indexToTime(int index)
 		case 51: return ("23:00");
 		case 52: return ("23:20");
 		case 53: return ("23:40");
+		case 54: return ("00:00");
 		default: throw(std::runtime_error("invalid index"));
 	}
 }
@@ -451,4 +447,41 @@ int generateID()
 	return (ID);
 }
 
+std::string getPassword()
+{
+	std::string password;
+	std::string confirm;
+	termios t_original, t_hideInput;
 
+	//save original settings
+	tcgetattr(STDIN_FILENO, &t_original);
+
+	t_hideInput = t_original;
+	t_hideInput.c_lflag &= ~ECHO;
+	tcsetattr(STDIN_FILENO, TCSANOW, &t_hideInput);
+
+	while(1)
+	{
+		std::cout << "\nEnter a password (length 8-16): ";
+		std::cin >> password;
+		if(password.length() >= 8 || password.length() <= 16)
+		{
+			std::cout << "\nConfirm Password: ";
+			std::cin >> confirm;
+			if(password != confirm)
+			{
+				std::cout << "Passwords do not match!\n";
+			}
+			else
+			{
+				//enable ternimal echo
+				tcsetattr(STDIN_FILENO, TCSANOW, &t_original);
+				return password;
+			}
+		}
+		else
+		{
+			std::cout << "Invalid length!\n";
+		}
+	}
+}

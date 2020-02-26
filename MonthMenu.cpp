@@ -4,7 +4,8 @@ MonthMenu::MonthMenu()
 {
 	EventID = nullptr;
 	m_menuName = "MonthMenu";
-	totalEvents = 0; //placeholder
+	totalEvents = 0;
+	m_eventsInYear = 0;
 	EventID = nullptr;
 }
 
@@ -27,51 +28,53 @@ void MonthMenu::setTotalEvents(int numEvents)
 	}
 
 }
-void MonthMenu::print(int month, int year) const
+void MonthMenu::print(int month, int year)
 {
 	clearScreen();
 	int eventid = 0;
 	int day;
 	int eventmonth;
-	int eventsINyear=0;
 	int eventyear;
-	int y = totalEvents;
-	int x = 0;
+	int eventsLeft = totalEvents;
+	std::string eventTimes;
 	std::ifstream fin;
 	std::string eventname;
 	fin.open("./data/" + nameOfMonth(month)+".txt");
 	std::cout << "\t ===== Events for " << nameOfMonth(month) << " " << year << " =====" << std::endl;
+
 	for(int i = 1; i <= totalEvents; i++)
 	{
-		//print every event name
+		//find keyword
 		do
 		{
 			fin>>eventname;
 		}while(eventname != "Event:");
-		fin>>eventid;
+		//get info
+		fin >> eventid;
 		fin.ignore(1,'\n');
 		std::getline(fin,eventname);
-		fin>>day>>eventmonth>>eventyear;
+		fin >> day >> eventmonth >> eventyear;
+		fin.ignore(1,'\n');
+		getline(fin, eventTimes);
+		eventTimes = eventTimes.substr(1, eventTimes.length() - 1);
+		//check for matching year
 		if(eventyear == year)
 		{
-			EventID[totalEvents-y]=eventid;
-			y--;
-			x++;
+			EventID[totalEvents - eventsLeft]=eventid;
+			eventsLeft--;
+			m_eventsInYear++;
+			std::cout << "\n[" << m_eventsInYear << "]" << eventname << ": " << eventid;
 		}
-		if(eventyear == year)
-		{
-			eventsINyear++;
-			std::cout << "\n[" << eventsINyear << "]";
-			std::cout<<eventname<<": "<<eventid;
-		}
+
 		if(totalEvents > 0)
 		{
 			if (i == totalEvents)
 			{
-				std::cout << "\n\n["<< x+1<< "] New Event" << std::endl<<std::endl;
+				std::cout << "\n\n["<< m_eventsInYear+1<< "] New Event" << std::endl<<std::endl;
 			}
 		}
 	}
+
 	if(totalEvents == 0)
 	{
 		std::cout << "[1] New Event" << std::endl;
@@ -84,10 +87,18 @@ void MonthMenu::print(int month, int year) const
 	std::cout << "[0] Back" << std::endl;
 	fin.close();
 }
+
+int MonthMenu::getEventsInYear() const
+{
+	return m_eventsInYear;
+}
+
 int MonthMenu::returnID(int Eid)
 {
 	return EventID[Eid];
 }
+
+
 std::string MonthMenu::getName() const
 {
 	return m_menuName;
