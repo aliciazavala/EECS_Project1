@@ -36,7 +36,7 @@ To sum up, the Agile methodology worked best for our team because:
    --> Identified the project requirements, then began working on the project by iteration through different stages
    of new updates and upgrades. 
    
-   --> We broke up what the project into the Minimum Viable Product (MVP), which is the smallest and simplest 
+   --> We broke up the project into the Minimum Viable Product (MVP), which is the smallest and simplest 
    version of the project, in order to test what was working and what did not work (3). For instance, first we 
    made sure that we had a version of our Calendar App which at least allowed users to create an event, and 
    store that into a file. This was very simple because it was the minimum version of what the Calendar App should do.
