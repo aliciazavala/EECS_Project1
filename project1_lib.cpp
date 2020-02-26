@@ -160,7 +160,7 @@ void printTime(std::string time, bool militaryTime)
 	{
 		std::string temp = time.substr(0,2); //the hour is extracted from the time string
 		int hour = stoi(temp);
-		if(hour > 12) //converts the hour from military time to standard time.
+		if(hour > 12) //converts the hour from military time to standard time. "PM" is automatically added because hour is past noon
 		{
 			if(hour - 12 < 10)
 			{
@@ -173,7 +173,7 @@ void printTime(std::string time, bool militaryTime)
 		}
 		else
 		{
-			std::cout << time << " AM";
+			std::cout << time << " AM"; // "AM" is added because temp is less than 12, meaning noon is not reached yet.
 		}
 	}
 }
