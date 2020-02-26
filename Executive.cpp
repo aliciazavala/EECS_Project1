@@ -378,7 +378,7 @@ void Executive::handleTimeMenu()
 	TimeMenu temp;
 
 	clearTimeArr();
-	if(!temp.run(m_timeArr, m_militaryTime))
+	if(!temp.run(m_timeArr, m_militaryTime,0))
 	{
 		clearTimeArr();
 	}
@@ -389,7 +389,7 @@ void Executive::handleAttendTimeMenu()
 {
 	TimeMenu temp;
 	//Check for a 'Quit without saving' option from the user, which will then clear the array
-	if(!temp.run(m_timeArr, m_militaryTime))
+	if(!temp.run(m_timeArr, m_militaryTime,1))
 	{
 		clearTimeArr();
 	}

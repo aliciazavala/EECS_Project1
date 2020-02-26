@@ -6,7 +6,7 @@ TimeMenu::TimeMenu()
 	current_x = 0;
 	current_y = 0;
 	m_timeStr = " ";
-	m_attendMode = 0;
+
 }
 
 TimeMenu::TimeMenu(const TimeMenu& original)
@@ -15,7 +15,6 @@ TimeMenu::TimeMenu(const TimeMenu& original)
 	current_x = original.current_x;
 	current_y = original.current_y;
 	m_timeStr = original.m_timeStr;
-	m_attendMode = original.m_attendMode;
 }
 
 TimeMenu::~TimeMenu()
@@ -30,20 +29,19 @@ std::string TimeMenu::getName() const
 
 void TimeMenu::print() const
 {
-
+	//This print function is not used, but it is required for inheritance
 }
 
-bool TimeMenu::run(char** timeArr, bool militaryTime)
+bool TimeMenu::run(char** timeArr, bool militaryTime, bool attendMode)
 {
 	char choice;
+	//create a set of chars to use in getCharFromSet function
 	char choiceSet[8] = {'w','a','s','d','y','n','F','Q'};
-	if(timeArr[0][0] != '_')
-	{
-		m_attendMode = 1;
-	}
+	
+
 	while(1)
 	{
-		print(timeArr, militaryTime);
+		print(timeArr, militaryTime, attendMode);
 		choice = getCharFromSet(8,choiceSet);
 		if(choice == 'w')
 		{
@@ -128,11 +126,11 @@ void TimeMenu::setN(char** timeArr)
 	}
 }
 
-void TimeMenu::print(char** timeArr, bool militaryTime)
+void TimeMenu::print(char** timeArr, bool militaryTime,bool attendMode)
 {
 	int currentHour = 5;
 	clearScreen();
-	if(m_attendMode)
+	if(attendMode)
 	{
 		std::cout << "\t ===== Select Available Time Slots to Attend =====\n";
 	}
