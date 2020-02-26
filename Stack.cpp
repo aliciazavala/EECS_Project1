@@ -29,12 +29,12 @@ Stack<ItemType>::~Stack()
 {
 	while(!isEmpty())
 	{
-		pop();
+		pop(); //deletes all nodes in stack
 	}
 }
 
 template<typename ItemType>
-bool Stack<ItemType>::isEmpty() const
+bool Stack<ItemType>::isEmpty() const //checks to see if there are items in stack or not
 {
 	if(m_top == nullptr)
 	{
@@ -44,7 +44,7 @@ bool Stack<ItemType>::isEmpty() const
 }
 
 template<typename ItemType>
-void Stack<ItemType>::push(const ItemType& newEntry)
+void Stack<ItemType>::push(const ItemType& newEntry) 
 {
 	SLNode<ItemType>* temp = new SLNode<ItemType>(newEntry);
 	if(temp == nullptr)//memory check
@@ -53,7 +53,7 @@ void Stack<ItemType>::push(const ItemType& newEntry)
 	}
 	else
 	{
-		temp->setNext(m_top);
+		temp->setNext(m_top); //adds a new item to stack
 		m_top = temp;
 	}
 }
@@ -63,7 +63,7 @@ void Stack<ItemType>::pop()
 {
 	if(!isEmpty())
 	{
-		SLNode<ItemType>* temp = m_top;
+		SLNode<ItemType>* temp = m_top; //removes top item from stack
 		m_top = temp->getNext();
 		delete temp;
 	}
@@ -80,5 +80,5 @@ ItemType Stack<ItemType>::peek() const
 	{
 		throw(std::runtime_error("No items to peek in stack!"));
 	}
-	return m_top->getItem();
+	return m_top->getItem(); //shows top entry in stack
 }
