@@ -1,8 +1,9 @@
 #include "Executive.h"
 Executive::Executive()
 {
+	//Initialize member variables
+	//The program
 	m_menuStack = nullptr;
-
 	m_loadedYear = getCurrentYear();
 	m_militaryTime = false;
 	m_hideTimes = false;
@@ -39,15 +40,6 @@ void Executive::run(bool test)
 
 	Menu* newMenu = new MainMenu;
 	m_menuStack->push(newMenu);
-
-	if(test)
-	{
-		loadTimeArr(std::string("000000000011111111110000000000111111111100000000000000"));
-		handleAttendTimeMenu();
-		//handleAttendTimeMenu();
-		//Menu* testMenu = new TimeMenu;
-		//m_menuStack->push(testMenu);
-	}
 
 	while(!m_menuStack->isEmpty())//loops as long as there are menus
 	{
@@ -89,8 +81,9 @@ void Executive::run(bool test)
 }
 void Executive::handleMainMenu()
 {
+	//Create a temp to call functions 
 	MainMenu temp;
-	temp.print(m_loadedYear);//print
+	temp.print(m_loadedYear);
 
 	std::string validInputs[16] = {"q","1","2","3","4","5","6","7","8","9","10","11","12","b","n","s"};
 	std::string monthArr[12] = {"1","2","3","4","5","6","7","8","9","10","11","12"};
@@ -109,7 +102,10 @@ void Executive::handleMainMenu()
 	}
 	else if(input == "b")// move back 1 year
 	{
-		m_loadedYear = m_loadedYear - 1;
+		if(m_loadedYear > 1584)
+		{
+			m_loadedYear = m_loadedYear - 1;
+		}
 	}
 	else if(input == "n")// move forward 1 year
 	{
@@ -211,10 +207,6 @@ void Executive::handleAttendMenu()
 	attendees << " " << array << std::endl;
 	attendees.close();
 	handleBack();
-}
-void Executive::PrintEventsInMonth()
-{
-
 }
 
 void Executive::handleNewEventMenu()
