@@ -28,8 +28,10 @@ void MonthMenu::setTotalEvents(int numEvents) //creates an array big enough to s
 	}
 
 }
+//this menu prints the events scheduled for a specific month and year
 void MonthMenu::print(int month, int year)
 {
+	//clears screens and initializes variables
 	clearScreen();
 	int eventid = 0;
 	int day;
@@ -39,17 +41,18 @@ void MonthMenu::print(int month, int year)
 	std::string eventTimes;
 	std::ifstream fin;
 	std::string eventname;
+	//open month text file to read event information
 	fin.open("./data/" + nameOfMonth(month)+".txt");
 	std::cout << "\t ===== Events for " << nameOfMonth(month) << " " << year << " =====" << std::endl;
-
+	//loop through the text file 
 	for(int i = 1; i <= totalEvents; i++)
 	{
-		//find keyword
+		//find keyword "Event"
 		do
 		{
 			fin>>eventname;
 		}while(eventname != "Event:");
-		//get info
+		//get info for found event
 		fin >> eventid;
 		fin.ignore(1,'\n');
 		std::getline(fin,eventname);
@@ -58,6 +61,7 @@ void MonthMenu::print(int month, int year)
 		getline(fin, eventTimes);
 		eventTimes = eventTimes.substr(1, eventTimes.length() - 1);
 		//check for matching year
+		//if year of event matches, pass event ID to the array
 		if(eventyear == year)
 		{
 			EventID[totalEvents - eventsLeft]=eventid;
@@ -65,7 +69,7 @@ void MonthMenu::print(int month, int year)
 			m_eventsInYear++;
 			std::cout << "\n[" << m_eventsInYear << "]" << eventname << ": " << eventid;
 		}
-
+		//printing the option to create a new event
 		if(totalEvents > 0)
 		{
 			if (i == totalEvents)
@@ -74,16 +78,11 @@ void MonthMenu::print(int month, int year)
 			}
 		}
 	}
-
+	//if there are no events in given month and year, give option to create one
 	if(totalEvents == 0)
 	{
 		std::cout << "[1] New Event" << std::endl;
 	}
-	/*for(int i = 0; i<totalEvents; i++)
-	{
-		std::cout<<EventID[i]<<std::endl;
-	}
-	*/
 	std::cout << "[0] Back" << std::endl;
 	fin.close();
 }
