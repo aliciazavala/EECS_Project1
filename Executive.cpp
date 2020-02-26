@@ -2,13 +2,15 @@
 Executive::Executive()
 {
 	//Initialize member variables
-	//The program
 	m_menuStack = nullptr;
+	//The program always loads on the current year
 	m_loadedYear = getCurrentYear();
 	m_militaryTime = false;
 	m_hideTimes = false;
 	loggedin = false;
 
+	//The array which hold the time slots for an event is initialized and
+	//then cleared.
 	m_timeArr = new char*[18];
 	for(int i = 0; i < 18; i++)
 	{
