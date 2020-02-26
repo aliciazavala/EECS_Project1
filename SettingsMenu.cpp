@@ -2,7 +2,7 @@
 
 SettingsMenu::SettingsMenu()
 {
-	menuName = "SettingsMenu";
+	menuName = "SettingsMenu"; //sets current menu name to "SettingsMenu"
 }
 
 SettingsMenu::~SettingsMenu()
