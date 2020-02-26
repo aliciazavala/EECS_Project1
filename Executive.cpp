@@ -227,20 +227,20 @@ void Executive::handleAttendMenu()
 
 void Executive::handleNewEventMenu()
 {
-	NewEventMenu temp = NewEventMenu(m_loadedMonth);
-	temp.print(m_loadedMonth,m_loadedYear);
+	NewEventMenu temp = NewEventMenu(m_loadedMonth); // Create NewEventMenu object and pass in the month for the specific event
+	temp.print(m_loadedMonth,m_loadedYear);		// Calls the NewEventMenu function to print the header for the specific event
 
-	std::string creatorName;
+	std::string creatorName; // Variables to read in from the file
 	std::string EventName;
 	int day;
 
 	std::ofstream events;
 	std::ofstream attendees;
 	std::string FileName =	nameOfMonth(m_loadedMonth);
-	events.open("./data/" + FileName + ".txt", std::fstream::app);
-	attendees.open("./data/Attendees.txt",std::fstream::app);
+	events.open("./data/" + FileName + ".txt", std::fstream::app); // Open the specific month text file
+	attendees.open("./data/Attendees.txt",std::fstream::app); // Open the attendees.txt
 
-	std::cout<<"Enter name of event creator: ";
+	std::cout<<"Enter name of event creator: "; //Gets event information( creator, name of the event)
 	std::cin.ignore();
 	std::getline(std::cin, creatorName);
 	std::cout<<"Enter name of the event: ";
