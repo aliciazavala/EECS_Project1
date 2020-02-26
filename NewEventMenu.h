@@ -5,9 +5,9 @@
 class NewEventMenu: public Menu
 {
 public:
-  NewEventMenu(int monthEvent);
+  NewEventMenu(int monthEvent); //Constructor
   ~NewEventMenu();
-  void print(int& m_month, int& m_year) const;
+  void print(int& m_month, int& m_year) const; // Takes in current month and year, to print the header for the new event
   void print() const;
   NewEventMenu(const NewEventMenu& original);
 
