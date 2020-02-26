@@ -415,7 +415,7 @@ void Executive::clearTimeArr()
 }
 
 
-void Executive::loadTimeArr(std::string timeString)
+void Executive::loadTimeArr(std::string timeString) //parses the event time String and translates the 0's and 1's to X's and blanks.
 {
 	int index = 0;
 	for(int i = 0; i < 18; i++)
