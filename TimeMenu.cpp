@@ -201,7 +201,7 @@ void TimeMenu::moveCursor(std::string direction)
 	}
 }
 
-int TimeMenu::getTimeSlot(int x)
+int TimeMenu::getTimeSlot(int x) //maps time slot to corresponding 20 minute slot. 
 {
 	switch(x)
 	{
