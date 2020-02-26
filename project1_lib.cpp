@@ -142,7 +142,7 @@ bool isHoliday(int m, int d) //returns true if date is a holiday.
 	return false;
 }
 
-int getCurrentYear()
+int getCurrentYear() //returns the current year
 {
 	time_t now = time(0);
 	tm* ltm = localtime(&now);
