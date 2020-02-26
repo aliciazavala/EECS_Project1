@@ -11,8 +11,8 @@ Agile refers to the software development technique based on iterative developmen
 over a short period of time, delivering a version of the product fast enough, so that it can be tested constantly, and 
 new features can continue to be gradually added (2).
 
-This process model was a good fit for our project since we had high levels of uncertainty, meaning that we had freedom 
-on how to build the project to a great extent, and we encountered issues in suitable meeting times for the beginning 
+This process model was a good fit for our project since the requirements allowed for some interpretation, meaning that we had freedom 
+on how to build the project to a great extent. We also encountered issues in suitable meeting times for the beginning 
 portion of the project, which was a crucial factor to avoid misunderstandings and confussion between team members. On 
 top of that, Agile methodoloy does not require a lot of planning in order to get the project started, it is so easily
 adaptable for the reality, therefore it was the most appropiate process model for our particular circumstances. 
@@ -20,7 +20,7 @@ adaptable for the reality, therefore it was the most appropiate process model fo
 In addition to that, Agile methodology reduces total development time (1), which was very convenient since most team 
 members were actively occupied for the first segment of the project development. For better convenience, developing small
 upgrades and to continously test these updates, increased our chances for our team to achieve completeness much faster than
-having a rigid sequence of steps to be followed, such as the Waterfall Model.
+having a rigid sequence of steps to be followed, such as the Waterfall Model. However, we could not make the most use out of the Agile methodology as it was not easy to meet as a complete group.
 
 To sum up, the Agile methodology worked best for our team because: 
 
@@ -51,7 +51,6 @@ To sum up, the Agile methodology worked best for our team because:
 
 
 //Talk about what were the disadvantages in using Agile (confusion between team members,etc????)
-
 
 
 ***notes (to be deleted)****
