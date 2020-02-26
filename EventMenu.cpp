@@ -33,7 +33,7 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
     std::string temp;
     std::string creatorName;
     std::string eventName;
-	std::string timeString;
+	  std::string timeString;
     int eventId;
     int month;
     int day;
@@ -47,7 +47,6 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
 		fin>>eventId;
 		std::getline(fin,eventName);//whitespace
 		std::getline(fin,eventName);
-    m_eventname = eventName;
 		fin>>month;
 		fin>>day;
 		fin>>year;
@@ -59,7 +58,6 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
 		{
       m_eventTime = timeString.substr(1,timeString.size() - 1);//remove space from front
 			m_password = password.substr(1,password.size() - 1);//remove space from front
-
       if(m_adminMode == true && pass == false)
       {
         termios t_original, t_hideInput;
@@ -75,12 +73,12 @@ void EventMenu::print(int loadedmonth, int loadedyear, bool& pass, bool hideTime
         pass = true;
         clearScreen();
         std::cout << "\t ===== Status for " << eventName << " =====" << std::endl;
+        m_eventname = eventName;
         tcsetattr(STDIN_FILENO, TCSANOW, &t_original);
       }
       else
       {
         std::cout << "\t ===== " << eventName << " =====" << std::endl;
-
       }
 			//USE LIBRARY TO ALSO GET DAY OF THE WEEK??
 			std::cout<< "Date: " << nameOfMonth(loadedmonth) <<", "<< dayOfWeek(loadedmonth,day,loadedyear) << " " << day << " " << loadedyear << "\n" ;

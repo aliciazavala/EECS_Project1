@@ -116,9 +116,7 @@ void Executive::handleMainMenu()
 		Menu* newMenu = new SettingsMenu();
 		m_menuStack->push(newMenu);
 	}
-
 }
-
 void Executive::handleMonthMenu()
 {
 	//create temp
