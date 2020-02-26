@@ -1,3 +1,12 @@
+/*
+*
+*file: SLNode.h
+*author: Dr. James Miller
+*brief: singly linked node.
+*
+*
+*/
+
 #ifndef SLNODE_H
 #define SLNODE_H
 
