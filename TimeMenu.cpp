@@ -1,6 +1,6 @@
 #include "TimeMenu.h"
 
-TimeMenu::TimeMenu()
+TimeMenu::TimeMenu() //initializes members to null
 {
 	m_name = "TimeMenu";
 	current_x = 0;
@@ -9,7 +9,7 @@ TimeMenu::TimeMenu()
 	m_attendMode = 0;
 }
 
-TimeMenu::TimeMenu(const TimeMenu& original)
+TimeMenu::TimeMenu(const TimeMenu& original) //makes deep copy of TimeMenu
 {
 	m_name = original.m_name;
 	current_x = original.current_x;
@@ -20,7 +20,7 @@ TimeMenu::TimeMenu(const TimeMenu& original)
 
 TimeMenu::~TimeMenu()
 {
-
+	//empty destructor
 }
 
 std::string TimeMenu::getName() const
