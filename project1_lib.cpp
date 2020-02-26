@@ -160,7 +160,7 @@ void printTime(std::string time, bool militaryTime)
 	{
 		std::string temp = time.substr(0,2); //the hour is extracted from the time string
 		int hour = stoi(temp);
-		if(hour > 12) //converts the hour from military time to standard time.
+		if(hour > 12) //converts the hour from military time to standard time. "PM" is automatically added because hour is past noon
 		{
 			if(hour - 12 < 10)
 			{
@@ -173,7 +173,7 @@ void printTime(std::string time, bool militaryTime)
 		}
 		else
 		{
-			std::cout << time << " AM";
+			std::cout << time << " AM"; // "AM" is added because temp is less than 12, meaning noon is not reached yet.
 		}
 	}
 }
@@ -251,28 +251,28 @@ std::string stringToTime(std::string timeStr, bool military)
 	return finalString;
 }
 
-std::string convertTo12Hr(std::string time)
+std::string convertTo12Hr(std::string time) //converts time from military time to standard time
 {
-	std::string temp = time.substr(0,2);
+	std::string temp = time.substr(0,2); //extracts hour from time string
 	int hour = stoi(temp);
 	if(hour > 12)
 	{
 		if(hour - 12 < 10)
 		{
-			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM");
+			return( '0' + std::to_string(hour - 12) + time.substr(2,3) + " PM"); //formats hour so that time string follows HH:MM format
 		}
 		else
 		{
-			return(std::to_string(hour - 12) + time.substr(2,3) + " PM");
+			return(std::to_string(hour - 12) + time.substr(2,3) + " PM"); //in this 'else' and its corresponding 'if', the PM is automatically added because we are in the afternoon
 		}
 	}
 	else
 	{
-		return (time + " AM");
+		return (time + " AM"); //appends " AM" to end of time string because time is less than 12 (before noon)
 	}
 }
 
-std::string indexToTime(int index)
+std::string indexToTime(int index) //maps the index of a 3x18 array to a corresponding time slot.
 {
 
 	switch (index)
@@ -336,13 +336,13 @@ std::string indexToTime(int index)
 	}
 }
 
-int getValidIntFromUser(std::string errorMessage)
+int getValidIntFromUser(std::string errorMessage)// makes sure the user inputs a valid int
 {
 	int input;
 	while(1)
 	{
 		std::cin >> input;
-		if(std::cin.fail())
+		if(std::cin.fail()) //checks to see if preceding input succeeded or not. if so, the input is cleared, ignored, and the error message is displayed.
 		{
 			std::cin.clear();
 			std::cin.ignore();
