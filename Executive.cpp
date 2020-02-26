@@ -1,5 +1,5 @@
 #include "Executive.h"
-Executive::Executive()
+Executive::Executive() //executive constructor, initializes members to null
 {
 	m_menuStack = nullptr;
 
@@ -16,7 +16,7 @@ Executive::Executive()
 	clearTimeArr();
 }
 
-Executive::~Executive()
+Executive::~Executive() //executive destructor, deletes stack and time array.
 {
 	if(m_menuStack != nullptr)
 	{
