@@ -88,18 +88,18 @@ void MonthMenu::print(int month, int year)
 	fin.close();
 }
 
-int MonthMenu::getEventsInYear() const
+int MonthMenu::getEventsInYear() const //returns number of events in a given year.
 {
 	return m_eventsInYear;
 }
 
-int MonthMenu::returnID(int Eid)
+int MonthMenu::returnID(int Eid) //returns ID for a given event
 {
 	return EventID[Eid];
 }
 
 
-std::string MonthMenu::getName() const
+std::string MonthMenu::getName() const //returns name of current menu (MonthMenu)
 {
 	return m_menuName;
 }
